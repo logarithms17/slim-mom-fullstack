@@ -15,6 +15,7 @@ const usersSchema = new Schema({
     required: [true, "Email is required"],
     unique: true,
   },
-});
+},
+);
 
-export const Users = mongoose.model('users', usersSchema);
+export const Users = mongoose.model('user', usersSchema);

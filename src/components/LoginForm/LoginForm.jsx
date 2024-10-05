@@ -24,25 +24,6 @@ export const LoginForm = () => {
 
   return (
     <div className={css.backgroundContainer}>
-      {/* <nav className={css.navBar}>
-        <div className={css.navLogo}>
-          <a href='/'>
-            <img src={logo} alt="Slim Mom Logo" />
-          </a>
-            <span className={css.slim}>Slim</span>
-            <span className={css.mom}>Mom</span>
-        </div>
-
-        <div className={css.vectorContainer}>
-          <img src={vector} alt="vertical line" />
-        </div>
-
-        <div>
-          <a className={css.login} href='/login'>LOG IN</a>
-          <a className={css.register} href='/signup'> REGISTRATION</a>
-        </div>      
-      </nav> */}
-
       <div className={css.formTitle}>
         <h4>LOG IN</h4>
 
@@ -50,6 +31,7 @@ export const LoginForm = () => {
           <div className={css.inputBox}>
             <input 
               type="email" 
+              name="email"
               id="email" 
               placeholder=" " 
               value={email}
@@ -61,6 +43,7 @@ export const LoginForm = () => {
           <div className={css.inputBox}>
             <input 
               type="password" 
+              name="password"
               id="password" 
               placeholder=" " 
               value={password}

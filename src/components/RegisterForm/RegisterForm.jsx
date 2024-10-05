@@ -41,6 +41,7 @@ setPassword('');
         <div className={css.inputBox}>
             <input 
                 type="text" 
+                name="name"
                 id="name" 
                 placeholder=" " 
                 value={name}
@@ -52,6 +53,7 @@ setPassword('');
             <div className={css.inputBox}>
             <input 
                 type="email" 
+                name="email"
                 id="email" 
                 placeholder=" " 
                 value={email}
@@ -63,6 +65,7 @@ setPassword('');
             <div className={css.inputBox}>
             <input 
                 type="password" 
+                name="password"
                 id="password" 
                 placeholder=" " 
                 value={password}

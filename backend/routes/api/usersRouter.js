@@ -1,5 +1,6 @@
 import express from "express"
-import { signupUser, loginUser } from "../../controllers/usersController.js"
+import { signupUser, loginUser, logoutUser, addCalorieCalculation } from "../../controllers/usersController.js"
+import { authenticateToken } from "../../middlewares/auth.js"
 
 const router = express.Router()
 
@@ -8,5 +9,13 @@ router.post('/signup', signupUser)
 
 //LOGIN USER
 router.post('/login', loginUser)
+
+//LOGOUT USER
+router.post('/logout', authenticateToken, logoutUser)
+
+//UPDATE USER INFO
+
+router.post('/addCalorieCalculation', authenticateToken, addCalorieCalculation)
+
 
 export {router}

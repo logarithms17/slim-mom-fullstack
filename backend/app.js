@@ -3,6 +3,7 @@ import logger from "morgan"
 import cors from "cors"
 
 import { router as usersRouter } from "./routes/api/usersRouter.js"
+import {router as productsRouter } from "./routes/api/productsRouter.js"
 
 const app = express()
 
@@ -14,6 +15,9 @@ app.use(express.json())
 
 //middleware for users router
 app.use('/api/users', usersRouter)
+
+//middleware for products router
+app.use('/api/products', productsRouter)
 
 
 // 404 Error Handler

@@ -1,7 +1,11 @@
 import { Users } from "../models/usersModel.js";
-import { loginValidation, registrationValidation } from "../validation/validation.js";
+import { Products } from "../models/productsModel.js";
+import { loginValidation, registrationValidation, calorieIntakeValidation } from "../validation/validation.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import "dotenv/config"
+
+const {SECRET_KEY} = process.env
 
 //SIGN UP USER
 export const signupUser = async (req, res, next) => {
@@ -72,13 +76,82 @@ export const loginUser = async (req, res, next) => {
 
         const token = jwt.sign(
             { id: existingUser._id },
-            "test",
+            SECRET_KEY,
             { expiresIn: "1h" }
         );
         
         await Users.findByIdAndUpdate(existingUser._id, {token})
 
         res.status(200).json({ existingUser });
+
+    } catch (error) {
+        next(error)
+    }
+}
+
+//LOGOUT USERS
+
+export const logoutUser = async (req, res, next) => {
+    try {
+        const { id } = req.user
+        await Users.findByIdAndUpdate(id, { token: null })
+        res.status(200).json({ message: "User logged out" })
+
+    } catch (error) {
+        next(error)
+    }
+}
+
+//ADD DATA FOR CALORIE INTAKE CALCULATION
+
+export const addCalorieCalculation = async (req, res, next) => {
+    try {
+        const { height, desiredWeight, age, bloodType, currentWeight } = req.body;
+
+        const { error } = calorieIntakeValidation.validate(req.body);
+
+        if (error) {
+            return res.status(400).json({ message: "Missing required field" });
+        }
+
+        //COMPUTATION FOR THE DAILY CALORIE INTAKE
+
+        // 10 * weight + 6.25 * height - 5 * age - 161 - 10 * (weight - desired weight)
+
+        const calorieIntakeCalculation = (10 * currentWeight) + (6.25 * height) - (5 * age) - 161 - (10 * (currentWeight - desiredWeight))
+
+        //FOODS THAT ARE NOT RECOMMENDED
+
+        // Retrieve all products from the database
+        const products = await Products.find({});
+
+        // Filter foods that are not recommended based on bloodType
+        const foodsNotRecommended = products.filter((product) => {
+            // Ensure groupBloodNotAllowed exists and has a value of true for the given bloodType
+            return product.groupBloodNotAllowed && product.groupBloodNotAllowed[bloodType] === true;
+        });
+
+        // Extract unique categories from the filtered products
+        const uniqueCategories = [...new Set(foodsNotRecommended.map(product => product.categories))];
+
+        console.log(uniqueCategories)
+
+
+        const calorieIntake = await Users.findByIdAndUpdate(req.user.id, {
+            usersInfo: {
+                height,
+                desiredWeight,
+                age,
+                bloodType,
+                currentWeight,
+                recommendedCalories: calorieIntakeCalculation,
+                foodsNotRecommended: uniqueCategories
+            }
+        });
+
+        
+
+        res.status(200).json({ calorieIntake });
 
     } catch (error) {
         next(error)

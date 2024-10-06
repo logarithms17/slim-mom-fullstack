@@ -19,7 +19,6 @@ export const LoginForm = () => {
     alert('Please enter email and password');
   }
 
-
   alert('Login successfully!')
 };
 

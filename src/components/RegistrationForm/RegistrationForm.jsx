@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
-import css from './RegisterForm.module.css';
+import css from './RegistrationForm.module.css';
 
 
-export const RegisterForm = () => {
+export const RegistrationForm = () => {
      // State to manage form inputs
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');

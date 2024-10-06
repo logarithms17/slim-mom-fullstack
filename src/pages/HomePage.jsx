@@ -2,7 +2,13 @@ import React from 'react'
 
 const HomePage = () => {
   return (
-    <div>HomePage</div>
+    <div>
+    <h2>Calculate your daily calorie intake right now</h2>
+
+
+
+
+    </div>
   )
 }
 

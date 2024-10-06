@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-// import logo from '../../images/logo-png.png';
-// import vector from '../../images/Vector 1.png';
 import css from './LoginForm.module.css';
 
 export const LoginForm = () => {
@@ -20,6 +18,9 @@ export const LoginForm = () => {
   } else {
     alert('Please enter email and password');
   }
+
+
+  alert('Login successfully!')
 };
 
   return (
@@ -56,7 +57,7 @@ export const LoginForm = () => {
 
         <div className={css.buttonContainer}>
           <button className={css.button} type="submit">Log in</button>
-          <button className={css.button} type="submit">Register</button>
+          <button className={css.button} type="button" onClick={() => alert('Redirect to Login page')}>Register</button>
         </div>
       </div>
     </div>

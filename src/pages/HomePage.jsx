@@ -1,10 +1,11 @@
-import { RegisterForm } from 'components/RegisterForm/RegisterForm'
+
+import { LoginForm } from 'components/LoginForm/LoginForm'
 import React from 'react'
 
 const HomePage = () => {
   return (
     <div>HomePage
-    <RegisterForm />
+    <LoginForm />
     </div>
   )
 }

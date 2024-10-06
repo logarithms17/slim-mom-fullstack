@@ -1,14 +1,29 @@
 import React from 'react'
-import css from '../components/PageStyles/HomePageStyle.css'
+import styles from '../components/PageStyles/HomePageStyle.css'
 
 const HomePage = () => {
   return (
-    <div>
-    <h2>Calculate your daily calorie intake right now</h2>
-<h3 className='testonly'>this is css test</h3>
-   
+<div>
 
 
+
+<div className='calculateForm'>
+  <heading>
+  <h2 className='heading'>Calculate your daily calorie intake right now</h2>
+</heading>
+
+<input name='heightInput' className='inputStyle' placeholder='Height*'/>    
+
+<input name='desiredWeightInput' className='inputStyle' placeholder='Desired Weight*'/>  
+
+<input name='ageInput' className='inputStyle' placeholder='Age*'/>  
+
+<input name='bloodTypeInput' className='inputStyle' placeholder='Blood Type*'/>  
+
+<input name='currentWeightInput' className='inputStyle' placeholder='Current Weight*'/>  
+
+
+</div>
 
 
     </div>

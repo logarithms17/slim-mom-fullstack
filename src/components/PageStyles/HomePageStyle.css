@@ -1,3 +1,45 @@
-.testonly {
-    color: green;
+.calculateForm {
+    width: 608px;
+    height: 343px;
+    top: 293px;
+    left: 16px;
+    border: 1px;
+    border-color: e0e0e0;
+    margin-left: 20px;
 }
+
+.headingWrapper {
+width: 608px;
+height: 85px;
+top: 293px;
+left: 16px;
+
+
+}
+
+.heading {
+    font: verdana;
+    font-weight: 700px;
+    size: 34px;
+    line-height: 47.6px;
+    color: #212121;
+}
+
+.inputStyle {
+width: 240px;
+height: 16px;
+top: 446px;
+left: 16px;   
+margin-right: 20px;
+margin-bottom: 40px;
+}
+
+.inputStyle::placeholder {
+    font: verdana;
+    font-weight: 700;
+    size: 14px;
+    line-height: 17.01px;
+    letter-spacing: 4%;
+    color: #9B9FAA;
+}
+

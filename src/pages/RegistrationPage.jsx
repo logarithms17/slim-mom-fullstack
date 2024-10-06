@@ -1,7 +1,7 @@
 import RegistrationForm from '../components/RegistrationForm/RegistrationForm';
 import style from './RegistrationPage.module.css';
 
-const Register = () => {
+const RegistrationPage = () => {
   return (
     <div className={style.container}>
       <RegistrationForm />
@@ -9,4 +9,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default RegistrationPage;

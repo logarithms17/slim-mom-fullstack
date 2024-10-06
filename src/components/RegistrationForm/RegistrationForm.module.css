@@ -1,0 +1,97 @@
+.registrationWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f7f8fa;
+
+  @media (max-width: 768px) {
+    padding: 20px;
+  }
+}
+
+.formContainer {
+  background: white;
+  padding: 50px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+
+  @media (max-width: 768px) {
+    padding: 30px;
+  }
+
+  @media (max-width: 375px) {
+    padding: 20px;
+  }
+}
+
+.logo img {
+  width: 150px;
+  margin-bottom: 20px;
+}
+
+.formHeading {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 30px;
+  span {
+    margin-right: 10px;
+  }
+
+  .active {
+    font-weight: bold;
+    color: #ff6b08;
+  }
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+
+  label {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 5px;
+  }
+
+  .input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+
+  .buttonPrimary {
+    background-color: #ff6b08;
+    border: none;
+    color: white;
+    padding: 12px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #ff7f2e;
+    }
+  }
+
+  .buttonSecondary {
+    border: 1px solid #ff6b08;
+    color: #ff6b08;
+    padding: 12px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+
+    &:hover {
+      background-color: #fff2e1;
+    }
+  }
+}

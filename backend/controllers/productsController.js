@@ -9,7 +9,11 @@ export const getProduct = async (req, res) => {
         const { title } = req.params
         console.log(title)
 
-        const product = await Products.findOne({ title: title })
+        // Convert the URL parameter to a space-separated title (e.g., "oat-bran-with-blueberries" to "oat bran with blueberries")
+        const formattedTitle = title.replace(/-/g, ' ');
+
+        // Use a case-insensitive regex to search for the title
+        const product = await Products.findOne({ title: { $regex: new RegExp(`^${formattedTitle}$`, 'i') } });
 
         if (!product) {
 

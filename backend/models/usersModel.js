@@ -2,6 +2,12 @@ import { Schema } from 'mongoose';
 import mongoose from 'mongoose';
 
 
+const dailyConsumedProduct = new Schema({
+  product: String,
+  quantity: Number,
+  date: { type: Date, default: Date.now }
+})
+
 const calorieIntakeCalculationsSchema = new Schema({
     height: {
         type: Number,

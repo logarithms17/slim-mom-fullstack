@@ -1,0 +1,66 @@
+.summaryContainer {
+  display: flex;
+  flex-direction: column; /* Default: stack sections vertically */
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Summary Section styling */
+.summarySection {
+  margin-bottom: 20px; /* Space between sections */
+}
+
+h2 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 20px 0;
+}
+
+ul li {
+  margin-bottom: 8px;
+}
+
+/* Food Not Recommended Section styling */
+.foodSection {
+  margin-top: 20px;
+  border-top: 1px solid #ddd;
+  padding-top: 10px;
+}
+
+/* Tablet view */
+@media (max-width: 768px) {
+  .summaryContainer {
+    flex-direction: row; /* Align sections horizontally */
+    justify-content: space-between; /* Space between the sections */
+  }
+
+  .summarySection {
+    margin-bottom: 0; /* Remove bottom margin for horizontal alignment */
+    width: 60%; /* Adjust width for summary section */
+  }
+
+  .foodSection {
+    width: 35%; /* Adjust width for food section */
+    position: static; /* Ensure normal flow */
+  }
+}
+
+/* Mobile view */
+@media (max-width: 375px) {
+  .summaryContainer {
+    flex-direction: column; /* Stack sections vertically */
+    font-size: 14px;
+  }
+
+  .foodSection {
+    margin-top: 10px; /* Reduced margin on mobile */
+    width: 100%; /* Full width on mobile */
+  }
+}

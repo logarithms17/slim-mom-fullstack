@@ -3,11 +3,8 @@ import styles from '../components/PageStyles/HomePageStyle.css'
 
 const HomePage = () => {
   return (
-<div>
-
-
-
-</div>
+    <div>HomePage
+    </div>
   )
 }
 

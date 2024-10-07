@@ -1,18 +1,13 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import LoginPage from '../pages/LoginPage/LoginPage';
-import RegistrationPage from '../pages/RegistrationPage/RegistrationPage';
-import HomePage from '../pages/HomePage/HomePage';
+import HomePage from '../pages/HomePage/HomePage'; // Adjust the path if needed
 
 export const App = () => {
+  console.log("App component is rendering");
+
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/register" element={<RegistrationPage />} />
-      </Routes>
-    </Router>
+    <div>
+      <HomePage />
+    </div>
   );
 };
 

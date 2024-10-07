@@ -106,7 +106,7 @@ export const logoutUser = async (req, res, next) => {
 
 export const addCalorieCalculation = async (req, res, next) => {
     try {
-        const { height, desiredWeight, age, bloodType, currentWeight } = req.body;
+        const { height, desiredWeight, age, bloodType, currentWeight, date } = req.body;
 
         const { error } = calorieIntakeValidation.validate(req.body);
 
@@ -145,9 +145,51 @@ export const addCalorieCalculation = async (req, res, next) => {
                 bloodType,
                 currentWeight,
                 recommendedCalories: calorieIntakeCalculation,
-                foodsNotRecommended: uniqueCategories
+                foodsNotRecommended: uniqueCategories,
+                date
             }
         });
+
+        res.status(200).json({ calorieIntake });
+
+    } catch (error) {
+        next(error)
+    }
+}
+
+//ADD CONSUMED PRODUCTS IN A DAY
+
+export const addConsumedProduct = async (req, res, next) => {
+    try {
+        const { consumedProduct, quantity } = req.body;
+
+        const formattedConsumedProduct = consumedProduct.replace(/-/g, ' ');
+
+        //find product from db
+        console.log(formattedConsumedProduct)
+
+        const product = await Products.findOne({ title: { $regex: new RegExp(`^${formattedConsumedProduct}$`, 'i') } });
+
+        console.log(product)
+        const caloriesRatio = quantity / product.weight
+        console.log(caloriesRatio)
+
+        const consumedCalories = caloriesRatio * product.calories
+
+        const calorieIntake = await Users.findByIdAndUpdate(
+            req.user.id,
+            {
+                $push: {
+                    dailyConsumedProducts: {
+                        product: product.title,
+                        quantity,
+                        calories: consumedCalories,
+                        date: new Date()
+                    }
+                },
+            },
+            { new: true } // This option returns the updated document
+        );
 
         res.status(200).json({ calorieIntake });
 

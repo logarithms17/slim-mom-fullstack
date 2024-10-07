@@ -12,7 +12,11 @@ export const App = () => {
     <Routes>
       <Route path="/" element={<SharedLayout />}>
         <Route index element={<HomePage />} />
-        <Route path="/register" element={RegistrationPage} />
+        <Route path="/register" element={<RegistrationPage />} />
+        {/* <Route path="/login" element={<LoginPage />} />
+        <Route path="/diary" element={<DiaryPage />} />
+        Protected route for Calculator page */}
+        <Route path="/calculator" element={<CalculatorPage />} />
       </Route>
     </Routes>
   );

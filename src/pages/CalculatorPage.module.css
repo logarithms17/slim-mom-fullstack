@@ -1,0 +1,71 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  padding: 40px;
+  background-color: #f8f9fa;
+}
+
+/* Calculator Section styling */
+.calculatorSection {
+  width: 60%;
+  padding: 40px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.title {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+/* Summary Section styling */
+.summarySection {
+  width: 35%;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Tablet view adjustments */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column; /* Stack sections vertically */
+    align-items: center; /* Center align items */
+  }
+
+  .calculatorSection {
+    width: 100%; /* Full width for calculator section */
+    padding: 20px; /* Reduced padding */
+  }
+
+  .summarySection {
+    width: 100%; /* Full width for summary section */
+    margin-top: 20px; /* Margin to separate from calculator */
+  }
+
+  /* Adjust food section positioning */
+  .foodSection {
+    position: absolute; /* Positioning for food section */
+    bottom: 20px; /* Distance from the bottom */
+    right: 20px; /* Distance from the right */
+    width: 40%; /* Width for the food section */
+    max-width: 200px; /* Optional max width */
+  }
+}
+
+/* Mobile view adjustments */
+@media (max-width: 375px) {
+  .calculatorSection,
+  .summarySection {
+    width: 100%; /* Full width on mobile */
+    padding: 10px; /* Reduced padding */
+  }
+
+  .foodSection {
+    position: static; /* Default position */
+    width: 100%; /* Full width on mobile */
+  }
+}

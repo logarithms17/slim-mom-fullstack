@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 import React from 'react'
 import { LoginForm } from 'components/LoginForm/loginForm';
 import bcrypt from "bcryptjs/dist/bcrypt";
@@ -8,11 +9,24 @@ const LoginPage = () => {
     <div><LoginForm/></div>
   )
   
+=======
+import React from "react";
+
+const LoginPage = () => {
+  return (
+    <div>LoginForm</div>
+  )
+    
+   
+
+
+>>>>>>> Stashed changes
 }
 const loginUser = async (req, res) => {
   try {
       const { email, password } = req.body
 
+<<<<<<< Updated upstream
       const existingUser = await User.findOne({ email });
 
     
@@ -51,4 +65,6 @@ const loginUser = async (req, res) => {
 };
 
 
+=======
+>>>>>>> Stashed changes
 export default LoginPage;

@@ -106,7 +106,7 @@ export const logoutUser = async (req, res, next) => {
 
 export const addCalorieCalculation = async (req, res, next) => {
     try {
-        const { height, desiredWeight, age, bloodType, currentWeight } = req.body;
+        const { height, desiredWeight, age, bloodType, currentWeight, date } = req.body;
 
         const { error } = calorieIntakeValidation.validate(req.body);
 
@@ -145,7 +145,8 @@ export const addCalorieCalculation = async (req, res, next) => {
                 bloodType,
                 currentWeight,
                 recommendedCalories: calorieIntakeCalculation,
-                foodsNotRecommended: uniqueCategories
+                foodsNotRecommended: uniqueCategories,
+                date
             }
         });
 
@@ -155,3 +156,84 @@ export const addCalorieCalculation = async (req, res, next) => {
         next(error)
     }
 }
+
+//ADD CONSUMED PRODUCTS IN A DAY
+
+export const addConsumedProduct = async (req, res, next) => {
+    try {
+        const { consumedProduct, quantity } = req.body;
+
+        const formattedConsumedProduct = consumedProduct.replace(/-/g, ' ');
+
+        //find product from db
+        console.log(formattedConsumedProduct)
+
+        const product = await Products.findOne({ title: { $regex: new RegExp(`^${formattedConsumedProduct}$`, 'i') } });
+
+        const caloriesRatio = quantity / product.weight
+
+        const consumedCalories = caloriesRatio * product.calories
+
+        const calorieIntake = await Users.findByIdAndUpdate(
+            req.user.id,
+            {
+                $push: {
+                    dailyConsumedProducts: {
+                        product: product.title,
+                        quantity,
+                        calories: consumedCalories,
+                        date: new Date()
+                    }
+                },
+            },
+            { new: true } // This option returns the updated document
+        );
+
+        res.status(200).json({ calorieIntake });
+
+    } catch (error) {
+        next(error)
+    }
+}
+
+//GET ALL CONSUMED PRODUCT IN A SPECIFIC DATE
+
+export const getConsumedProduct = async (req, res, next) => {
+    try {
+        // Get the date from request params (assumed format: 'YYYY-MM-DD')
+        const { date } = req.params;
+        console.log("Received Date:", date);
+
+        // Convert the date string to a Date object for the start of the day
+        const targetDate = new Date(date);
+        targetDate.setUTCHours(0, 0, 0, 0); // Set the time to midnight
+
+        // Find the user by ID and get the dailyConsumedProducts array
+        const user = await Users.findById(req.user.id).select('dailyConsumedProducts');
+
+        console.log(user)
+        
+        // If user is not found or there are no products, return an empty array
+        if (!user || !user.dailyConsumedProducts) {
+            return res.status(200).json({ dailyConsumedProducts: [] });
+        }
+
+        // Filter and map products that match the specific day (ignoring time)
+        const filteredProducts = user.dailyConsumedProducts.filter((product) => {
+            const productDate = new Date(product.date);
+            productDate.setUTCHours(0, 0, 0, 0); // Normalize product date to midnight
+            return productDate.getTime() === targetDate.getTime(); // Compare dates
+        });
+
+        //GET ONLY THE TITLE OF THE PRODUCT
+        
+        const formattedProducts = filteredProducts.map((product) => {
+            return product.product
+        })
+
+        res.status(200).json({ dailyConsumedProducts: filteredProducts });
+
+    } catch (error) {
+        next(error);
+    }
+};

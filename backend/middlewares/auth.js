@@ -11,6 +11,7 @@ export const authenticateToken = async (req, res, next) => {
 
 
     if (bearer !== "Bearer") { //if the authorization is not bearer
+        console.log(bearer)
         return res.status(401).json({ message: "Unauthorized" })
     }
 
@@ -30,6 +31,7 @@ export const authenticateToken = async (req, res, next) => {
         next()
 
     } catch (error) {
+        console.log(error)
         return res.status(401).json({ message: "Unauthorized" })
     }
 }

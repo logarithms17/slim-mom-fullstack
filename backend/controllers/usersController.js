@@ -157,6 +157,57 @@ export const addCalorieCalculation = async (req, res, next) => {
     }
 }
 
+//ADD PUBLIC DATA FOR CALORIE INTAKE CALCULATION
+
+export const addPublicCalorieCalculation = async (req, res, next) => {
+    console.log(req.body)
+    try {
+        console.log(req.body)
+        const { height, desiredWeight, age, bloodType, currentWeight, date } = req.body;
+
+        const { error } = calorieIntakeValidation.validate(req.body);
+
+        if (error) {
+            return res.status(400).json({ message: "Missing required field" });
+        }
+
+        // COMPUTATION FOR THE DAILY CALORIE INTAKE
+        // Formula: 10 * weight + 6.25 * height - 5 * age - 161 - 10 * (weight - desired weight)
+        const calorieIntakeCalculation = 
+            (10 * currentWeight) + (6.25 * height) - (5 * age) - 161 - (10 * (currentWeight - desiredWeight));
+
+        // FOODS THAT ARE NOT RECOMMENDED
+        // Retrieve all products from the database
+        const products = await Products.find({});
+
+        // Filter foods that are not recommended based on bloodType
+        const foodsNotRecommended = products.filter((product) => {
+            return product.groupBloodNotAllowed && product.groupBloodNotAllowed[bloodType] === true;
+        });
+
+        // Extract unique categories from the filtered products
+        const uniqueCategories = [...new Set(foodsNotRecommended.map(product => product.categories))];
+
+        // Store the result in a local object (not saving to the database)
+        const localCalorieIntake = {
+            height,
+            desiredWeight,
+            age,
+            bloodType,
+            currentWeight,
+            recommendedCalories: calorieIntakeCalculation,
+            foodsNotRecommended: uniqueCategories,
+            date
+        };
+
+        // Return the result in the response without saving to the database
+        res.status(200).json({ localCalorieIntake });
+
+    } catch (error) {
+        next(error);
+    }
+};
+
 //ADD CONSUMED PRODUCTS IN A DAY
 
 export const addConsumedProduct = async (req, res, next) => {

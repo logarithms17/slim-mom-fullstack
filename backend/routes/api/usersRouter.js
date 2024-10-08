@@ -1,5 +1,5 @@
 import express from "express"
-import { signupUser, loginUser, logoutUser, addCalorieCalculation, addConsumedProduct, getConsumedProduct } from "../../controllers/usersController.js"
+import { signupUser, loginUser, logoutUser, addCalorieCalculation, addPublicCalorieCalculation, addConsumedProduct, getConsumedProduct, deleteConsumedProduct } from "../../controllers/usersController.js"
 import { authenticateToken } from "../../middlewares/auth.js"
 
 const router = express.Router()
@@ -17,6 +17,10 @@ router.post('/logout', authenticateToken, logoutUser)
 
 router.post('/addCalorieCalculation', authenticateToken, addCalorieCalculation)
 
+//ADD PUBLIC DATA FOR CALORIE INTAKE CALCULATION
+
+router.post('/addPublicCalorieCalculation', addPublicCalorieCalculation)
+
 //ADD CONSUMED PRODUCT IN A DAY
 
 router.post('/addConsumedProduct', authenticateToken, addConsumedProduct)
@@ -25,5 +29,8 @@ router.post('/addConsumedProduct', authenticateToken, addConsumedProduct)
 
 router.get('/getConsumedProduct/:date', authenticateToken, getConsumedProduct)
 
+//DELETE A CONSUMED PRODUCT
+
+router.delete('/deleteConsumedProduct/:id', authenticateToken, deleteConsumedProduct)
 
 export {router}

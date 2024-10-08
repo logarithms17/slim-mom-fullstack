@@ -1,11 +1,13 @@
-import React from 'react'
-import styles from '../components/PageStyles/HomePageStyle.css'
+import React from 'react';
+import styles from '../components/PageStyles/HomePageStyle.css';
+import { DailyCaloriesForm } from 'components/DailyCaloriesForm/DailyCaloriesForm';
 
 const HomePage = () => {
   return (
-    <div>HomePage
+    <div>
+      <DailyCaloriesForm />
     </div>
-  )
-}
+  );
+};
 
-export default HomePage
+export default HomePage;

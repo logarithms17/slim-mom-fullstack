@@ -1,3 +1,4 @@
+
 import { Schema } from 'mongoose';
 import mongoose from 'mongoose';
 
@@ -5,7 +6,8 @@ import mongoose from 'mongoose';
 const dailyConsumedProduct = new Schema({
   product: String,
   quantity: Number,
-  date: { type: Date, default: Date.now }
+  calories: Number,
+  date: { type: Date, default: Date.now },
 })
 
 const calorieIntakeCalculationsSchema = new Schema({
@@ -38,6 +40,7 @@ const calorieIntakeCalculationsSchema = new Schema({
       type: [String],
       default: null,
     },
+  
 })
 
 const usersSchema = new Schema({
@@ -62,6 +65,10 @@ const usersSchema = new Schema({
     type: calorieIntakeCalculationsSchema,
     default: null,
   },
+  dailyConsumedProducts: {
+      type: [dailyConsumedProduct],
+      default: null,
+    }
 },
 );
 

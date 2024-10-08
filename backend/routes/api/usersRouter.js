@@ -1,5 +1,5 @@
 import express from "express"
-import { signupUser, loginUser, logoutUser, addCalorieCalculation, addConsumedProduct, getConsumedProduct } from "../../controllers/usersController.js"
+import { signupUser, loginUser, logoutUser, addCalorieCalculation, addConsumedProduct, getConsumedProduct, deleteConsumedProduct } from "../../controllers/usersController.js"
 import { authenticateToken } from "../../middlewares/auth.js"
 
 const router = express.Router()
@@ -25,5 +25,8 @@ router.post('/addConsumedProduct', authenticateToken, addConsumedProduct)
 
 router.get('/getConsumedProduct/:date', authenticateToken, getConsumedProduct)
 
+//DELETE A CONSUMED PRODUCT
+
+router.delete('/deleteConsumedProduct/:id', authenticateToken, deleteConsumedProduct)
 
 export {router}

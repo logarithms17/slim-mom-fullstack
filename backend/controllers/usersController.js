@@ -237,3 +237,23 @@ export const getConsumedProduct = async (req, res, next) => {
         next(error);
     }
 };
+
+//DELETE A CONSUMED PRODUCT
+export const deleteConsumedProduct = async (req, res, next) => {
+    try {
+        const { id } = req.params;
+
+        await Users.findByIdAndUpdate(req.user.id, {
+            $pull: {
+                dailyConsumedProducts: {
+                    _id: id
+                }
+            }
+        });
+
+        res.status(200).json({ message: "Product deleted successfully" });
+
+    } catch (error) {
+        next(error);
+    }
+}

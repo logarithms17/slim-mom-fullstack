@@ -1,7 +1,13 @@
 import React from 'react';
+import DiaryAddProductForm from './../components/DiaryAddProductForm/DiaryAddProductForm';
 
 const DiaryPage = () => {
-  return <div>DiaryPage</div>;
+  return (
+    <div>
+      <DiaryAddProductForm />
+    </div>
+  );
 };
 
 export default DiaryPage;
+

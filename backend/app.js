@@ -20,7 +20,13 @@ console.log("Swagger setup complete. Access at /api-docs");
 const formatsLogger = app.get('env') === 'development' ? 'dev' : 'short'
 
 app.use(logger(formatsLogger))
-app.use(cors())
+
+app.use(cors({
+  origin: 'http://localhost:3000', // Allow requests from localhost:3000
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  credentials: true, // If your API uses cookies for authentication
+}));
+
 app.use(express.json())
 
 //middleware for users router

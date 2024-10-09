@@ -33,6 +33,7 @@ setPassword('');
 };
 
   return (
+    // <div className={css.backgroundContainer}>
     <div className={css.backgroundContainer}>   
         <div className={css.formTitle}>
             <h4>REGISTER</h4>

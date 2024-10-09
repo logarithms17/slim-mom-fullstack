@@ -1,15 +1,21 @@
 import React, { useState } from 'react'
 import css from './RegistrationForm.module.css';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
+axios.defaults.baseURL = 'http://localhost:5000';
 
 export const RegistrationForm = () => {
      // State to manage form inputs
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
   // Handle form submission
-  const handleSubmit = e => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
   // Validate the form fields
@@ -18,13 +24,37 @@ export const RegistrationForm = () => {
     return;
   } 
 
-//   Log the form data (this is where the API call would be made)
-console.log('Name:', name);
-console.log('Email:', email);
-console.log('Password:', password);
+  setIsLoading(true); // Show loading state
+  setError(null); // clear previous errors
 
-// Mock success message after validation
-alert('Registration Successful!');
+  try {
+    // Make the API call to register the user
+    const response = await axios.post('/api/users/signup', {
+      name,
+      email,
+      password,
+    });
+
+    // Successful response
+    if (response.status === 201) {
+      const { token } = response.data;
+
+      localStorage.setItem('token', token);
+
+      alert('Registration Successful!');
+      // Redirect to login page 
+      navigate('/login');
+    }
+  } catch (error) {
+    // Handle errors
+    if (error.response && error.response.data.message) {
+      setError(error.response.data.message);
+    } else {
+      setError('Something went wrong. Please try again.');
+    }
+  } finally {
+    setIsLoading(false);
+  }
 
 // Clear form after successful submission
 setName('');
@@ -33,7 +63,7 @@ setPassword('');
 };
 
   return (
-    <div className={css.backgroundContainer}>   
+    <div>   
         <div className={css.formTitle}>
             <h4>REGISTER</h4>
 
@@ -75,10 +105,19 @@ setPassword('');
             <label htmlFor="password">Password*</label>
             </div>
         
+          {error && <p>{error}</p>}
 
             <div className={css.buttonContainer}>
-                <button className={css.button} type="submit">Register</button>
-                <button className={css.button} type="button" onClick={() => alert('Redirect to Login page')}>Log in</button>
+                <button className={css.button} type="submit" disabled={isLoading}>
+                  {isLoading ? 'Registering...' : 'Register'}
+                </button>
+
+                <button 
+                  className={css.button} 
+                  type="button" 
+                  onClick={() => navigate('/login')}>
+                    Log in
+                </button>
             </div>
         </form>
     </div>

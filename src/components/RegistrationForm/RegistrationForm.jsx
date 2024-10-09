@@ -3,7 +3,7 @@ import css from './RegistrationForm.module.css';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
-axios.defaults.baseURL = 'http://localhost:5000';
+axios.defaults.baseURL = 'http://slim-mom-fullstack.onrender.com';
 
 export const RegistrationForm = () => {
      // State to manage form inputs
@@ -34,11 +34,11 @@ export const RegistrationForm = () => {
       email,
       password,
     });
+    console.log(response.data);
 
     // Successful response
     if (response.status === 201) {
       const { token } = response.data;
-
       localStorage.setItem('token', token);
 
       alert('Registration Successful!');
@@ -46,7 +46,6 @@ export const RegistrationForm = () => {
       navigate('/login');
     }
   } catch (error) {
-    // Handle errors
     if (error.response && error.response.data.message) {
       setError(error.response.data.message);
     } else {
@@ -105,7 +104,7 @@ setPassword('');
             <label htmlFor="password">Password*</label>
             </div>
         
-          {error && <p>{error}</p>}
+          {error && <p style={{ color: 'red' }}>{error}</p>}
 
             <div className={css.buttonContainer}>
                 <button className={css.button} type="submit" disabled={isLoading}>

@@ -21,14 +21,22 @@ export const LoginForm = () => {
 
     try {
       const response = await axios.post('/api/users/login', { email, password });
+
       if (response.status === 200) {
+        const { token } = response.data;
+        localStorage.setItem('token', token);
+
         alert('Login successful!');
         navigate('/'); //Redirect ot the dashboard or another page
       } else {
         setError('Login failed. Please try again.');
       }
     } catch (error) {
-      setError('Login failed. Please check your crredentials and try again.');
+      if(error.response && error.response.data.message) {
+        setError(error.response.data.message);
+      } else {
+        setError('Login failed. Please check your credentials and try again.');
+      }
     } finally {
       setIsLoading(false);
     }
@@ -65,9 +73,7 @@ export const LoginForm = () => {
             <label htmlFor="password">Password*</label>
           </div>
 
-          {error && <p>{error}</p>}
-
-        </form>
+          {error && <p style={{ color: 'red' }}>{error}</p>}
 
         <div className={css.buttonContainer}>
           <button className={css.button} type="submit" disabled={isLoading}>
@@ -77,10 +83,12 @@ export const LoginForm = () => {
           <button 
             className={css.button} 
             type="button" 
-            onClick={() => navigate('/register')}>Register</button>
+            onClick={() => navigate('/register')}>
+              Register
+            </button>
         </div>
-      </div>
+      </form>
     </div>
-    
-  )
-}
+  </div>    
+  );
+};

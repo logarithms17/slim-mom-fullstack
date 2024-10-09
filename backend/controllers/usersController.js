@@ -8,6 +8,9 @@ import "dotenv/config"
 const {SECRET_KEY} = process.env
 
 //SIGN UP USER
+
+
+
 export const signupUser = async (req, res, next) => {
     try{
     const { name, email, password } = req.body;

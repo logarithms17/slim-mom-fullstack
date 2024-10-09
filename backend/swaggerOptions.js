@@ -26,6 +26,7 @@ const swaggerOptions = {
         description: "Production server on Render",
       },
     ],
+    
   },
   apis: ["./routes/api/*.js"], // Specify the path to your API route files
 };

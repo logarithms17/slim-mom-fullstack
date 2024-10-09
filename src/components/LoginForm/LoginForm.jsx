@@ -24,7 +24,7 @@ export const LoginForm = () => {
 
   return (
     <div className={css.backgroundContainer}>
-      <div className={css.formTitle}>
+     <div className={css.formTitle}>
         <h4>LOG IN</h4>
 
         <form onSubmit={handleSubmit}>
@@ -52,14 +52,16 @@ export const LoginForm = () => {
             />
             <label htmlFor="password">Password*</label>
           </div>
-        </form>
+          </form>
+        
 
         <div className={css.buttonContainer}>
           <button className={css.button} type="submit">Log in</button>
           <button className={css.button} type="button" onClick={() => alert('Redirect to Login page')}>Register</button>
         </div>
       </div>
-    </div>
+      </div>
+ 
     
   )
 }

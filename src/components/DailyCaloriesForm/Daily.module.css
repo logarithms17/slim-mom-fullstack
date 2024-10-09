@@ -1,0 +1,179 @@
+.dailyContainer {
+    font-family: verdana, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+        'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+        sans-serif;
+
+    max-width: 608px;
+    margin-left: 16px;
+
+    h1 {
+        font-weight: 700;
+        width: 100%;
+        font-size: 34px;
+        line-height: 47.6px;
+        color: #212121;
+        letter-spacing: normal;
+    }
+
+    .dailyForm {
+        display: flex;
+        flex-wrap: wrap;
+        width: 90%;
+        box-sizing: border-box;
+    }
+
+    .dailyDiv {
+        width: 50%;
+        padding-right: 30px;
+        box-sizing: border-box;
+    }
+
+    .radioGroup {
+        margin-top: 20px;
+        color: #9b9faa;
+    }
+
+    .radioOptions {
+        display: flex;
+        gap: 30px;
+        margin-top: 20px;
+    }
+
+    .radioGroupLabel {
+        font-weight: bold;
+    }
+
+    .radioLabel {
+        display: flex;
+        align-items: center;
+        font-size: 1.125rem;
+        font-weight: bold;
+    }
+
+    .radioLabel input {
+        appearance: none;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        margin-right: 5px;
+        position: relative;
+        cursor: pointer;
+        outline: 1px solid #e0e0e0;
+    }
+
+    input[type='radio']:checked {
+        background-color: #fc842d;
+        border: 3px solid #ffffff;
+    }
+
+    .radioLabel input:checked+span {
+        color: #fc842d;
+    }
+}
+
+.inputBox {
+    border-bottom: 2px solid #e0e0e0;
+    width: 100%;
+    margin: 35px 0;
+    position: relative;
+    box-sizing: border-box;
+}
+
+.inputBox label {
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    transform: translateY(-50%);
+    font-size: 1rem;
+    pointer-events: none;
+    color: #9b9faa;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.inputBox input:focus+label,
+.inputBox input:not(:placeholder-shown)+label {
+    top: -0px;
+    font-size: 12px;
+    color: #fc842d;
+}
+
+.inputBox input {
+    width: 100%;
+    height: 50px;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #212121;
+}
+
+.dailyButton {
+    justify-content: right;
+    text-align: right;
+    flex-wrap: nowrap;
+    margin-top: 30px;
+    width: 100%;
+}
+
+.button {
+    border: 2px solid #fc842d;
+    width: 181px;
+    height: 44px;
+    border-radius: 30px;
+    color: #fff;
+    font-weight: bold;
+    font-size: 0.875rem;
+    background-color: #fc842d;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: box-shadow 0.3s ease;
+}
+
+.button:hover {
+    color: #ffffff;
+    background-color: #fc6b03;
+    transform: scale(0.95);
+}
+
+.button:active {
+    transform: scale(0.95);
+}
+
+/*mobile view start header */
+@media (max-width: 767px) {
+    .dailyContainer {
+        width: 100%;
+        margin-right: auto;
+        margin-left: auto;
+
+        .dailyForm {
+            display: block;
+            flex-wrap: nowrap;
+        }
+
+        .dailyDiv {
+            width: 100%;
+        }
+
+        .dailyButton {
+            justify-content: center;
+            text-align: center;
+            padding-right: 0;
+            margin-top: 70px;
+        }
+
+        .button {
+            width: 50%;
+            height: 55px;
+        }
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1279px) {
+    .dailyButton {
+        justify-content: left;
+        text-align: left;
+    }
+}

@@ -3,7 +3,7 @@ import css from './LoginForm.module.css';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-axios.defaults.baseURL = 'http://localhost:5000';
+axios.defaults.baseURL = 'https://slim-mom-fullstack.onrender.com';
 
 export const LoginForm = () => {
   // State to manage form inputs
@@ -24,14 +24,18 @@ export const LoginForm = () => {
 
       if (response.status === 200) {
         const { token } = response.data;
+        console.log('Token received:', token);
         localStorage.setItem('token', token);
 
+        axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+
         alert('Login successful!');
-        navigate('/'); //Redirect ot the dashboard or another page
+        navigate('/calculator'); //Redirect to the calculator page
       } else {
         setError('Login failed. Please try again.');
       }
     } catch (error) {
+      console.error('Login error:', error)
       if(error.response && error.response.data.message) {
         setError(error.response.data.message);
       } else {

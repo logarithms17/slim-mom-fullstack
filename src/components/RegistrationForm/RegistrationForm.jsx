@@ -3,7 +3,7 @@ import css from './RegistrationForm.module.css';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
-axios.defaults.baseURL = 'http://slim-mom-fullstack.onrender.com';
+axios.defaults.baseURL = 'https://slim-mom-fullstack.onrender.com';
 
 export const RegistrationForm = () => {
   // State to manage form inputs

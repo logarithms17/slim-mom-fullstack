@@ -30,7 +30,7 @@
 }
 
 /* Tablet view adjustments */
-@media (max-width: 768px) {
+@media (max-width: 1297px) {
   .container {
     flex-direction: column; /* Stack sections vertically */
     align-items: center; /* Center align items */
@@ -57,7 +57,7 @@
 }
 
 /* Mobile view adjustments */
-@media (max-width: 375px) {
+@media (max-width: 703px) {
   .calculatorSection,
   .summarySection {
     width: 100%; /* Full width on mobile */

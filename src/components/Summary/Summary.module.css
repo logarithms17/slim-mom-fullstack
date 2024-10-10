@@ -35,7 +35,7 @@ ul li {
 }
 
 /* Tablet view */
-@media (max-width: 767px) {
+@media (max-width: 1297px) {
   .summaryContainer {
     flex-direction: row; /* Align sections horizontally */
     justify-content: space-between; /* Space between the sections */
@@ -65,7 +65,7 @@ ul li {
 }
 
 /* Mobile view */
-@media (max-width: 375px) {
+@media (max-width: 703px) {
   .summaryContainer {
     flex-direction: column; /* Stack sections vertically */
     font-size: 0.85rem;

@@ -1,7 +1,7 @@
 body {
     overflow: hidden;
 }
-.backgroundContainer {
+/* .backgroundContainer {
     background-image: url('../../images/Layer-9.png'), 
                       url('../../images/Layer-4\ 1.png'), 
                       url('../../images/Strawberry-Big-PNG.png'),
@@ -14,7 +14,7 @@ body {
     background-repeat: no-repeat;
     height: 100vh;
     width: 100%;
-}
+} */
 
 .formTitle h4{
     color: #FC842D;
@@ -78,7 +78,7 @@ body {
 
 /* Media queies for tablet responsiveness */
 @media screen and (max-width: 768px) {
-    .backgroundContainer {
+    /* .backgroundContainer {
         background-image:  
                             url('../../images/Layer-4\ 1.png'), 
                             url('../../images/Strawberry-Big-PNG.png'),
@@ -93,7 +93,7 @@ body {
         background-repeat: no-repeat;
         height: 100vh;
         width: 100%;
-    }
+    } */
     .formTitle {
         padding-top: 250px;
     }

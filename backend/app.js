@@ -22,9 +22,11 @@ const formatsLogger = app.get('env') === 'development' ? 'dev' : 'short'
 app.use(logger(formatsLogger))
 
 app.use(cors({
-  origin: 'http://localhost:3000', // Allow requests from localhost:3000
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  credentials: true, // If your API uses cookies for authentication
+  origin: 'http://localhost:3000',  // Allow requests from localhost:3000
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],  // Include headers you're using
+  credentials: true,  // If your API uses cookies for authentication
+  optionsSuccessStatus: 200,  // Response status for successful OPTIONS requests
 }));
 
 app.use(express.json())

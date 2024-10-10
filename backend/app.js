@@ -21,13 +21,21 @@ const formatsLogger = app.get('env') === 'development' ? 'dev' : 'short'
 
 app.use(logger(formatsLogger))
 
-app.use(cors({
-  origin: 'http://localhost:3000',  // Allow requests from localhost:3000
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization'],  // Include headers you're using
-  credentials: true,  // If your API uses cookies for authentication
-  optionsSuccessStatus: 200,  // Response status for successful OPTIONS requests
-}));
+// Define your CORS options
+const corsOptions = {
+  origin: 'http://localhost:3000', // Allow requests from this origin
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Explicitly allow these methods
+  allowedHeaders: ['Content-Type', 'Authorization'], // Allow only specific headers
+  credentials: true, // Allow cookies and credentials
+  preflightContinue: false,
+  optionsSuccessStatus: 204,
+};
+
+// Apply CORS middleware with options
+app.use(cors(corsOptions));
+
+// Handle preflight OPTIONS requests globally
+app.options('*', cors(corsOptions));
 
 app.use(express.json())
 

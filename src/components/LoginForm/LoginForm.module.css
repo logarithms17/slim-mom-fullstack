@@ -1,12 +1,25 @@
 body {
   overflow: hidden;
 }
-
-.formTitle h4 {
-  color: #fc842d;
-  font-style: bold;
-  font-size: 0.875rem;
-  margin-left: 20px;
+/* .backgroundContainer {
+    background-image: url('../../images/Layer-9.png'), 
+                      url('../../images/Layer-4\ 1.png'), 
+                      url('../../images/Strawberry-Big-PNG.png'),
+                      url('../../images/Vector\ 3.png');
+    background-size: 450px, contain, 280px, contain;
+    background-position: 100% -8%, 
+                         80%,
+                         100% 80%,
+                         100% 90%;
+    background-repeat: no-repeat;
+    height: 100vh;
+    width: 100%;
+} */
+.formTitle h4{
+    color: #FC842D;
+    font-style: bold;
+    font-size: .875rem;
+    margin-left: 20px;
 }
 .inputBox {
   border-bottom: 2px solid #e0e0e0;
@@ -62,3 +75,24 @@ body {
   background-color: #fc842d;
 }
 /* Media queies for tablet responsiveness */
+@media screen and (max-width: 768px) {
+    /* .backgroundContainer {
+        background-image:  
+                            url('../../images/Layer-4\ 1.png'), 
+                            url('../../images/Strawberry-Big-PNG.png'),
+                            url('../../images/Layer-9.png'),
+                            url('../../images/Vector\ 3.png')
+                            ;
+        background-size: 600px, 300px, 400px, 400px;
+        background-position:  90% -40%, 
+                              100% 50%,
+                              100% 90%,
+                              100% 100%;
+        background-repeat: no-repeat;
+        height: 100vh;
+        width: 100%;
+    } */
+    .formTitle {
+        padding-top: 250px;
+    }
+}

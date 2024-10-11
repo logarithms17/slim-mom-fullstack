@@ -20,10 +20,17 @@ export const LoginForm = () => {
     setError(null);
 
     try {
-      const response = await axios.post('/api/users/login', { email, password });
+      const response = await axios.post('/api/users/login', { 
+        email, 
+        password,
+      });
+      console.log(response.data);
 
-      if (response.status === 200) {
-        const { token } = response.data;
+      // Extract the token from the response
+      const { existingUser } = response.data;
+      const { token } = existingUser;
+
+      if (token) {
         console.log('Token received:', token);
         localStorage.setItem('token', token);
 

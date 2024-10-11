@@ -38,9 +38,6 @@ export const RegistrationForm = () => {
 
     // Successful response
     if (response.status === 201) {
-      const { token } = response.data;
-      localStorage.setItem('token', token);
-
       alert('Registration Successful!');
       // Redirect to login page 
       navigate('/login');
@@ -54,11 +51,6 @@ export const RegistrationForm = () => {
   } finally {
     setIsLoading(false);
   }
-
-// Clear form after successful submission
-setName('');
-setEmail('');
-setPassword('');
 };
 
   return (

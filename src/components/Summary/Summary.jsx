@@ -1,39 +1,42 @@
 import React from 'react';
-import style from './Summary.module.css';
+import PropTypes from 'prop-types';
 
-const Summary = () => {
-  // Dummy data, replace with real data from Redux or API
-  const summaryData = {
-    date: '13.08.2023',
-    left: '000 kcal',
-    consumed: '000 kcal',
-    dailyRate: '000 kcal',
-    normalPercentage: '000%',
-    foodNotRecommended: 'Your diet will be displayed here',
-  };
+// Sample data: Replace with props or state as necessary
+const foodsNotRecommended = [
+  'Flour products',
+  'Milk',
+  'Read meat',
+  'Smoked meats',
+];
+
+const Summary = ({ selectedDate, consumedCalories, dailyRate }) => {
+  // Calculate left calories and percentage of normal
+  const leftCalories = dailyRate - consumedCalories;
+  const percentageNormal = ((consumedCalories / dailyRate) * 100).toFixed(0);
 
   return (
-    <div className={style.summaryContainer}>
-      {/* Summary Section */}
-      <div className={style.summarySection}>
-        <h2>Summary for {summaryData.date}</h2>
-        <ul>
-          <li>Left: {summaryData.left}</li>
-          <li>Consumed: {summaryData.consumed}</li>
-          <li>Daily rate: {summaryData.dailyRate}</li>
-          <li>% of normal: {summaryData.normalPercentage}</li>
-        </ul>
-      </div>
+    <div className="summary">
+      <h2>Summary for {selectedDate}</h2>
+      <p>Left: {leftCalories} kcal</p>
+      <p>Consumed: {consumedCalories} kcal</p>
+      <p>Daily rate: {dailyRate} kcal</p>
+      <p>n% of normal: {percentageNormal} %</p>
 
-      {/* Food Not Recommended Section */}
-      <div className={style.foodSection}>
-        <h2>Food not recommended</h2>
-        <ul>
-          <li>{summaryData.foodNotRecommended}</li>
-        </ul>
-      </div>
+      <h3>Food not recommended</h3>
+      <ul>
+        {foodsNotRecommended.map((food, index) => (
+          <li key={index}>{food}</li>
+        ))}
+      </ul>
     </div>
   );
+};
+
+// Prop types for validation
+Summary.propTypes = {
+  selectedDate: PropTypes.string.isRequired,
+  consumedCalories: PropTypes.number.isRequired,
+  dailyRate: PropTypes.number.isRequired,
 };
 
 export default Summary;

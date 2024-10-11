@@ -1,46 +1,55 @@
 import React, { useState } from 'react';
 import styles from './DiaryAddProductForm.module.css';
+import axios from 'axios';
 import AddButtonIcon from '../images/AddButton.png';
 
-function DiaryAddProductForm() {
-  // State for product name and grams
+axios.defaults.baseURL = 'https://slim-mom-fullstack.onrender.com';
+
+export const DiaryAddProductForm = () => {
+  // State to manage form inputs
   const [productName, setProductName] = useState('');
   const [grams, setGrams] = useState('');
-
-  // Handle input changes
-  const handleProductNameChange = e => setProductName(e.target.value);
-  const handleGramsChange = e => setGrams(e.target.value);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   // Handle form submission
   const handleSubmit = async e => {
     e.preventDefault();
 
-    const data = { productName, grams };
+    // Validate the form fields
+    if (!productName || !grams) {
+      alert('Please fill out all fields');
+      return;
+    }
+
+    setIsLoading(true); // Show loading state
+    setError(null); // Clear previous errors
 
     try {
-      // Send data to the backend API
-      const response = await fetch(
-        'https://slim-mom-fullstack.onrender.com/api/products',
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(data),
-        }
-      );
+      // Make the API call to save the product
+      const response = await axios.post('/api/products/addConsumedProduct', {
+        productName,
+        grams,
+      });
+      console.log(response.data);
 
-      if (response.ok) {
-        console.log('Product added successfully');
-        // Clear input fields after successful submission
-        setProductName('');
-        setGrams('');
-      } else {
-        console.error('Failed to add product');
+      // Successful response
+      if (response.status === 201) {
+        alert('Product added successfully!');
       }
     } catch (error) {
-      console.error('Error:', error);
+      if (error.response && error.response.data.message) {
+        setError(error.response.data.message);
+      } else {
+        setError('Something went wrong. Please try again.');
+      }
+    } finally {
+      setIsLoading(false);
     }
+
+    // Clear form after successful submission
+    setProductName('');
+    setGrams('');
   };
 
   return (
@@ -49,30 +58,33 @@ function DiaryAddProductForm() {
         <div className={styles.productNameContainer}>
           <input
             type="text"
-            id="productName"
+            name="productName"
             className={styles.productNameInput}
+            id="productName"
             placeholder="Enter product name"
-            aria-label="Enter product name"
             value={productName}
-            onChange={handleProductNameChange}
+            onChange={e => setProductName(e.target.value)}
+            required
           />
         </div>
         <div className={styles.gramsContainer}>
           <input
             type="number"
+            name="grams"
             id="grams"
             className={styles.gramsInput}
             placeholder="Grams"
-            aria-label="Grams"
             value={grams}
-            onChange={handleGramsChange}
+            onChange={e => setGrams(e.target.value)}
+            required
           />
         </div>
+        {error && <p style={{ color: 'red' }}>{error}</p>}
 
         <button
-          type="submit"
           className={styles.submitButton}
-          aria-label="Submit"
+          type="submit"
+          disabled={isLoading}
         >
           <img
             className={styles.submitButtonImg}
@@ -80,17 +92,18 @@ function DiaryAddProductForm() {
             src={AddButtonIcon}
             alt="Submit"
           />
+          {isLoading ? 'Saving...' : 'Add'}
         </button>
         <button
-          type="submit"
           className={styles.AddMobileButton}
-          aria-label="Submit"
+          type="submit"
+          disabled={isLoading}
         >
-          Add
+          {isLoading ? 'Saving...' : 'Add'}
         </button>
       </form>
     </main>
   );
-}
+};
 
 export default DiaryAddProductForm;

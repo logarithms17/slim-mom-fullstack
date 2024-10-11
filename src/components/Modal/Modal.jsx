@@ -1,7 +1,13 @@
 import React from 'react';
 import css from './Modal.module.css';
+import { NavLink } from 'react-router-dom';
 
-export const Modal = ({ isOpen, onClose, calorieIntake }) => {
+export const Modal = ({
+  isOpen,
+  onClose,
+  calorieIntake,
+  foodsNotRecommended,
+}) => {
   if (!isOpen) return null;
 
   return (
@@ -16,14 +22,14 @@ export const Modal = ({ isOpen, onClose, calorieIntake }) => {
         </div>
         <p className={css.modalFood}>Foods you should not eat</p>
         <ol className={css.modalList}>
-          <li>Flour products</li>
-          <li>Milk</li>
-          <li>Red meat</li>
-          <li>Smoked meats</li>
+          {foodsNotRecommended.map((food, index) => (
+            <li key={index}>{food}</li>
+          ))}
         </ol>
-        <button className={css.modalButton} onClick={onClose}>
+
+        <NavLink to="/login" className={css.modalButton} onClick={onClose}>
           Start losing weight
-        </button>
+        </NavLink>
       </div>
     </div>
   );

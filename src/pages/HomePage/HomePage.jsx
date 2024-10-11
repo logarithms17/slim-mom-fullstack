@@ -1,10 +1,10 @@
 import React from 'react';
-import styles from '../components/PageStyles/HomePageStyle.css';
+import css from './HomePage.module.css';
 import { DailyCaloriesForm } from 'components/DailyCaloriesForm/DailyCaloriesForm';
 
 const HomePage = () => {
   return (
-    <div>
+    <div className={css.backgroundContainer}>
       <DailyCaloriesForm />
     </div>
   );

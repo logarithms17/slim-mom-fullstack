@@ -219,3 +219,18 @@ export const addPublicCalorieCalculation = async (req, res, next) => {
     }
 };
 
+//GET USER DATA
+
+export const getUserData = async (req, res, next) => {
+    console.log(req.user)
+    
+    try {
+        const { _id } = req.user
+
+        console.log(_id)
+        const user = await Users.findById(_id)
+        res.status(200).json({ user })
+    } catch (error) {
+        next(error)
+    }
+}

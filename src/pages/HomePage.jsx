@@ -1,8 +1,15 @@
 import React from 'react'
+import Calendar from '../components/calendar/Calendar'
+import HamburgerMenu from 'components/hamburger/Hamburger'
 
 const HomePage = () => {
   return (
-    <div>HomePage</div>
+    <div>
+
+      <HamburgerMenu/>
+      <Calendar/>
+    </div>
+    
   )
 }
 

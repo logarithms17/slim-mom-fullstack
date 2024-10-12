@@ -47,3 +47,7 @@
     align-items: flex-start;
   }
 }
+
+.boxProducts {
+  height: 240px;
+}

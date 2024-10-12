@@ -2,14 +2,15 @@ import { GrClose } from 'react-icons/gr';
 import css from './DiaryProductListItem.module.css';
 
 export const DiaryProductListItem = ({
-  product,
+  product, // This is the entire product object now
   date,
   currentDate = new Date().toLocaleDateString(),
   isLoadingDeletedProd,
   onDelete,
 }) => {
-  const { weightGrm, _id } = product;
-  const isCurrentDay = date === currentDate;
+  // Directly extract the properties from the product object
+  const { product: title, quantity, calories, _id } = product;
+  const isCurrentDay = date.toLocaleDateString() === currentDate;
 
   const handleDelete = () => {
     document.body.style.overflow = 'hidden';
@@ -19,9 +20,9 @@ export const DiaryProductListItem = ({
   return (
     <li className={css.listItem}>
       <div className={css.info}>
-        <div>{product.product.title}</div>
-        <div>{weightGrm} Grams</div>
-        <div>{product.product.calories} Kcal</div>
+        <div>{title}</div> {/* Product name is now displayed directly */}
+        <div>{quantity} Grams</div>
+        <div>{calories} Kcal</div>
       </div>
 
       {isCurrentDay && (

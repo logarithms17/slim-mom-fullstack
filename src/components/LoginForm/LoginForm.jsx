@@ -14,13 +14,16 @@ export const LoginForm = () => {
   const navigate = useNavigate();
 
   // Handle form submission
-  const handleSubmit = async (e) => {
+  const handleSubmit = async e => {
     e.preventDefault();
     setIsLoading(true);
     setError(null);
 
     try {
-      const response = await axios.post('/api/users/login', { email, password });
+      const response = await axios.post('/api/users/login', {
+        email,
+        password,
+      });
 
       if (response.status === 200) {
         const { token } = response.data;
@@ -30,13 +33,13 @@ export const LoginForm = () => {
         axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
         alert('Login successful!');
-        navigate('/calculator'); //Redirect to the calculator page
+        navigate('/diary'); //Redirect to the calculator page
       } else {
         setError('Login failed. Please try again.');
       }
     } catch (error) {
-      console.error('Login error:', error)
-      if(error.response && error.response.data.message) {
+      console.error('Login error:', error);
+      if (error.response && error.response.data.message) {
         setError(error.response.data.message);
       } else {
         setError('Login failed. Please check your credentials and try again.');
@@ -44,7 +47,7 @@ export const LoginForm = () => {
     } finally {
       setIsLoading(false);
     }
-};
+  };
 
   return (
     <div>
@@ -79,20 +82,21 @@ export const LoginForm = () => {
 
           {error && <p style={{ color: 'red' }}>{error}</p>}
 
-        <div className={css.buttonContainer}>
-          <button className={css.button} type="submit" disabled={isLoading}>
-            {isLoading ? 'Logging in...' : 'Log in'}
-          </button>
+          <div className={css.buttonContainer}>
+            <button className={css.button} type="submit" disabled={isLoading}>
+              {isLoading ? 'Logging in...' : 'Log in'}
+            </button>
 
-          <button 
-            className={css.button} 
-            type="button" 
-            onClick={() => navigate('/register')}>
+            <button
+              className={css.button}
+              type="button"
+              onClick={() => navigate('/register')}
+            >
               Register
             </button>
-        </div>
-      </form>
+          </div>
+        </form>
+      </div>
     </div>
-  </div>    
   );
 };

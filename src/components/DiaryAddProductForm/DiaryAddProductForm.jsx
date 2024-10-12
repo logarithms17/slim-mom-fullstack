@@ -26,11 +26,28 @@ export const DiaryAddProductForm = () => {
     setError(null); // Clear previous errors
 
     try {
+      const token = localStorage.getItem('token');
       // Make the API call to save the product
-      const response = await axios.post('/api/products/addConsumedProduct', {
-        productName,
-        grams,
-      });
+      if (!token) {
+        console.log('Token not found');
+        setError('Authorization token is missing. Please log in.');
+        setIsLoading(false);
+        return;
+      }
+      console.log('Token:', token); // Check if the token is retrieved correctly
+
+      const response = await axios.post(
+        '/api/products/addConsumedProduct',
+        {
+          productName,
+          grams,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
       console.log(response.data);
 
       // Successful response

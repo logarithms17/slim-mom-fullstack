@@ -18,53 +18,46 @@ export const RegistrationForm = () => {
   const handleSubmit = async e => {
     e.preventDefault();
 
-    // Validate the form fields
-    if (!name || !email || !password) {
-      alert('Please fill out all fields');
-      return;
+  // Validate the form fields
+  if (!name || !email || !password) {
+    alert('Please fill out all fields');
+    return;
+  } 
+
+  setIsLoading(true); // Show loading state
+  setError(null); // clear previous errors
+
+  try {
+    // Make the API call to register the user
+    const response = await axios.post('/api/users/signup', {
+      name,
+      email,
+      password,
+    });
+    console.log(response.data);
+
+    // Successful response
+    if (response.status === 201) {
+      alert('Registration Successful!');
+      // Redirect to login page 
+      navigate('/login');
     }
-
-    setIsLoading(true); // Show loading state
-    setError(null); // clear previous errors
-
-    try {
-      // Make the API call to register the user
-      const response = await axios.post('/api/users/signup', {
-        name,
-        email,
-        password,
-      });
-      console.log(response.data);
-
-      // Successful response
-      if (response.status === 201) {
-        const { token } = response.data;
-        localStorage.setItem('token', token);
-
-        alert('Registration Successful!');
-        // Redirect to login page
-        navigate('/login');
-      }
-    } catch (error) {
-      if (error.response && error.response.data.message) {
-        setError(error.response.data.message);
-      } else {
-        setError('Something went wrong. Please try again.');
-      }
-    } finally {
-      setIsLoading(false);
+  } catch (error) {
+    if (error.response && error.response.data.message) {
+      setError(error.response.data.message);
+    } else {
+      setError('Something went wrong. Please try again.');
     }
-
-    // Clear form after successful submission
-    setName('');
-    setEmail('');
-    setPassword('');
-  };
+  } finally {
+    setIsLoading(false);
+  }
+};
 
   return (
-    <div>
-      <div className={css.formTitle}>
-        <h4>REGISTER</h4>
+    // <div className={css.backgroundContainer}>
+    <div className={css.backgroundContainer}>   
+        <div className={css.formTitle}>
+            <h4>REGISTER</h4>
 
         <form onSubmit={handleSubmit}>
           <div className={css.inputBox}>

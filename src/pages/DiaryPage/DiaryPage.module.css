@@ -7,7 +7,7 @@
   width: 100%;
 }
 
-@media screen and (max-width: 991px) {
+@media screen and (max-width: 1279px) {
   .backgroundContainer {
     background-image: url('../../images/tablet-diary-leaves.png');
     background-size: 400px;
@@ -16,12 +16,9 @@
     height: 100vh;
     width: 100%;
   }
-  .formTitle {
-    padding-top: 250px;
-  }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 703px) {
   .backgroundContainer {
     background-image: none;
   }

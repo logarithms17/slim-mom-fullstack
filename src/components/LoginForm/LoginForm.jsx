@@ -25,8 +25,10 @@ export const LoginForm = () => {
         password,
       });
 
-      if (response.status === 200) {
-        const { token } = response.data;
+      // Extract the token from the response
+      const { token } = response.data;
+
+      if (token) {
         console.log('Token received:', token);
         localStorage.setItem('token', token);
 

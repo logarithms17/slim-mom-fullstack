@@ -81,9 +81,19 @@ export const loginUser = async (req, res, next) => {
             { expiresIn: "1h" }
         );
         
-        await Users.findByIdAndUpdate(existingUser._id, {token})
+        await Users.findByIdAndUpdate(existingUser._id, { token })
+        
+        console.log(existingUser)
 
-        res.status(200).json({ existingUser });
+        res.status(200).json({ 
+            id: existingUser._id,
+            name: existingUser.name,
+            password: existingUser.password,
+            email: existingUser.email,
+            token,
+            usersInfo: existingUser.usersInfo,
+            dailyConsumedProducts: existingUser.dailyConsumedProducts
+         });
 
     } catch (error) {
         next(error)
@@ -135,10 +145,7 @@ export const addCalorieCalculation = async (req, res, next) => {
         // Extract unique categories from the filtered products
         const uniqueCategories = [...new Set(foodsNotRecommended.map(product => product.categories))];
 
-        console.log(uniqueCategories)
-
-
-        const calorieIntake = await Users.findByIdAndUpdate(req.user.id, {
+        const newUsersInfo = {
             usersInfo: {
                 height,
                 desiredWeight,
@@ -149,9 +156,12 @@ export const addCalorieCalculation = async (req, res, next) => {
                 foodsNotRecommended: uniqueCategories,
                 date
             }
-        });
+        }
 
-        res.status(200).json({ calorieIntake });
+
+        await Users.findByIdAndUpdate(req.user.id, newUsersInfo);
+
+        res.status(200).json(newUsersInfo);
 
     } catch (error) {
         next(error)

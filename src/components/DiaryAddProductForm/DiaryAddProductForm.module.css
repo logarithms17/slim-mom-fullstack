@@ -3,7 +3,6 @@
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  margin-left: 18px;
   height: auto;
 }
 
@@ -66,7 +65,7 @@
 }
 
 .productNameInput {
-  width: 100%;
+  width: 240px;
   stroke-width: 1px;
   stroke: #e0e0e0;
   /* margin-top: 24px; */

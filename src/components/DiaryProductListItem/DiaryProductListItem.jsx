@@ -20,9 +20,10 @@ export const DiaryProductListItem = ({
   return (
     <li className={css.listItem}>
       <div className={css.info}>
-        <div>{title}</div> {/* Product name is now displayed directly */}
-        <div>{quantity} Grams</div>
-        <div>{calories} Kcal</div>
+        <div className={css.productList}>{title}</div>
+        {/* Product name is now displayed directly */}
+        <div className={css.quantityList}>{quantity} g</div>
+        <div className={css.calorieList}>{Math.round(calories)} kcal</div>
       </div>
 
       {isCurrentDay && (

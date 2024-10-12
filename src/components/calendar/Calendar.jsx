@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import 'react-datepicker/dist/react-datepicker.css';
-import { ReactComponent as CalendarIcon } from '../../assets/images/calendar 1.svg';
+import { ReactComponent as CalendarIcon } from '../../images/calendar 1.svg';
 import DatePicker from 'react-datepicker';
-import css from './calendar.module.css'
+import css from './calendar.module.css';
 
 export default function Calendar() {
   const [startDate, setStartDate] = useState(new Date());
@@ -12,12 +12,12 @@ export default function Calendar() {
     setIsOpen(!isOpen);
   };
 
-  const handleDateChange = (date) => {
+  const handleDateChange = date => {
     setStartDate(date);
     setIsOpen(false);
   };
 
-  const formatDate = (date) => {
+  const formatDate = date => {
     if (!date) return '';
     const day = String(date.getDate()).padStart(2, '0');
     const month = String(date.getMonth() + 1).padStart(2, '0');
@@ -31,19 +31,24 @@ export default function Calendar() {
     <div className={css.appContainer}>
       <p className={css.selectedDate}>{formattedDate}</p>
       <div className={css.datePickerContainer}>
-          <CalendarIcon width="30" height="30" className={css.calendarButton} onClick={handleCalendarClick}/>
+        <CalendarIcon
+          width="30"
+          height="30"
+          className={css.calendarButton}
+          onClick={handleCalendarClick}
+        />
         {isOpen && (
           <div className={css.datePickerWrapper}>
-          <DatePicker
-            selected={startDate}
-            onChange={handleDateChange}
-            inline
-            onClickOutside={() => setIsOpen(false)}
-            className={css.datePicker}
-          />
+            <DatePicker
+              selected={startDate}
+              onChange={handleDateChange}
+              inline
+              onClickOutside={() => setIsOpen(false)}
+              className={css.datePicker}
+            />
           </div>
         )}
       </div>
     </div>
-  )
+  );
 }

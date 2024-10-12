@@ -117,3 +117,4 @@ export const RegistrationForm = () => {
     </div>
   );
 };
+

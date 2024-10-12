@@ -2,7 +2,11 @@
     display: flex;
     align-items: center; 
     padding-left: 20px;
-    margin-top: 80px;
+    z-index: 10;
+}
+.header{
+    transition: transform 0.5s ease; /* Smooth transition for the transform property */
+    transform: translateY(10px);
 }
 .nav{
     display: flex;
@@ -49,7 +53,7 @@ a.active{
     justify-content: center;
     align-items: center;
     margin-left: auto;
-    margin-right: 50px;
+    margin-right: 80px;
     margin-top: 50px;
 }
 .exit{
@@ -75,3 +79,37 @@ a.active{
     background-color: #9B9FAA;
     margin: 50px 20px 0px 20px; 
  }
+
+ /* responsive */
+
+ @media (max-width: 768px) {
+    .header{
+        transform: translateY(0);
+    }
+    .nav, .dividerOne{
+        display: none;
+      }
+    .userExit{
+        transform: translateY(0%);
+        transition: transform 0.5s ease;
+        z-index: 1000; 
+        margin-right: 120px;
+    }
+    .container{
+        margin-top: 0px;
+        z-index: 10; 
+        transform: translateY(0);
+        transition: transform 0.5s ease;
+    }
+    .container::after{
+        content: "";
+        position: absolute; 
+        left: 0;
+        right: 0;
+        top: 110px;
+        height: 2px;
+        background-color: #E0E0E0
+    }
+
+}
+

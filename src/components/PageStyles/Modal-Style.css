@@ -21,13 +21,15 @@
     max-width: 600px; /* Limits modal width */
     position: relative;
     box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2); /* Adds a shadow for a nice effect */
+    text-align: center; /* Center content inside modal */
   }
   
   /* Modal image styling */
   .modal-content img {
-    width: 100%;
+    width: 100%; /* Image scales to full width of modal */
     height: auto; /* Ensures image scales properly */
-    border-radius: 5px;
+    border: 5px solid yellow; /* Yellow border with 5px thickness */
+    border-radius: 5px; /* Optional: rounds the corners of the image */
   }
   
   /* Close button (X) */
@@ -38,7 +40,6 @@
     font-weight: bold;
     color: #333;
     cursor: pointer;
-    text-align: center; /* Center the text */
     transition: color 0.3s ease;
   }
   

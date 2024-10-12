@@ -7,8 +7,8 @@ axios.defaults.baseURL = 'https://slim-mom-fullstack.onrender.com';
 
 export const DiaryAddProductForm = () => {
   // State to manage form inputs
-  const [productName, setProductName] = useState('');
-  const [grams, setGrams] = useState('');
+  const [consumedProduct, setConsumedProduct] = useState(''); // Changed from productName to consumedProduct
+  const [quantity, setQuantity] = useState(''); // Changed from grams to quantity
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -17,7 +17,7 @@ export const DiaryAddProductForm = () => {
     e.preventDefault();
 
     // Validate the form fields
-    if (!productName || !grams) {
+    if (!consumedProduct || !quantity) {
       alert('Please fill out all fields');
       return;
     }
@@ -34,13 +34,15 @@ export const DiaryAddProductForm = () => {
         setIsLoading(false);
         return;
       }
+
       console.log('Token:', token); // Check if the token is retrieved correctly
 
+      // Update the request to send the correct field names: consumedProduct and quantity
       const response = await axios.post(
         '/api/products/addConsumedProduct',
         {
-          productName,
-          grams,
+          consumedProduct, // corresponds to productName
+          quantity: Number(quantity), // corresponds to grams, must be a number
         },
         {
           headers: {
@@ -48,6 +50,7 @@ export const DiaryAddProductForm = () => {
           },
         }
       );
+
       console.log(response.data);
 
       // Successful response
@@ -65,8 +68,8 @@ export const DiaryAddProductForm = () => {
     }
 
     // Clear form after successful submission
-    setProductName('');
-    setGrams('');
+    setConsumedProduct('');
+    setQuantity('');
   };
 
   return (
@@ -75,24 +78,24 @@ export const DiaryAddProductForm = () => {
         <div className={styles.productNameContainer}>
           <input
             type="text"
-            name="productName"
+            name="consumedProduct" // Updated name
             className={styles.productNameInput}
-            id="productName"
+            id="consumedProduct"
             placeholder="Enter product name"
-            value={productName}
-            onChange={e => setProductName(e.target.value)}
+            value={consumedProduct}
+            onChange={e => setConsumedProduct(e.target.value)}
             required
           />
         </div>
         <div className={styles.gramsContainer}>
           <input
             type="number"
-            name="grams"
-            id="grams"
+            name="quantity" // Updated name
+            id="quantity"
             className={styles.gramsInput}
             placeholder="Grams"
-            value={grams}
-            onChange={e => setGrams(e.target.value)}
+            value={quantity}
+            onChange={e => setQuantity(e.target.value)}
             required
           />
         </div>

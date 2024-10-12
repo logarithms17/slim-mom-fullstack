@@ -67,7 +67,7 @@ const usersSchema = new Schema({
   },
   dailyConsumedProducts: {
       type: [dailyConsumedProduct],
-      default: null,
+      default: [],
     }
 },
 );

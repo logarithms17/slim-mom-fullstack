@@ -1,34 +1,28 @@
 import { GrClose } from 'react-icons/gr';
-import { useDispatch, useSelector } from 'react-redux';
-import { diarySelectors } from '../../redux/diaryPerDay';
 import css from './DiaryProductListItem.module.css';
 
-export const DiaryProductListItem = ({ product }) => {
-  const dispatch = useDispatch();
-
-  const { weightGrm, _id } = product;
-  const date = useSelector(diarySelectors.getCurrentDate);
-  const currentDate = new Date().toLocaleDateString();
-  const isCurrentDay = date === currentDate;
-  const isLoadingDeletedProd = useSelector(
-    diarySelectors.getIsDeleteProductLoading
-  );
-
-  const payload = {
-    productId: _id,
-    date: date,
-  };
+export const DiaryProductListItem = ({
+  product, // This is the entire product object now
+  date,
+  currentDate = new Date().toLocaleDateString(),
+  isLoadingDeletedProd,
+  onDelete,
+}) => {
+  // Directly extract the properties from the product object
+  const { product: title, quantity, calories, _id } = product;
+  const isCurrentDay = date.toLocaleDateString() === currentDate;
 
   const handleDelete = () => {
     document.body.style.overflow = 'hidden';
+    onDelete && onDelete(_id);
   };
 
   return (
     <li className={css.listItem}>
       <div className={css.info}>
-        <div>{product.product.title}</div>
-        <div>{weightGrm} Grams</div>
-        <div>{product.product.calories}Kcal</div>
+        <div>{title}</div> {/* Product name is now displayed directly */}
+        <div>{quantity} Grams</div>
+        <div>{calories} Kcal</div>
       </div>
 
       {isCurrentDay && (

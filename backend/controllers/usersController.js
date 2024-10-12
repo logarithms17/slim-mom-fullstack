@@ -81,9 +81,19 @@ export const loginUser = async (req, res, next) => {
             { expiresIn: "1h" }
         );
         
-        await Users.findByIdAndUpdate(existingUser._id, {token})
+        await Users.findByIdAndUpdate(existingUser._id, { token })
+        
+        console.log(existingUser)
 
-        res.status(200).json({ existingUser });
+        res.status(200).json({ 
+            id: existingUser._id,
+            name: existingUser.name,
+            password: existingUser.password,
+            email: existingUser.email,
+            token,
+            usersInfo: existingUser.usersInfo,
+            dailyConsumedProducts: existingUser.dailyConsumedProducts
+         });
 
     } catch (error) {
         next(error)

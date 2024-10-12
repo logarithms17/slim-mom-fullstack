@@ -24,16 +24,20 @@ export const LoginForm = () => {
         email,
         password,
       });
+      console.log(response.data);
 
-      if (response.status === 200) {
-        const { token } = response.data;
+      // Extract the token from the response
+      const { existingUser } = response.data;
+      const { token } = existingUser;
+
+      if (token) {
         console.log('Token received:', token);
         localStorage.setItem('token', token);
 
         axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
         alert('Login successful!');
-        navigate('/diary'); //Redirect to the calculator page
+        navigate('/calculator'); //Redirect to the calculator page
       } else {
         setError('Login failed. Please try again.');
       }
@@ -56,26 +60,26 @@ export const LoginForm = () => {
 
         <form onSubmit={handleSubmit}>
           <div className={css.inputBox}>
-            <input 
-              type="email" 
+            <input
+              type="email"
               name="email"
-              id="email" 
-              placeholder=" " 
+              id="email"
+              placeholder=" "
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required 
+              onChange={e => setEmail(e.target.value)}
+              required
             />
             <label htmlFor="email">Email*</label>
           </div>
           <div className={css.inputBox}>
-            <input 
-              type="password" 
+            <input
+              type="password"
               name="password"
-              id="password" 
-              placeholder=" " 
+              id="password"
+              placeholder=" "
               value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required 
+              onChange={e => setPassword(e.target.value)}
+              required
             />
             <label htmlFor="password">Password*</label>
           </div>

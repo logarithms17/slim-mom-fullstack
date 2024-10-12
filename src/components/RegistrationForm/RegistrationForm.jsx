@@ -54,9 +54,10 @@ export const RegistrationForm = () => {
 };
 
   return (
-    <div>
-      <div className={css.formTitle}>
-        <h4>REGISTER</h4>
+    // <div className={css.backgroundContainer}>
+    <div className={css.backgroundContainer}>   
+        <div className={css.formTitle}>
+            <h4>REGISTER</h4>
 
         <form onSubmit={handleSubmit}>
           <div className={css.inputBox}>

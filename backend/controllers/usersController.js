@@ -145,10 +145,7 @@ export const addCalorieCalculation = async (req, res, next) => {
         // Extract unique categories from the filtered products
         const uniqueCategories = [...new Set(foodsNotRecommended.map(product => product.categories))];
 
-        console.log(uniqueCategories)
-
-
-        const calorieIntake = await Users.findByIdAndUpdate(req.user.id, {
+        const newUsersInfo = {
             usersInfo: {
                 height,
                 desiredWeight,
@@ -159,9 +156,12 @@ export const addCalorieCalculation = async (req, res, next) => {
                 foodsNotRecommended: uniqueCategories,
                 date
             }
-        });
+        }
 
-        res.status(200).json({ calorieIntake });
+
+        await Users.findByIdAndUpdate(req.user.id, newUsersInfo);
+
+        res.status(200).json(newUsersInfo);
 
     } catch (error) {
         next(error)

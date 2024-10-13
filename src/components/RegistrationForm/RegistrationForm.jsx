@@ -18,43 +18,44 @@ export const RegistrationForm = () => {
   const handleSubmit = async e => {
     e.preventDefault();
 
-  // Validate the form fields
-  if (!name || !email || !password) {
-    alert('Please fill out all fields');
-    return;
-  } 
-
-  setIsLoading(true); // Show loading state
-  setError(null); // clear previous errors
-
-  try {
-    // Make the API call to register the user
-    const response = await axios.post('/api/users/signup', {
-      name,
-      email,
-      password,
-    });
-    console.log(response.data);
-
-    // Successful response
-    if (response.status === 201) {
-      alert('Registration Successful!');
-      // Redirect to login page 
-      navigate('/login');
+    // Validate the form fields
+    if (!name || !email || !password) {
+      alert('Please fill out all fields');
+      return;
     }
-  } catch (error) {
-    if (error.response && error.response.data.message) {
-      setError(error.response.data.message);
-    } else {
-      setError('Something went wrong. Please try again.');
+
+    setIsLoading(true); // Show loading state
+    setError(null); // clear previous errors
+
+    try {
+      // Make the API call to register the user
+      const response = await axios.post('/api/users/signup', {
+        name,
+        email,
+        password,
+      });
+      console.log(response.data);
+
+      // Successful response
+      if (response.status === 201) {
+        alert('Registration Successful!');
+        // Redirect to login page
+        navigate('/login');
+      }
+    } catch (error) {
+      if (error.response && error.response.data.message) {
+        setError(error.response.data.message);
+      } else {
+        setError('Something went wrong. Please try again.');
+      }
+    } finally {
+      setIsLoading(false);
     }
-  } finally {
-    setIsLoading(false);
-  }
-};
+  };
 
   return (
-    <div>
+    // <div className={css.backgroundContainer}>
+    <div className={css.backgroundContainer}>
       <div className={css.formTitle}>
         <h4>REGISTER</h4>
 

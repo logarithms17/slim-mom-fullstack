@@ -16,6 +16,7 @@ export const DailyCaloriesForm = () => {
     calorieIntake: null,
     foodsNotRecommended: [],
   });
+  const [modalVal, setModalVal] = useState(0);
 
   const validateInputs = () => {
     if (!height || isNaN(height) || height <= 0) {
@@ -52,33 +53,49 @@ export const DailyCaloriesForm = () => {
       return;
     }
 
+    const token = localStorage.getItem('token');
+    const url = token
+      ? '/api/users/addCalorieCalculation'
+      : '/api/users/addPublicCalorieCalculation';
+
+    setModalVal(token ? 1 : 0);
     try {
       const response = await axios.post(
-        '/api/users/addPublicCalorieCalculation',
+        url,
         {
-          height,
-          desiredWeight,
-          age,
+          height: Number(height),
+          desiredWeight: Number(desiredWeight),
+          age: Number(age),
           bloodType: blood,
-          currentWeight,
+          currentWeight: Number(currentWeight),
+        },
+        {
+          headers: token ? { Authorization: `Bearer ${token}` } : {},
         }
       );
 
+      console.log('API Response:', response.data); // Log the response
+
       if (response.status === 200) {
-        const { localCalorieIntake } = response.data;
-        console.log('Computed data:', localCalorieIntake);
+        const { usersInfo } = response.data; // Get usersInfo from the response
 
-        setIsModalOpen(true);
-        setModalData({
-          calorieIntake: localCalorieIntake.recommendedCalories,
-          foodsNotRecommended: localCalorieIntake.foodsNotRecommended,
-        });
+        // Ensure usersInfo is defined and has the properties you need
+        if (usersInfo) {
+          setIsModalOpen(true);
+          setModalData({
+            calorieIntake: usersInfo.recommendedCalories, // Access recommendedCalories directly
+            foodsNotRecommended: usersInfo.foodsNotRecommended || [], // Access foodsNotRecommended directly
+          });
 
-        setHeight('');
-        setDesiredWeight('');
-        setAge('');
-        setBlood('1');
-        setCurrentWeight('');
+          // Reset form fields
+          setHeight('');
+          setDesiredWeight('');
+          setAge('');
+          setBlood('1');
+          setCurrentWeight('');
+        } else {
+          console.error('usersInfo is undefined:', response.data);
+        }
       }
     } catch (error) {
       console.error(
@@ -214,6 +231,7 @@ export const DailyCaloriesForm = () => {
         onClose={handleCloseModal}
         calorieIntake={modalData.calorieIntake}
         foodsNotRecommended={modalData.foodsNotRecommended}
+        modalValidation={modalVal}
       />
     </div>
   );

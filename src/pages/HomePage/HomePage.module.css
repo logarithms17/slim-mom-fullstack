@@ -1,60 +1,90 @@
-/* HomePage.module.css */
-.container {
+/* Wrapper for the entire page */
+.pageWrapper {
+  width: 808px;            /* Updated width */
+  height: 343px;          /* Updated height */
+  margin-left: 16px;      /* Updated margin left */
+  margin-top: 293px;      /* Updated margin top */
+  padding: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  height: 100vh;
-  background-color: #f9f9f9;
-  padding: 20px;
 }
 
+/* Title styling */
 .title {
-  font-size: 28px;
-  font-weight: bold;
-  color: #333;
+  font-size: 24px;
+  line-height: 32px;
   margin-bottom: 20px;
+  margin-left: 0;
 }
 
+/* Form styling */
 .form {
-  width: 100%;
-  max-width: 400px;
-  background-color: white;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  gap: 20px; /* Adds space between columns */
+  justify-content: space-between;
 }
 
+/* Column styling */
+.formColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Adds space between inputs */
+}
+
+/* Form group */
 .formGroup {
   display: flex;
   flex-direction: column;
-  margin-bottom: 15px;
 }
 
+/* Input fields styling */
 .formGroup label {
-  font-size: 16px;
   margin-bottom: 5px;
+  font-size: 16px;
 }
 
-.formGroup input,
-.formGroup select {
+.formGroup input {
   padding: 10px;
   font-size: 16px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
+  width: 180px;  /* Ensure the width fits within the column */
+  height: 40px;  /* Consistent height for input fields */
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
 }
 
+/* Radio group for blood type */
+.radioGroup {
+  display: flex;
+  gap: 10px;
+}
+
+.radioLabel {
+  display: flex;
+  align-items: center;
+}
+
+.radioLabel input {
+  margin-right: 5px;
+  width: 16px;
+  height: 16px;
+}
+
+/* Submit button styling */
 .submitButton {
-  background-color: #28a745;
+  margin-top: 20px; /* Adjust as needed */
+  padding: 12px;
+  font-size: 18px;
+  background-color: #FC842D;
   color: white;
   border: none;
-  padding: 10px 15px;
-  font-size: 18px;
+  border-radius: 30px;
   cursor: pointer;
-  border-radius: 5px;
-  transition: background-color 0.3s ease;
+  width: 210px; /* Ensure it fits nicely within the page wrapper */
+  height: 43px;
 }
 
 .submitButton:hover {
-  background-color: #218838;
+  background-color: #FC842D;
 }

@@ -1,17 +1,18 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import HomePage from '../pages/HomePage/HomePage'; // Adjust the path if needed
+import { Routes, Route } from 'react-router-dom';
+import HomePage from '../pages/HomePage/HomePage';
+import LoginPage from '../pages/LoginPage/LoginPage';
+import RegistrationPage from '../pages/RegistrationPage/RegistrationPage';
 
 export const App = () => {
-  console.log("App component is rendering");
-
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-      </Routes>
-      <p>If you see this, Router is working!</p>
-    </Router>
+    <Routes>
+      <Route path="/" element={<HomePage />} />
+      <Route path="/login" element={<LoginPage />} />
+      <Route path="/register" element={<RegistrationPage />} />
+      {/* Add a route for react-homework-template */}
+      <Route path="/react-homework-template" element={<HomePage />} />
+    </Routes>
   );
 };
 

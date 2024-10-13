@@ -15,9 +15,6 @@ const DiaryPage = () => {
 
   return (
     <div className={css.backgroundContainer}>
-      <div className={css.headerContainer}>
-        <Header />
-      </div>
       <div className={css.leftSideContainer}>
         <Calendar selectedDate={selectedDate} onDateChange={handleDateChange} />
         <DiaryAddProductForm />

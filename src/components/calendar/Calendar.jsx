@@ -1,4 +1,5 @@
 import React from 'react';
+import css from './calendar.module.css';
 
 const Calendar = ({ selectedDate, onDateChange }) => {
   const handleChange = event => {
@@ -12,6 +13,7 @@ const Calendar = ({ selectedDate, onDateChange }) => {
       type="date"
       value={selectedDate.toISOString().substring(0, 10)}
       onChange={handleChange}
+      className={css.dateInputField}
     />
   );
 };

@@ -3,7 +3,7 @@
   align-items: center;
   justify-content: space-between;
   width: 280px;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
@@ -74,7 +74,7 @@
     width: 520px;
     justify-content: space-between;
     > div {
-      padding-bottom: 20px;
+      padding-bottom: 15px;
       margin-right: 0;
       width: 106px;
       margin: 0;

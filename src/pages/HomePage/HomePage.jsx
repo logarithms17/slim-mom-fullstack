@@ -27,6 +27,7 @@ const HomePage = () => {
 
   return (
     <div className={styles.pageWrapper}>
+       <div className={styles.backgroundImage}></div>
       <h1 className={styles.title}>Calculate Your Daily Calorie Intake Right Now</h1>
       <form className={styles.form} onSubmit={handleSubmit}>
         {/* First column */}

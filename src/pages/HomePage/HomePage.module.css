@@ -1,18 +1,25 @@
 /* Wrapper for the entire page */
 .pageWrapper {
-  width: 808px;            /* Updated width */
-  height: 343px;          /* Updated height */
-  margin-left: 16px;      /* Updated margin left */
-  margin-top: 293px;      /* Updated margin top */
+  width: 1280px;            /* Full page width */
+  height: 830px;            /* Full page height */
   padding: 20px;
+  position: relative;       /* Allows positioning of the background */
   display: flex;
   flex-direction: column;
   align-items: center;
+}
 
-  background-image: url('./Frame 1.png'); /* Reference to the saved image */
-  background-size: cover;       /* Ensures the image covers the entire container */
-  background-position: center;  /* Centers the background image */
-  background-repeat: no-repeat; /* Prevents the background from repeating */
+/* Background image styling */
+.backgroundImage {
+  width: 980px;             /* Background image width */
+  height: 820px;            /* Background image height */
+  position: absolute;
+  top: 5px;                 /* Slight offset from the top */
+  left: 300px;              /* Margin left of 300px */
+  background-image: url('./Frame 1.png'); /* Path to your image */
+  background-size: cover;   /* Cover ensures the image fills its container */
+  background-repeat: no-repeat;
+  z-index: -1;              /* Places the background image behind the content */
 }
 
 /* Title styling */

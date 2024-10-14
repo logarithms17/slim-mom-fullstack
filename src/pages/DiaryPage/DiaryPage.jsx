@@ -13,7 +13,7 @@ const DiaryPage = () => {
   };
 
   return (
-    <div className={css.backgroundContainer}>
+    <div className={css.pageContainer}>
       <div className={css.leftSideContainer}>
         <Calendar selectedDate={selectedDate} onDateChange={handleDateChange} />
         {/* Pass selectedDate as a prop to DiaryAddProductForm */}

@@ -5,44 +5,42 @@ import AddButtonIcon from '../images/AddButton.png';
 
 axios.defaults.baseURL = 'https://slim-mom-fullstack.onrender.com';
 
-export const DiaryAddProductForm = ({ selectedDate }) => {
-  // State to manage form inputs
-  const [consumedProduct, setConsumedProduct] = useState(''); // Changed from productName to consumedProduct
-  const [quantity, setQuantity] = useState(''); // Changed from grams to quantity
+export const DiaryAddProductForm = ({ selectedDate, onAddProduct }) => {
+  const [consumedProduct, setConsumedProduct] = useState('');
+  const [quantity, setQuantity] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  // Handle form submission
   const handleSubmit = async e => {
     e.preventDefault();
 
-    // Validate the form fields
     if (!consumedProduct || !quantity) {
       alert('Please fill out all fields');
       return;
     }
 
-    setIsLoading(true); // Show loading state
-    setError(null); // Clear previous errors
+    setIsLoading(true);
+    setError(null);
 
     try {
       const token = localStorage.getItem('token');
-      // Make the API call to save the product
       if (!token) {
-        console.log('Token not found');
         setError('Authorization token is missing. Please log in.');
         setIsLoading(false);
         return;
       }
 
-      console.log('Token:', token); // Check if the token is retrieved correctly
+      console.log('Adding product:', {
+        consumedProduct,
+        quantity,
+        date: selectedDate.toISOString().substring(0, 10),
+      });
 
-      // Update the request to send the correct field names: consumedProduct and quantity
       const response = await axios.post(
         '/api/products/addConsumedProduct',
         {
-          consumedProduct, // corresponds to productName
-          quantity: Number(quantity), // corresponds to grams, must be a number
+          consumedProduct,
+          quantity: Number(quantity),
           date: selectedDate.toISOString().substring(0, 10),
         },
         {
@@ -52,10 +50,10 @@ export const DiaryAddProductForm = ({ selectedDate }) => {
         }
       );
 
-      console.log(response.data);
-
-      // Successful response
       if (response.status === 201) {
+        const newProduct = response.data; // Ensure this structure matches your API response
+        console.log('Product successfully added:', newProduct);
+        onAddProduct(newProduct); // Notify DiaryPage that a new product was added
         alert('Product added successfully!');
       }
     } catch (error) {
@@ -68,7 +66,6 @@ export const DiaryAddProductForm = ({ selectedDate }) => {
       setIsLoading(false);
     }
 
-    // Clear form after successful submission
     setConsumedProduct('');
     setQuantity('');
   };
@@ -79,7 +76,7 @@ export const DiaryAddProductForm = ({ selectedDate }) => {
         <div className={styles.productNameContainer}>
           <input
             type="text"
-            name="consumedProduct" // Updated name
+            name="consumedProduct"
             className={styles.productNameInput}
             id="consumedProduct"
             placeholder="Enter product name"
@@ -91,7 +88,7 @@ export const DiaryAddProductForm = ({ selectedDate }) => {
         <div className={styles.gramsContainer}>
           <input
             type="number"
-            name="quantity" // Updated name
+            name="quantity"
             id="quantity"
             className={styles.gramsInput}
             placeholder="Grams"

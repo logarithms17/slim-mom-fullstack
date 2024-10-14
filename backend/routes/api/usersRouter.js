@@ -2,7 +2,7 @@ import express from "express"
 import { signupUser, loginUser, logoutUser, addCalorieCalculation, addPublicCalorieCalculation, getUserData } from "../../controllers/usersController.js"
 import { authenticateToken } from "../../middlewares/auth.js"
 
-const router = express.Router()
+const router = express.Router();
 
 //SIGNUP USER
 
@@ -63,15 +63,15 @@ const router = express.Router()
  *                       example: null
  *                     usersInfo:
  *                       type: string
- *                       example: null           
+ *                       example: null
  *                     dailyConsumedProducts:
  *                       type: string
- *                       example: null 
- *                                           
+ *                       example: null
+ *
  *       400:
  *         description: Bad request - Missing required field or user already exists.
  */
-router.post('/signup', signupUser)
+router.post('/signup', signupUser);
 
 //LOGIN USER
 
@@ -135,7 +135,7 @@ router.post('/signup', signupUser)
  *       400:
  *         description: Bad request - Missing required field, User doesnt exist or invalid password
  */
-router.post('/login', loginUser)
+router.post('/login', loginUser);
 
 //LOGOUT USER
 
@@ -159,7 +159,7 @@ router.post('/login', loginUser)
  *       401:
  *         description: Unathorized
  */
-router.post('/logout', authenticateToken, logoutUser)
+router.post('/logout', authenticateToken, logoutUser);
 
 //UPDATE USER INFO
 
@@ -184,23 +184,23 @@ router.post('/logout', authenticateToken, logoutUser)
  *           schema:
  *             type: object
  *             properties:
- *               height: 
+ *               height:
  *                 type: number
  *                 description: The height of the user.
  *                 example: 5
- *               desiredWeight: 
+ *               desiredWeight:
  *                 type: number
  *                 description: The desired weight of the user.
  *                 example: 50
- *               age: 
+ *               age:
  *                 type: number
  *                 description: The age of the user.
  *                 example: 31
- *               bloodType: 
+ *               bloodType:
  *                 type: number
  *                 description: The blood type of the user.
  *                 example: 1
- *               currentWeight: 
+ *               currentWeight:
  *                 type: number
  *                 description: The current weight of the user.
  *                 example: 76
@@ -214,46 +214,46 @@ router.post('/logout', authenticateToken, logoutUser)
  *               properties:
  *                     usersInfo:
  *                       type: object
- *                       properties: 
- *                         height: 
+ *                       properties:
+ *                         height:
  *                              type: number
  *                              description: The height of the user.
  *                              example: 5
- *                         desiredWeight: 
+ *                         desiredWeight:
  *                              type: number
  *                              description: The desired weight of the user.
  *                              example: 50
- *                         age: 
+ *                         age:
  *                              type: number
  *                              description: The age of the user.
  *                              example: 31
- *                         bloodType: 
+ *                         bloodType:
  *                              type: number
  *                              description: The blood type of the user.
  *                              example: 1
- *                         currentWeight: 
+ *                         currentWeight:
  *                              type: number
  *                              description: The current weight of the user.
  *                              example: 76
- *                         recommendedCalories: 
+ *                         recommendedCalories:
  *                              type: number
  *                              description: The recommended calories of the user.
  *                              example: 231
- *                         foodsNotRecommended: 
+ *                         foodsNotRecommended:
  *                              type: array
  *                              items:
  *                                 type: string
  *                              description: The foods not recommended of the user.
- *                              example: 
+ *                              example:
  *                                    - "flour"
  *                                    - "eggs"
- *                                    - "nuts"        
- *                       
+ *                                    - "nuts"
+ *
  *       400:
  *         description: Bad request - Missing required field
  */
 
-router.post('/addCalorieCalculation', authenticateToken, addCalorieCalculation)
+router.post('/addCalorieCalculation', authenticateToken, addCalorieCalculation);
 
 //ADD PUBLIC DATA FOR CALORIE INTAKE CALCULATION
 
@@ -278,23 +278,23 @@ router.post('/addCalorieCalculation', authenticateToken, addCalorieCalculation)
  *           schema:
  *             type: object
  *             properties:
- *               height: 
+ *               height:
  *                 type: number
  *                 description: The height of the user.
  *                 example: 5
- *               desiredWeight: 
+ *               desiredWeight:
  *                 type: number
  *                 description: The desired weight of the user.
  *                 example: 50
- *               age: 
+ *               age:
  *                 type: number
  *                 description: The age of the user.
  *                 example: 31
- *               bloodType: 
+ *               bloodType:
  *                 type: number
  *                 description: The blood type of the user.
  *                 example: 1
- *               currentWeight: 
+ *               currentWeight:
  *                 type: number
  *                 description: The current weight of the user.
  *                 example: 76
@@ -308,46 +308,46 @@ router.post('/addCalorieCalculation', authenticateToken, addCalorieCalculation)
  *               properties:
  *                     usersInfo:
  *                       type: object
- *                       properties: 
- *                         height: 
+ *                       properties:
+ *                         height:
  *                              type: number
  *                              description: The height of the user.
  *                              example: 5
- *                         desiredWeight: 
+ *                         desiredWeight:
  *                              type: number
  *                              description: The desired weight of the user.
  *                              example: 50
- *                         age: 
+ *                         age:
  *                              type: number
  *                              description: The age of the user.
  *                              example: 31
- *                         bloodType: 
+ *                         bloodType:
  *                              type: number
  *                              description: The blood type of the user.
  *                              example: 1
- *                         currentWeight: 
+ *                         currentWeight:
  *                              type: number
  *                              description: The current weight of the user.
  *                              example: 76
- *                         recommendedCalories: 
+ *                         recommendedCalories:
  *                              type: number
  *                              description: The recommended calories of the user.
  *                              example: 231
- *                         foodsNotRecommended: 
+ *                         foodsNotRecommended:
  *                              type: array
  *                              items:
  *                                 type: string
  *                              description: The foods not recommended of the user.
- *                              example: 
+ *                              example:
  *                                    - "flour"
  *                                    - "eggs"
- *                                    - "nuts"        
- *                       
+ *                                    - "nuts"
+ *
  *       400:
  *         description: Bad request - Missing required field
  */
 
-router.post('/addPublicCalorieCalculation', addPublicCalorieCalculation)
+router.post('/addPublicCalorieCalculation', addPublicCalorieCalculation);
 
 //GET USER INFO
 
@@ -477,4 +477,6 @@ router.post('/addPublicCalorieCalculation', addPublicCalorieCalculation)
 
 router.get('/getUserData', authenticateToken, getUserData)
 
-export {router}
+router.get('/getUserData', authenticateToken, getUserData);
+
+export { router };

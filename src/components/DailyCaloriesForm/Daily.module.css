@@ -136,7 +136,7 @@
 }
 
 /*mobile view start header */
-@media (max-width: 767px) {
+@media (max-width: 703px) {
   .dailyContainer {
     width: 100%;
     margin-right: auto;
@@ -162,24 +162,12 @@
       width: 50%;
       height: 55px;
     }
-    .radioLabel {
-      font-size: 0.85rem;
-    }
-    .radioGroupLabel {
-      font-size: 0.85rem;
-    }
-    .inputBox label {
-      font-size: 0.85rem;
-    }
   }
 }
 
-@media (min-width: 768px) and (max-width: 1279px) {
+@media (min-width: 704px) and (max-width: 1297px) {
   .dailyButton {
     justify-content: left;
     text-align: left;
-  }
-  h1 {
-    font-size: 1.5rem;
   }
 }

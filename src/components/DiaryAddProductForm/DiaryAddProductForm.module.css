@@ -3,7 +3,6 @@
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  margin-left: 18px;
   height: auto;
 }
 
@@ -66,7 +65,7 @@
 }
 
 .productNameInput {
-  width: 100%;
+  width: 240px;
   stroke-width: 1px;
   stroke: #e0e0e0;
   /* margin-top: 24px; */
@@ -103,7 +102,7 @@
   height: 48px;
 }
 
-@media (max-width: 991px) {
+@media (max-width: 1279px) {
   .gramsContainer {
     white-space: initial;
   }
@@ -179,7 +178,7 @@
   display: none;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 703px) {
   .AddProductFormContainer {
     width: 290px; /* Mobile width */
     height: 216px; /* Mobile height */

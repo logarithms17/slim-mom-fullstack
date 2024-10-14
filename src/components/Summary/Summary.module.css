@@ -29,9 +29,8 @@ ul li {
 }
 
 /* Food Not Recommended Section styling */
-.foodSection {
-  border-top: 1px solid #ddd;
-  padding-top: 10px;
+.foodsNotRecommendedSection li {
+  list-style-type: none;
 }
 
 /* Tablet view */
@@ -46,20 +45,19 @@ ul li {
     width: 60%; /* Adjust width for summary section */
   }
 
-  .foodSection {
-    width: 50%; /* Adjust width for food section */
+  .foodsNotRecommendedSection {
     position: static; /* Ensure normal flow */
     margin-top: 0;
     padding-top: 0;
-  }
-  .foodSection {
     border-top: none;
   }
-  h2 {
+  h2,
+  h3 {
     font-size: 0.85rem;
     margin-bottom: 10px;
   }
-  li {
+  li,
+  p {
     font-size: 0.85rem;
   }
 }

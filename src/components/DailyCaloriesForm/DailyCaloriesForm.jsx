@@ -5,7 +5,7 @@ import { Modal } from '../Modal/Modal';
 
 axios.defaults.baseURL = 'https://slim-mom-fullstack.onrender.com';
 
-export const DailyCaloriesForm = () => {
+export const DailyCaloriesForm = ({ isLoggedIn }) => {
   const [height, setHeight] = useState('');
   const [desiredWeight, setDesiredWeight] = useState('');
   const [age, setAge] = useState('');
@@ -16,7 +16,6 @@ export const DailyCaloriesForm = () => {
     calorieIntake: null,
     foodsNotRecommended: [],
   });
-  const [modalVal, setModalVal] = useState(0);
 
   const validateInputs = () => {
     if (!height || isNaN(height) || height <= 0) {
@@ -53,41 +52,31 @@ export const DailyCaloriesForm = () => {
       return;
     }
 
-    const token = localStorage.getItem('token');
-    const url = token
+    const url = isLoggedIn
       ? '/api/users/addCalorieCalculation'
       : '/api/users/addPublicCalorieCalculation';
 
-    setModalVal(token ? 1 : 0);
     try {
-      const response = await axios.post(
-        url,
-        {
-          height: Number(height),
-          desiredWeight: Number(desiredWeight),
-          age: Number(age),
-          bloodType: blood,
-          currentWeight: Number(currentWeight),
-        },
-        {
-          headers: token ? { Authorization: `Bearer ${token}` } : {},
-        }
-      );
-
-      console.log('API Response:', response.data); // Log the response
+      const response = await axios.post(url, {
+        height: Number(height),
+        desiredWeight: Number(desiredWeight),
+        age: Number(age),
+        bloodType: blood,
+        currentWeight: Number(currentWeight),
+      });
 
       if (response.status === 200) {
-        const { usersInfo } = response.data; // Get usersInfo from the response
+        const calorieData = isLoggedIn
+          ? response.data.usersInfo
+          : response.data.localCalorieIntake;
 
-        // Ensure usersInfo is defined and has the properties you need
-        if (usersInfo) {
+        if (calorieData) {
           setIsModalOpen(true);
           setModalData({
-            calorieIntake: usersInfo.recommendedCalories, // Access recommendedCalories directly
-            foodsNotRecommended: usersInfo.foodsNotRecommended || [], // Access foodsNotRecommended directly
+            calorieIntake: calorieData.recommendedCalories,
+            foodsNotRecommended: calorieData.foodsNotRecommended || [],
           });
 
-          // Reset form fields
           setHeight('');
           setDesiredWeight('');
           setAge('');
@@ -231,7 +220,7 @@ export const DailyCaloriesForm = () => {
         onClose={handleCloseModal}
         calorieIntake={modalData.calorieIntake}
         foodsNotRecommended={modalData.foodsNotRecommended}
-        modalValidation={modalVal}
+        isLoggedIn={isLoggedIn}
       />
     </div>
   );

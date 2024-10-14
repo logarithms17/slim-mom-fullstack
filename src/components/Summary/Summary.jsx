@@ -18,18 +18,7 @@ export const Summary = () => {
         .get('/api/users/getUserData')
         .then(response => {
           const userData = response.data;
-          const dailyConsumed = Array.isArray(userData.dailyConsumedProducts)
-            ? userData.dailyConsumedProducts.reduce(
-                (total, product) => total + product.quantity,
-                0
-              )
-            : 0;
-
-          setUserData({
-            ...userData,
-            dailyRate: userData?.usersInfo?.recommendedCalories || 0,
-            dailyConsumed,
-          });
+          setUserData(userData); // Set userData in the state
         })
         .catch(error => {
           console.error('Error fetching user data:', error);
@@ -51,41 +40,19 @@ export const Summary = () => {
     return <div style={{ color: 'red' }}>{error}</div>;
   }
 
-  const consumedProductsCount = userData?.dailyConsumedProducts?.length || 0;
-
-  const formattedDate = `${String(new Date().getDate()).padStart(
-    2,
-    '0'
-  )}.${String(new Date().getMonth() + 1).padStart(
-    2,
-    '0'
-  )}.${new Date().getFullYear()}`;
-
-  const padToThreeDigits = num => String(num).padStart(3, '0');
-
-  const leftKcal = padToThreeDigits(
-    (userData?.dailyRate || 0) - (userData?.dailyConsumed || 0)
-  );
-  const consumedKcal = padToThreeDigits(consumedProductsCount);
-  const dailyRateKcal = padToThreeDigits(userData?.dailyRate || 0);
-  const percentageNormal = padToThreeDigits(
-    ((userData?.dailyConsumed / userData?.dailyRate) * 100 || 0).toFixed(0)
-  );
-
+  // Accessing recommendedCalories inside user.usersInfo
   return (
     <div className="summary">
-      <h2>Summary for {formattedDate}</h2>
-      <p>Left {leftKcal} kcal</p>
-      <p>Consumed {consumedKcal} kcal</p>
-      <p>Daily rate {dailyRateKcal} kcal</p>
-      <p>% of normal {percentageNormal} %</p>
-      <p>User Height: {userData?.usersInfo?.height} cm</p>{' '}
-      {/* Display user height */}
+      <h2>Summary for {userData?.user?.name}</h2>
+      <p>Left xxx kcal</p>
+      <p>Consumed xx kcal</p>
+      <p>Daily rate {userData?.user?.usersInfo?.recommendedCalories} kcal</p>
+      <p>% of normal xxx %</p>
       <h3>Food not recommended</h3>
       <ul>
-        {userData?.foodsNotRecommended?.map((food, index) => (
+        {userData?.user?.usersInfo?.foodsNotRecommended.map((food, index) => (
           <li key={index}>{food}</li>
-        )) || <li>Your diet will be display here</li>}
+        ))}
       </ul>
     </div>
   );

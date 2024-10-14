@@ -7,7 +7,7 @@ const CalculatorPage = () => {
   return (
     <div className={style.container}>
       <div className={style.dailyCaloriesSection}>
-        <DailyCaloriesForm />
+        <DailyCaloriesForm isLoggedIn={true} />
       </div>
       <div className={style.summarySection}>
         <Summary />

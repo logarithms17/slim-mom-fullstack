@@ -1,66 +1,58 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
-// Set the base URL for axios
 axios.defaults.baseURL = 'https://slim-mom-fullstack.onrender.com';
 
 export const Summary = () => {
-  // State management
   const [userData, setUserData] = useState(null);
   const [consumedProducts, setConsumedProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // Replace this with the actual date you want to fetch products for
-  const specificDate = '2024-10-14'; // Example date
+  const specificDate = '2024-10-14';
 
   useEffect(() => {
     const token = localStorage.getItem('token');
 
     if (token) {
-      // Set token in the Authorization header
       axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
-      // Fetch user data
       axios
         .get('/api/users/getUserData')
         .then(response => {
           const userData = response.data;
-          setUserData(userData); // Store user data in state
+          setUserData(userData);
 
-          // Fetch consumed products for the specific date
           return axios.get(`/api/products/getConsumedProduct/${specificDate}`);
         })
         .then(response => {
-          const products = response.data.dailyConsumedProducts; // Adjust according to the actual response structure
-          setConsumedProducts(products || []); // Store consumed products in state
+          const products = response.data.dailyConsumedProducts;
+          setConsumedProducts(products || []);
         })
         .catch(error => {
           console.error('Error fetching data:', error);
           setError('Failed to fetch data. Please try again.');
         })
         .finally(() => {
-          setLoading(false); // Set loading to false once requests are complete
+          setLoading(false);
         });
     } else {
-      setLoading(false); // Stop loading if no token is found
+      setLoading(false);
     }
-  }, [specificDate]); // Add specificDate as a dependency if you want to change it dynamically
+  }, [specificDate]);
 
   if (loading) {
-    return <div>Loading...</div>; // Show loading state
+    return <div>Loading...</div>;
   }
 
   if (error) {
-    return <div style={{ color: 'red' }}>{error}</div>; // Show error state
+    return <div style={{ color: 'red' }}>{error}</div>;
   }
 
-  // Calculate the sum of calories from consumed products
   const totalCalories = consumedProducts.reduce((total, product) => {
-    return total + (product.calories || 0); // Fallback to 0 if calories are not available
+    return total + (product.calories || 0);
   }, 0);
 
-  // Render the summary once userData is available
   return (
     <div className="summary">
       <h2>Summary for {specificDate}</h2>

@@ -13,18 +13,18 @@ export const App = () => {
     <Routes>
       <Route path="/" element={<SharedLayout />}>
         <Route index element={<HomePage />} />
-       
+
         {/* Restricted Routes */}
-        <Route 
-          path="/register" 
+        <Route
+          path="/register"
           element={
             <RestrictedRoute>
               <RegistrationPage />
             </RestrictedRoute>
-          } 
+          }
         />
-        <Route 
-          path="/login" 
+        <Route
+          path="/login"
           element={
             <RestrictedRoute>
               <LoginPage />
@@ -33,21 +33,21 @@ export const App = () => {
         />
 
         {/* Pivate Routes: Only accessible to logged in users */}
-        <Route 
-          path="/diary" 
+        <Route
+          path="/diary"
           element={
             <PrivateRoute>
-                <DiaryPage />
+              <DiaryPage />
             </PrivateRoute>
           }
         />
-        <Route 
-          path="/calculator" 
+        <Route
+          path="/calculator"
           element={
             <PrivateRoute>
               <CalculatorPage />
-            </PrivateRoute>          
-          } 
+            </PrivateRoute>
+          }
         />
       </Route>
     </Routes>

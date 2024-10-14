@@ -3,14 +3,11 @@ import css from './DiaryProductListItem.module.css';
 
 export const DiaryProductListItem = ({
   product, // This is the entire product object now
-  date,
-  currentDate = new Date().toLocaleDateString(),
   isLoadingDeletedProd,
   onDelete,
 }) => {
   // Directly extract the properties from the product object
   const { product: title, quantity, calories, _id } = product;
-  const isCurrentDay = date.toLocaleDateString() === currentDate;
 
   const handleDelete = () => {
     document.body.style.overflow = 'hidden';
@@ -26,15 +23,13 @@ export const DiaryProductListItem = ({
         <div className={css.calorieList}>{Math.round(calories)} kcal</div>
       </div>
 
-      {isCurrentDay && (
-        <button
-          type="button"
-          onClick={handleDelete}
-          disabled={isLoadingDeletedProd}
-        >
-          <GrClose />
-        </button>
-      )}
+      <button
+        type="button"
+        onClick={handleDelete}
+        disabled={isLoadingDeletedProd}
+      >
+        <GrClose />
+      </button>
     </li>
   );
 };

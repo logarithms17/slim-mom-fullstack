@@ -1,0 +1,33 @@
+.backgroundContainer {
+  background-image: url('../../images/Layer-9.png'),
+    url('../../images/Layer-4\ 1.png'),
+    url('../../images/Strawberry-Big-PNG.png'),
+    url('../../images/Vector\ 3.png');
+  background-size: 450px, contain, 280px, contain;
+  background-position: 100% -8%, 80%, 100% 80%, 100% 90%;
+  background-repeat: no-repeat;
+  height: 100vh;
+  width: 100%;
+}
+
+@media screen and (max-width: 1279px) {
+  .backgroundContainer {
+    background-image: url('../../images/tablet-leaves.png'),
+      url('../..//images/tablet-strawberry.png'),
+      url('../../images/tablet-banana.png'), url('../../images/Vector\ 3.png');
+    background-size: 600px, 300px, 400px, 400px;
+    background-position: 30% 80%, 100% 60%, 100% 80%, 100% 100%;
+    background-repeat: no-repeat;
+    height: 100vh;
+    width: 100%;
+  }
+  .formTitle {
+    padding-top: 250px;
+  }
+}
+
+@media (max-width: 703px) {
+  .backgroundContainer {
+    background-image: none;
+  }
+}

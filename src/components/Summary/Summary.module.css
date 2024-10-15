@@ -10,11 +10,7 @@
 
 /* Summary Section styling */
 .summarySection {
-  margin-bottom: 50px; /* Space between sections */
-}
-
-h3 {
-  margin-top: 0;
+  margin-bottom: 20px; /* Space between sections */
 }
 
 h2 {
@@ -34,6 +30,8 @@ ul li {
 
 p {
   color: #9b9faa;
+  margin-top: 0;
+  margin-bottom: 8px;
 }
 
 /* Food Not Recommended Section styling */

@@ -4,12 +4,11 @@ import { ReactComponent as CalendarIcon } from '../../assets/images/calendar 1.s
 import DatePicker from 'react-datepicker';
 import css from './calendar.module.css';
 
-export default function Calendar() {
-  const [startDate, setStartDate] = useState(new Date());
-  const [isOpen, setIsOpen] = useState(false);
-
-  const handleCalendarClick = () => {
-    setIsOpen(!isOpen);
+const Calendar = ({ selectedDate, onDateChange }) => {
+  const handleChange = event => {
+    const newDate = new Date(event.target.value);
+    console.log('Date input value:', event.target.value); // Log input value
+    onDateChange(newDate);
   };
 
   const handleDateChange = date => {

@@ -39,7 +39,7 @@
     align-items: center; /* Center align horizontally */
     justify-content: flex-start; /* Align content from top */
     height: 100vh; /* Full viewport height */
-    overflow-y: auto; /* Enable vertical scroll if content exceeds height */
+    /* overflow-y: auto; Enable vertical scroll if content exceeds height */
     gap: 20px; /* Add space between sections */
     box-sizing: border-box;
     background-image: url('../../images/tablet-diary-leaves.png');
@@ -65,7 +65,7 @@
 @media (max-width: 703px) {
   .container {
     background-image: none; /* Remove background for simplicity */
-    overflow-y: auto; /* Enable scrolling on mobile */
+    /* overflow-y: auto; Enable scrolling on mobile */
   }
 
   .dailyCaloriesSection,

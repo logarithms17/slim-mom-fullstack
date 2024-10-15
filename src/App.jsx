@@ -12,13 +12,20 @@ export const App = () => {
   return (
     <Routes>
       <Route path="/" element={<SharedLayout />}>
-        <Route index element={<HomePage />} />
-       
-        {/* Restricted Routes */}
+      
+      {/* Restricted Routes */}
+        <Route 
+          path="/" 
+          element={
+            <RestrictedRoute redirectTo="/calculator">
+              <HomePage />
+            </RestrictedRoute>             
+          } 
+        /> 
         <Route 
           path="/register" 
           element={
-            <RestrictedRoute>
+            <RestrictedRoute redirectTo="/calculator">
               <RegistrationPage />
             </RestrictedRoute>
           } 
@@ -26,7 +33,7 @@ export const App = () => {
         <Route 
           path="/login" 
           element={
-            <RestrictedRoute>
+            <RestrictedRoute redirectTo="/calculator">
               <LoginPage />
             </RestrictedRoute>
           }
@@ -36,7 +43,7 @@ export const App = () => {
         <Route 
           path="/diary" 
           element={
-            <PrivateRoute>
+            <PrivateRoute redirectTo="/login">
                 <DiaryPage />
             </PrivateRoute>
           }
@@ -44,7 +51,7 @@ export const App = () => {
         <Route 
           path="/calculator" 
           element={
-            <PrivateRoute>
+            <PrivateRoute redirectTo="/login">
               <CalculatorPage />
             </PrivateRoute>          
           } 

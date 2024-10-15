@@ -44,7 +44,7 @@
     box-sizing: border-box;
     background-image: url('../../images/tablet-diary-leaves.png');
     background-size: 675px, contain, 420px, contain;
-    background-position: 100% 80%, 80%, 100% 80%, 100% 90%;
+    background-position: 120% 150%, 80%, 100% 80%, 100% 90%;
     background-repeat: no-repeat;
   }
 

@@ -3,12 +3,12 @@
     'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   display: flex;
-  flex-direction: column; /* Default: stack sections vertically */
+  flex-direction: column; /* Default: vertical stack */
   background-color: transparent;
   padding: 20px;
 }
 
-/* Summary Section styling */
+/* Summary Section Styling */
 .summarySection {
   margin-bottom: 20px; /* Space between sections */
 }
@@ -34,71 +34,57 @@ p {
   margin-bottom: 8px;
 }
 
-/* Food Not Recommended Section styling */
+/* Food Not Recommended Section Styling */
 .foodsNotRecommendedSection li {
   list-style-type: none;
   margin-bottom: 8px;
   color: #9b9faa;
 }
 
-/* Tablet view */
-@media (max-width: 1297px) {
+/* Tablet View */
+@media (max-width: 1297px) and (min-width: 704px) {
   .summaryContainer {
-    display: flex;
     flex-direction: row; /* Align sections horizontally */
-    align-items: center; /* Align sections to the top */
+    align-items: flex-start; /* Align sections at the top */
     width: 100%;
-    gap: 55px; /* Add a consistent space between sections */
+    gap: 50px; /* Space between sections */
   }
 
-  .summarySection {
-    margin-bottom: 0; /* Remove bottom margin for horizontal alignment */
-  }
-
-  .foodsNotRecommendedSection {
-    margin-top: 0;
-    padding-top: 0;
-    border-top: none;
-  }
-
-  h2,
-  h3 {
-    font-size: 0.9rem; /* Slightly larger font for readability */
-    margin-bottom: 20px;
+  h2 {
+    font-size: 0.875rem; /* Slightly larger font for readability */
+    margin-bottom: 15px;
   }
 
   li,
   p {
-    font-size: 0.85rem;
+    font-size: 0.9rem;
   }
 }
 
-/* Mobile view */
+/* Mobile View */
 @media (max-width: 703px) {
   .summaryContainer {
     flex-direction: column; /* Stack sections vertically */
-    font-size: 0.85rem;
-    width: 100%;
-    padding-left: 0;
     align-items: center;
-    justify-content: center;
-    gap: 0;
-    padding-top: 0;
+    width: 100%;
+    gap: 10px;
   }
 
-  .summarySection {
-    margin-top: 0; /* Reduced margin on mobile */
-    width: 100%; /* Full width on mobile */
-  }
+  .summarySection,
   .foodsNotRecommendedSection {
     width: 100%; /* Full width on mobile */
-    padding-top: 0;
   }
+
   h2 {
-    font-size: 0.85rem;
+    font-size: 1rem;
     margin-bottom: 10px;
   }
+
   li {
     font-size: 0.85rem;
+  }
+
+  .foodsSectionHeader {
+    padding-top: 5px;
   }
 }

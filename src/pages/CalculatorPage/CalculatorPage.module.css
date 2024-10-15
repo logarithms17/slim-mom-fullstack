@@ -2,11 +2,7 @@
   display: flex;
   justify-content: space-around;
   padding: 0;
-  background-color: #f0f1f3;
-  background-image: url('../../images/diary-leaves.png');
-  background-size: 605px, contain, 350px, contain;
-  background-position: 115% -10%, 80%, 100% 80%, 100% 90%;
-  background-repeat: no-repeat;
+  background-color: #ffff;
   width: 100%;
 }
 
@@ -28,7 +24,11 @@
 .summarySection {
   width: 50%;
   padding: 20px;
-  border-radius: 8px;
+  background-image: url('../../images/diary-leaves.png');
+  background-size: 605px, contain, 350px, contain;
+  background-position: 325% 80%, 80%, 100% 80%, 100% 90%;
+  background-repeat: no-repeat;
+  background-color: #f0f1f3;
 }
 
 /* Tablet view adjustments */
@@ -42,10 +42,7 @@
     overflow-y: auto; /* Enable vertical scroll if content exceeds height */
     gap: 20px; /* Add space between sections */
     box-sizing: border-box;
-    background-image: url('../../images/tablet-diary-leaves.png');
-    background-size: 675px, contain, 420px, contain;
-    background-position: 120% 150%, 80%, 100% 80%, 100% 90%;
-    background-repeat: no-repeat;
+    background-color: #ffff;
   }
 
   .dailyCaloriesSection,
@@ -54,17 +51,22 @@
     max-width: 1297px; /* Prevent sections from becoming too wide */
     padding: 20px; /* Maintain consistent padding */
     margin-left: 30px;
+    background-color: transparent;
   }
 
   .summarySection {
     margin-top: 0; /* Remove unnecessary margin */
+    background-image: url('../../images/tablet-diary-leaves.png');
+    background-size: 450px, contain, 200px, contain;
+    background-position: 100% 100%, 100% 100%, 100% 100%, 100% 100%;
+    background-repeat: no-repeat;
+    background-color: #f0f1f3;
   }
 }
 
 /* Mobile view adjustments */
 @media (max-width: 703px) {
   .container {
-    background-image: none; /* Remove background for simplicity */
     overflow-y: auto; /* Enable scrolling on mobile */
   }
 
@@ -72,6 +74,7 @@
   .summarySection {
     width: 100%; /* Full width on mobile */
     margin-left: 50px;
+    margin-right: 20px;
   }
 
   .dailyCaloriesSection {
@@ -82,5 +85,6 @@
   .summarySection {
     height: 100%;
     padding-top: 0;
+    background-image: none;
   }
 }

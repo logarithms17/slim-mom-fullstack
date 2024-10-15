@@ -92,7 +92,6 @@ export const Summary = () => {
           kcal
         </p>
         <p>
-          % of normal{' '}
           {totalCalories > 0 &&
           userData?.user?.usersInfo?.recommendedCalories > 0
             ? String(
@@ -102,8 +101,8 @@ export const Summary = () => {
                     100
                 )
               ).padStart(3, '0')
-            : '000'}{' '}
-          kcal
+            : '000'}
+          % of normal
         </p>
       </div>
       <div className={style.foodsNotRecommendedSection}>

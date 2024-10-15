@@ -12,6 +12,10 @@ export const Summary = () => {
 
   const specificDate = '2024-10-14';
 
+  // Utility function to capitalize the first letter
+  const capitalizeFirstLetter = string =>
+    string ? string.charAt(0).toUpperCase() + string.slice(1) : '';
+
   useEffect(() => {
     const token = localStorage.getItem('token');
 
@@ -56,8 +60,10 @@ export const Summary = () => {
 
   return (
     <div className={style.summaryContainer}>
-      <div classname={style.summarySection}>
-        <h2>Summary for {specificDate}</h2>
+      <div className={style.summarySection}>
+        <h2 classname={style.summaryContainerHeader}>
+          Summary for {specificDate}
+        </h2>
         <p>
           Left{' '}
           {isNaN(userData?.user?.usersInfo?.recommendedCalories - totalCalories)
@@ -65,7 +71,7 @@ export const Summary = () => {
             : String(
                 Math.round(
                   userData?.user?.usersInfo?.recommendedCalories - totalCalories
-                ) // Round off
+                )
               ).padStart(3, '0')}{' '}
           kcal
         </p>
@@ -74,6 +80,7 @@ export const Summary = () => {
           {isNaN(totalCalories)
             ? '000'
             : String(Math.round(totalCalories)).padStart(3, '0')}{' '}
+          kcal
         </p>
         <p>
           Daily rate:{' '}
@@ -82,6 +89,7 @@ export const Summary = () => {
             : String(
                 Math.round(userData?.user?.usersInfo?.recommendedCalories || 0)
               ).padStart(3, '0')}{' '}
+          kcal
         </p>
         <p>
           {totalCalories > 0 &&
@@ -94,35 +102,21 @@ export const Summary = () => {
                 )
               ).padStart(3, '0')
             : '000'}
-          % of normal xxx %
+          % of normal
         </p>
       </div>
+
       <div className={style.foodsNotRecommendedSection}>
-        <h3>Food not recommended</h3>
+        <h3 classname={style.summaryContainerHeader}>Food not recommended</h3>
         {userData?.user?.usersInfo?.foodsNotRecommended?.length > 0 ? (
           <ul>
             {userData.user.usersInfo.foodsNotRecommended.map((food, index) => (
-              <li key={index}>{food}</li>
+              <li key={index}>{capitalizeFirstLetter(food)}</li>
             ))}
           </ul>
         ) : (
           <li>Your diet will be displayed here</li>
         )}
-      </div>
-      <div classname={style.consumedProductsSection}>
-        <h3>Consumed Products</h3>
-        <ul>
-          {consumedProducts.length > 0 ? (
-            consumedProducts.map((product, index) => (
-              <li key={index}>
-                {product.product} -{' '}
-                {String(Math.round(product.calories)).padStart(3, '0')} kcal
-              </li>
-            ))
-          ) : (
-            <li>No products consumed on this date.</li>
-          )}
-        </ul>
       </div>
     </div>
   );

@@ -136,7 +136,7 @@
 }
 
 /*mobile view start header */
-@media (max-width: 767px) {
+@media (max-width: 703px) {
   .dailyContainer {
     width: 100%;
     margin-right: auto;
@@ -165,7 +165,7 @@
   }
 }
 
-@media (min-width: 768px) and (max-width: 1279px) {
+@media (min-width: 704px) and (max-width: 1297px) {
   .dailyButton {
     justify-content: left;
     text-align: left;

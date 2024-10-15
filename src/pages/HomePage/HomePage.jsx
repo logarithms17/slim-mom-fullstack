@@ -5,7 +5,7 @@ import { DailyCaloriesForm } from 'components/DailyCaloriesForm/DailyCaloriesFor
 const HomePage = () => {
   return (
     <div className={css.backgroundContainer}>
-      <DailyCaloriesForm />
+      <DailyCaloriesForm isLoggedIn={false} />
     </div>
   );
 };

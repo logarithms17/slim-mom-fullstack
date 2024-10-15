@@ -39,7 +39,7 @@ export const getProduct = async (req, res) => {
 
 export const addConsumedProduct = async (req, res, next) => {
     try {
-        const { consumedProduct, quantity } = req.body;
+        const { consumedProduct, quantity, date } = req.body;
 
         const formattedConsumedProduct = consumedProduct.replace(/-/g, ' ');
 
@@ -54,7 +54,7 @@ export const addConsumedProduct = async (req, res, next) => {
 
         const consumedCalories = caloriesRatio * product.calories
 
-        const calorieIntake = await Users.findByIdAndUpdate(
+        const updatedUser = await Users.findByIdAndUpdate(
             req.user.id,
             {
                 $push: {
@@ -62,14 +62,14 @@ export const addConsumedProduct = async (req, res, next) => {
                         product: product.title,
                         quantity,
                         calories: consumedCalories,
-                        date: new Date()
+                        date: date
                     }
                 },
             },
             { new: true } // This option returns the updated document
         );
 
-        res.status(200).json({ calorieIntake });
+        res.status(200).json({ updatedUser });
 
     } catch (error) {
         next(error)

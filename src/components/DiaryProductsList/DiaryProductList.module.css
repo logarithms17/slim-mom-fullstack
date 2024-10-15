@@ -5,13 +5,14 @@
 }
 .boxProducts {
   position: relative;
+  margin-top: 60px;
   @media (min-width: 768px) {
-    max-height: 240px;
+    max-height: 270px;
     :before {
       pointer-events: none;
-      width: 634px;
+      width: 731px;
       position: absolute;
-      bottom: 0;
+      bottom: -30px;
       height: 50px;
       left: 0;
       right: 0;
@@ -25,10 +26,11 @@
   flex-direction: column;
   align-items: center;
   margin-top: 32px;
-  max-height: 230px;
-  width: 310px;
+  max-height: 210px;
+  width: 640px;
   margin-left: -20px;
   margin-right: -10px;
+  padding-left: 0;
   overflow-y: scroll;
   ::-webkit-scrollbar {
     width: 6px;
@@ -43,7 +45,11 @@
     margin-left: 0;
     margin-right: 0;
     width: 640px;
-    margin-bottom: 55px;
+    /* margin-bottom: 55px; */
     align-items: flex-start;
   }
+}
+
+.boxProducts {
+  height: 271px;
 }

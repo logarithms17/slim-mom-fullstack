@@ -3,7 +3,7 @@
   align-items: center;
   justify-content: space-between;
   width: 280px;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
@@ -31,6 +31,7 @@
     }
   }
 }
+
 .info {
   display: flex;
   > div {
@@ -40,6 +41,9 @@
     border-bottom: 1px solid #e0e0e0;
     padding-bottom: 8px;
     font-size: 14px;
+    font-family: Verdana;
+    color: #212121;
+    line-height: normal;
     line-height: 17px;
     text-align: end;
     letter-spacing: 0.04em;
@@ -55,11 +59,22 @@
       margin-right: 8px;
     }
   }
+  .productList {
+    text-align: left;
+    width: 320px;
+  }
+  .quantityList {
+    margin-left: 50px;
+  }
+  .calorieList {
+    margin-left: 32px;
+  }
+
   @media screen and (min-width: 768px) {
     width: 520px;
     justify-content: space-between;
     > div {
-      padding-bottom: 20px;
+      padding-bottom: 15px;
       margin-right: 0;
       width: 106px;
       margin: 0;

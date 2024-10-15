@@ -106,7 +106,7 @@ export const Summary = () => {
         </p>
       </div>
       <div className={style.foodsNotRecommendedSection}>
-        <h2 classname={style.summaryContainerHeader}>Food not recommended</h2>
+        <h2 classname={style.foodsSectionHeader}>Food not recommended</h2>
         {userData?.user?.usersInfo?.foodsNotRecommended?.length > 0 ? (
           <ul>
             {userData.user.usersInfo.foodsNotRecommended.map((food, index) => (

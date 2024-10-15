@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import css from './Navigation.module.css';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import logo from '../../images/logo.svg';
 import HamburgerMenu from 'components/hamburger/Hamburger';
 import axios from 'axios';
@@ -10,6 +10,28 @@ axios.defaults.baseURL = 'https://slim-mom-fullstack.onrender.com';
 export default function Navigation() {
   //fetch user data
   const [userData, setUserData] = useState('');
+
+  const location = useLocation();
+  const pathname = location.pathname;
+  console.log(pathname);
+
+  const dynamicNav = () => {
+    // Check specific paths and render accordingly
+    if (pathname === '/diary' || pathname === '/calculator') {
+      return (
+        <div className={css.userExit}>
+          <p className={css.userName}>{userData}</p>
+          <div className={css.divider}></div>
+          <NavLink to="/login" className={css.exit}>
+            Exit
+          </NavLink>
+        </div>
+      );
+    }
+    if (pathname === '/' || pathname === '/login' || pathname === '/register') {
+      return null;
+    }
+  };
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -56,13 +78,7 @@ export default function Navigation() {
           </NavLink>
         </nav>
 
-        <div className={css.userExit}>
-          <p className={css.userName}>{userData}</p>
-          <div className={css.divider}></div>
-          <NavLink to="/login" className={css.exit}>
-            Exit
-          </NavLink>
-        </div>
+        {dynamicNav()}
       </div>
     </header>
   );

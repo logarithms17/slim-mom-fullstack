@@ -10,7 +10,12 @@ import { RestrictedRoute } from 'components/RestrictedRoute/RestrictedRoute';
 
 export const App = () => {
   return (
-    <div style={{ height: '100vh', overflowY: 'scroll' }}>
+    <div
+      style={{
+        height: '100vh',
+        overflowY: 'scroll',
+      }}
+    >
       <Routes>
         <Route path="/" element={<SharedLayout />}>
           {/* Restricted Routes */}

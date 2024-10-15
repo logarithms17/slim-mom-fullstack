@@ -50,7 +50,6 @@
 
   .rightSideContainer {
     max-height: 326px;
-    /* Pin the right container to the bottom for tablet size */
     position: relative;
     bottom: 0;
     width: 100%;
@@ -58,7 +57,15 @@
 }
 
 @media (max-width: 703px) {
-  .backgroundContainer {
-    background-image: none;
+  .pageContainer {
+    height: 1011px; /* Total height of the container */
+    display: flex;
+    flex-direction: column;
+  }
+  .leftSideContainer {
+    flex-grow: 1;
+  }
+  .rightSideContainer {
+    height: 433px;
   }
 }

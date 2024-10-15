@@ -40,6 +40,10 @@ router.get('/:title', getProduct)
  *                 type: number
  *                 description: The quantity of the consumed product
  *                 example: 200
+ *               date:
+ *                 type: date
+ *                 description: The date when the product was consumed
+ *                 example: 2024-10-10
  *     responses:
  *       201:
  *         description: User created successfully.
@@ -64,7 +68,7 @@ router.get('/:title', getProduct)
  *                          type: string
  *                          format: date-time
  *                          description: The date and time when the product was consumed.
- *                          example: 2024-10-07T00:31:09.329+00:00
+ *                          example: 2024-10-10
  *                      _id:
  *                          type: string
  *                          description: The ID of the newly created user.

@@ -1,30 +1,97 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import css from './Daily.module.css';
 import { Modal } from '../Modal/Modal';
 
-export const DailyCaloriesForm = () => {
+axios.defaults.baseURL = 'https://slim-mom-fullstack.onrender.com';
+
+export const DailyCaloriesForm = ({ isLoggedIn }) => {
   const [height, setHeight] = useState('');
   const [desiredWeight, setDesiredWeight] = useState('');
   const [age, setAge] = useState('');
   const [blood, setBlood] = useState('1');
   const [currentWeight, setCurrentWeight] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const calorieIntake = 2800;
+  const [modalData, setModalData] = useState({
+    calorieIntake: null,
+    foodsNotRecommended: [],
+  });
 
-  const handleSubmit = e => {
+  const validateInputs = () => {
+    if (!height || isNaN(height) || height <= 0) {
+      alert('Please enter a valid positive number for height.');
+      return false;
+    }
+
+    if (!age || isNaN(age) || age <= 0 || age > 120) {
+      alert('Please enter a valid age (1-120).');
+      return false;
+    }
+
+    if (!currentWeight || isNaN(currentWeight) || currentWeight <= 0) {
+      alert('Please enter a valid positive number for current weight.');
+      return false;
+    }
+
+    if (!desiredWeight || isNaN(desiredWeight) || desiredWeight <= 0) {
+      alert('Please enter a valid positive number for desired weight.');
+      return false;
+    }
+
+    if (Number(desiredWeight) >= Number(currentWeight)) {
+      alert('Desired weight should be less than current weight.');
+      return false;
+    }
+
+    return true;
+  };
+
+  const handleSubmit = async e => {
     e.preventDefault();
-    if (!height || !desiredWeight || !age || !blood || !currentWeight) {
-      alert('Please fill out all fields');
+    if (!validateInputs()) {
       return;
     }
 
-    setIsModalOpen(true);
+    const url = isLoggedIn
+      ? '/api/users/addCalorieCalculation'
+      : '/api/users/addPublicCalorieCalculation';
 
-    setHeight('');
-    setDesiredWeight('');
-    setAge('');
-    setBlood('1');
-    setCurrentWeight('');
+    try {
+      const response = await axios.post(url, {
+        height: Number(height),
+        desiredWeight: Number(desiredWeight),
+        age: Number(age),
+        bloodType: blood,
+        currentWeight: Number(currentWeight),
+      });
+
+      if (response.status === 200) {
+        const calorieData = isLoggedIn
+          ? response.data.usersInfo
+          : response.data.localCalorieIntake;
+
+        if (calorieData) {
+          setIsModalOpen(true);
+          setModalData({
+            calorieIntake: calorieData.recommendedCalories,
+            foodsNotRecommended: calorieData.foodsNotRecommended || [],
+          });
+
+          setHeight('');
+          setDesiredWeight('');
+          setAge('');
+          setBlood('1');
+          setCurrentWeight('');
+        } else {
+          console.error('usersInfo is undefined:', response.data);
+        }
+      }
+    } catch (error) {
+      console.error(
+        'Error in API request:',
+        error.response?.data || error.message
+      );
+    }
   };
 
   const handleCloseModal = () => {
@@ -151,7 +218,9 @@ export const DailyCaloriesForm = () => {
       <Modal
         isOpen={isModalOpen}
         onClose={handleCloseModal}
-        calorieIntake={calorieIntake}
+        calorieIntake={modalData.calorieIntake}
+        foodsNotRecommended={modalData.foodsNotRecommended}
+        isLoggedIn={isLoggedIn}
       />
     </div>
   );

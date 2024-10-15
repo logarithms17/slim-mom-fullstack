@@ -5,16 +5,50 @@ import CalculatorPage from 'pages/CalculatorPage/CalculatorPage';
 import RegistrationPage from 'pages/RegistrationPage/RegistrationPage';
 import SharedLayout from 'components/SharedLayout';
 import { Route, Routes } from 'react-router-dom';
+import { PrivateRoute } from 'components/PrivateRoute/PrivateRoute';
+import { RestrictedRoute } from 'components/RestrictedRoute/RestrictedRoute';
 
 export const App = () => {
   return (
     <Routes>
       <Route path="/" element={<SharedLayout />}>
         <Route index element={<HomePage />} />
-        <Route path="/register" element={<RegistrationPage />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/diary" element={<DiaryPage />} />
-        <Route path="/calculator" element={<CalculatorPage />} />
+       
+        {/* Restricted Routes */}
+        <Route 
+          path="/register" 
+          element={
+            <RestrictedRoute>
+              <RegistrationPage />
+            </RestrictedRoute>
+          } 
+        />
+        <Route 
+          path="/login" 
+          element={
+            <RestrictedRoute>
+              <LoginPage />
+            </RestrictedRoute>
+          }
+        />
+
+        {/* Pivate Routes: Only accessible to logged in users */}
+        <Route 
+          path="/diary" 
+          element={
+            <PrivateRoute>
+                <DiaryPage />
+            </PrivateRoute>
+          }
+        />
+        <Route 
+          path="/calculator" 
+          element={
+            <PrivateRoute>
+              <CalculatorPage />
+            </PrivateRoute>          
+          } 
+        />
       </Route>
     </Routes>
   );

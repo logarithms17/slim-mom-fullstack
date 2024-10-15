@@ -77,9 +77,8 @@ export default function Navigation() {
             Calculator
           </NavLink>
         </nav>
-
-        {dynamicNav()}
       </div>
+      {dynamicNav()}
     </header>
   );
 }

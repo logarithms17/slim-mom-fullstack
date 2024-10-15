@@ -73,7 +73,7 @@ a.inactive {
     position: absolute;
     z-index: 10;
 }
-@media (max-width: 768px) {
+@media (max-width: 1279px) {
 
     .hamburger {
         display: flex; 
@@ -93,7 +93,7 @@ a.inactive {
 }
 
 
-@media (min-width: 769px) {
+@media (min-width: 1280px) {
   .menu{
     display: none;
   }

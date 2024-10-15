@@ -83,7 +83,7 @@ export const Summary = () => {
           kcal
         </p>
         <p>
-          Daily rate:{' '}
+          Daily rate{' '}
           {isNaN(userData?.user?.usersInfo?.recommendedCalories)
             ? '000'
             : String(
@@ -92,6 +92,7 @@ export const Summary = () => {
           kcal
         </p>
         <p>
+          % of normal{' '}
           {totalCalories > 0 &&
           userData?.user?.usersInfo?.recommendedCalories > 0
             ? String(
@@ -101,11 +102,10 @@ export const Summary = () => {
                     100
                 )
               ).padStart(3, '0')
-            : '000'}
-          % of normal
+            : '000'}{' '}
+          kcal
         </p>
       </div>
-
       <div className={style.foodsNotRecommendedSection}>
         <h3 classname={style.summaryContainerHeader}>Food not recommended</h3>
         {userData?.user?.usersInfo?.foodsNotRecommended?.length > 0 ? (

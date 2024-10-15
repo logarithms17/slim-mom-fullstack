@@ -13,8 +13,6 @@ export const Summary = ({ selectedDate }) => {
   //DATE WILL BE CURRENT DATE
   const date = selectedDate.toISOString().slice(0, 10);
 
-  console.log('summary rerendered');
-
   useEffect(() => {
     const token = localStorage.getItem('token');
 

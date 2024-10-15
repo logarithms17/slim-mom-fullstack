@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import style from './Summary.module.css';
 
 axios.defaults.baseURL = 'https://slim-mom-fullstack.onrender.com';
 
@@ -55,50 +56,65 @@ export const Summary = () => {
   }, 0);
 
   return (
-    <div className="summary">
-      <h2>Summary for {date}</h2>
-      <p>
-        Left{' '}
-        {isNaN(userData?.user?.usersInfo?.recommendedCalories - totalCalories)
-          ? '000'
-          : String(
-              Math.round(
-                userData?.user?.usersInfo?.recommendedCalories - totalCalories
-              ) // Round off
-            ).padStart(3, '0')}{' '}
-        kcal
-      </p>
-      <p>
-        Consumed{' '}
-        {isNaN(totalCalories)
-          ? '000'
-          : String(Math.round(totalCalories)).padStart(3, '0')}{' '}
-      </p>
-      <p>
-        Daily rate:{' '}
-        {isNaN(userData?.user?.usersInfo?.recommendedCalories)
-          ? '000'
-          : String(
-              Math.round(userData?.user?.usersInfo?.recommendedCalories || 0)
-            ).padStart(3, '0')}{' '}
-      </p>
-      <p>
-        {totalCalories > 0 && userData?.user?.usersInfo?.recommendedCalories > 0
-          ? String(
-              Math.round(
-                (totalCalories / userData.user.usersInfo.recommendedCalories) *
-                  100
-              )
-            ).padStart(3, '0')
-          : '000'}
-        % of normal xxx %
-      </p>
-      <h3>Food not recommended</h3>
-      <ul>
-        {userData?.user?.usersInfo?.foodsNotRecommended.map((food, index) => (
-          <li key={index}>{food}</li>
-        ))}
-      </ul>
+    <div className={style.summaryContainer}>
+      <div className={style.summarySection}>
+        <h2 classname={style.summaryContainerHeader}>
+          Summary for {date}
+        </h2>
+        <p>
+          Left{' '}
+          {isNaN(userData?.user?.usersInfo?.recommendedCalories - totalCalories)
+            ? '000'
+            : String(
+                Math.round(
+                  userData?.user?.usersInfo?.recommendedCalories - totalCalories
+                )
+              ).padStart(3, '0')}{' '}
+          kcal
+        </p>
+        <p>
+          Consumed{' '}
+          {isNaN(totalCalories)
+            ? '000'
+            : String(Math.round(totalCalories)).padStart(3, '0')}{' '}
+          kcal
+        </p>
+        <p>
+          Daily rate{' '}
+          {isNaN(userData?.user?.usersInfo?.recommendedCalories)
+            ? '000'
+            : String(
+                Math.round(userData?.user?.usersInfo?.recommendedCalories || 0)
+              ).padStart(3, '0')}{' '}
+          kcal
+        </p>
+        <p>
+          % of normal{' '}
+          {totalCalories > 0 &&
+          userData?.user?.usersInfo?.recommendedCalories > 0
+            ? String(
+                Math.round(
+                  (totalCalories /
+                    userData.user.usersInfo.recommendedCalories) *
+                    100
+                )
+              ).padStart(3, '0')
+            : '000'}{' '}
+          kcal
+        </p>
+      </div>
+      <div className={style.foodsNotRecommendedSection}>
+        <h3 classname={style.summaryContainerHeader}>Food not recommended</h3>
+        {userData?.user?.usersInfo?.foodsNotRecommended?.length > 0 ? (
+          <ul>
+            {userData.user.usersInfo.foodsNotRecommended.map((food, index) => (
+              <li key={index}>{capitalizeFirstLetter(food)}</li>
+            ))}
+          </ul>
+        ) : (
+          <li>Your diet will be displayed here</li>
+        )}
+      </div>
     </div>
   );
 };

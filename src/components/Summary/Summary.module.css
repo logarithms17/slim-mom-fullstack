@@ -10,7 +10,11 @@
 
 /* Summary Section styling */
 .summarySection {
-  margin-bottom: 20px; /* Space between sections */
+  margin-bottom: 50px; /* Space between sections */
+}
+
+h3 {
+  margin-top: 0;
 }
 
 h2 {
@@ -92,7 +96,6 @@ p {
     width: 100%; /* Full width on mobile */
     padding-top: 0;
   }
-
   h2 {
     font-size: 0.85rem;
     margin-bottom: 10px;

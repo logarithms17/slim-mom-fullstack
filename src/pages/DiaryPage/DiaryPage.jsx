@@ -22,7 +22,7 @@ const DiaryPage = () => {
         <DiaryProductsList selectedDate={selectedDate} />
       </div>
       <div className={css.summarySection}>
-        <Summary />
+        <Summary selectedDate={selectedDate} />
       </div>
     </div>
   );

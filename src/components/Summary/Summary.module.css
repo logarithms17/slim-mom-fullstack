@@ -3,14 +3,16 @@
     'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   display: flex;
-  flex-direction: column; /* Default: stack sections vertically */
+  flex-direction: column;
+  /* Default: stack sections vertically */
   background-color: transparent;
   padding: 20px;
 }
 
 /* Summary Section styling */
 .summarySection {
-  margin-bottom: 20px; /* Space between sections */
+  margin-bottom: 20px;
+  /* Space between sections */
 }
 
 h2 {
@@ -43,14 +45,18 @@ p {
 @media (max-width: 1297px) {
   .summaryContainer {
     display: flex;
-    flex-direction: row; /* Align sections horizontally */
-    align-items: center; /* Align sections to the top */
+    flex-direction: row;
+    /* Align sections horizontally */
+    align-items: center;
+    /* Align sections to the top */
     width: 100%;
-    gap: 55px; /* Add a consistent space between sections */
+    gap: 55px;
+    /* Add a consistent space between sections */
   }
 
   .summarySection {
-    margin-bottom: 0; /* Remove bottom margin for horizontal alignment */
+    margin-bottom: 0;
+    /* Remove bottom margin for horizontal alignment */
   }
 
   .foodsNotRecommendedSection {
@@ -61,7 +67,8 @@ p {
 
   h2,
   h3 {
-    font-size: 0.9rem; /* Slightly larger font for readability */
+    font-size: 0.9rem;
+    /* Slightly larger font for readability */
     margin-bottom: 20px;
   }
 
@@ -74,7 +81,8 @@ p {
 /* Mobile view */
 @media (max-width: 703px) {
   .summaryContainer {
-    flex-direction: column; /* Stack sections vertically */
+    flex-direction: column;
+    /* Stack sections vertically */
     font-size: 0.85rem;
     width: 100%;
     padding-left: 0;
@@ -84,11 +92,15 @@ p {
   }
 
   .summarySection {
-    margin-top: 0; /* Reduced margin on mobile */
-    width: 100%; /* Full width on mobile */
+    margin-top: 0;
+    /* Reduced margin on mobile */
+    width: 100%;
+    /* Full width on mobile */
   }
+
   .foodsNotRecommendedSection {
-    width: 100%; /* Full width on mobile */
+    width: 100%;
+    /* Full width on mobile */
     padding-top: 0;
   }
 
@@ -96,6 +108,7 @@ p {
     font-size: 0.85rem;
     margin-bottom: 10px;
   }
+
   li {
     font-size: 0.85rem;
   }

@@ -4,14 +4,16 @@ import style from './summary.module.css';
 
 axios.defaults.baseURL = 'https://slim-mom-fullstack.onrender.com';
 
-export const Summary = () => {
+export const Summary = ({ selectedDate }) => {
   const [userData, setUserData] = useState(null);
   const [consumedProducts, setConsumedProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   //DATE WILL BE CURRENT DATE
-  const date = new Date().toISOString().slice(0, 10);
+  const date = selectedDate.toISOString().slice(0, 10);
+
+  console.log('summary rerendered');
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -62,7 +64,7 @@ export const Summary = () => {
   return (
     <div className={style.summaryContainer}>
       <div className={style.summarySection}>
-        <h2 classname={style.summaryContainerHeader}>Summary for {date}</h2>
+        <h2 className={style.summaryContainerHeader}>Summary for {date}</h2>
         <p>
           Left{' '}
           {isNaN(userData?.user?.usersInfo?.recommendedCalories - totalCalories)
@@ -106,7 +108,7 @@ export const Summary = () => {
         </p>
       </div>
       <div className={style.foodsNotRecommendedSection}>
-        <h3 classname={style.summaryContainerHeader}>Food not recommended</h3>
+        <h3 className={style.summaryContainerHeader}>Food not recommended</h3>
         {userData?.user?.usersInfo?.foodsNotRecommended?.length > 0 ? (
           <ul>
             {userData.user.usersInfo.foodsNotRecommended.map((food, index) => (

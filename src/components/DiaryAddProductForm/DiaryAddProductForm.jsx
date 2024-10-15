@@ -113,14 +113,13 @@ export const DiaryAddProductForm = ({ selectedDate }) => {
             src={AddButtonIcon}
             alt="Submit"
           />
-          {isLoading ? 'Saving...' : 'Add'}
         </button>
         <button
           className={styles.AddMobileButton}
           type="submit"
           disabled={isLoading}
         >
-          {isLoading ? 'Saving...' : 'Add'}
+          Add
         </button>
       </form>
     </main>

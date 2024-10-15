@@ -1,10 +1,9 @@
-.backgroundContainer {
+.pageContainer {
   height: 100vh;
   width: 100%;
   display: flex;
   flex-direction: row;
   position: relative;
-  z-index: 0;
 }
 
 .leftSideContainer {
@@ -33,18 +32,40 @@
 }
 
 @media screen and (max-width: 1279px) {
-  .backgroundContainer {
-    background-image: url('../../images/tablet-diary-leaves.png');
-    background-size: 400px;
-    background-position: 90% 85%;
-    background-repeat: no-repeat;
+  .pageContainer {
     height: 100vh;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .leftSideContainer {
+    /* min-width: 763px;
+    height: 100vh;
+    margin-left: 16px;
+    margin-top: 250px; */
+    margin-top: 180px;
+    margin-left: 32px;
+    max-height: 275px;
+  }
+
+  .rightSideContainer {
+    max-height: 326px;
+    position: relative;
+    bottom: 0;
     width: 100%;
   }
 }
 
 @media (max-width: 703px) {
-  .backgroundContainer {
-    background-image: none;
+  .pageContainer {
+    height: 1011px; /* Total height of the container */
+    display: flex;
+    flex-direction: column;
+  }
+  .leftSideContainer {
+    flex-grow: 1;
+  }
+  .rightSideContainer {
+    height: 433px;
   }
 }

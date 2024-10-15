@@ -7,7 +7,7 @@
 .header {
   transition: transform 0.5s ease; 
   transform: translateY(10px);
-  margin-bottom: 160px;
+  /* margin-bottom: 100px; */
 }
 .nav {
   display: flex;
@@ -107,7 +107,7 @@ a.active {
     transition: transform 0.5s ease;
   }
   .container::after {
-    content: '';
+    /* content: ''; */
     position: absolute;
     left: 0;
     right: 0;

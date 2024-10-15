@@ -14,7 +14,7 @@ body {
     position: fixed; 
     top: 50px; 
     right: 20px; 
-    z-index: 2; 
+    z-index: 10; 
 
 }
 
@@ -42,16 +42,22 @@ body {
     opacity: 0;
     
 }
-
-.menu ul {
-    list-style: none;
+.menuLink{
+    margin: 20px 0;;
 }
-
-.menu ul li {
-    margin: 15px 0;
-}
-
-.menu ul li a {
+a.inactive {
+    color: #9b9faa;
+    text-align: center;
+    font-family: Verdana;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: 0.96px;
+    text-transform: uppercase;
+    text-decoration: none;
+  }
+  a.active {
     color: #fff;
     text-align: center;
     font-family: Verdana;
@@ -62,9 +68,11 @@ body {
     letter-spacing: 0.96px;
     text-transform: uppercase;
     text-decoration: none;
-
+  }
+.hamburgerCtn{
+    position: absolute;
+    z-index: 10;
 }
-
 @media (max-width: 768px) {
 
     .hamburger {

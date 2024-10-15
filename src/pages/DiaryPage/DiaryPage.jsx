@@ -3,7 +3,6 @@ import DiaryAddProductForm from '../../components/DiaryAddProductForm/DiaryAddPr
 import css from './DiaryPage.module.css';
 import DiaryProductsList from 'components/DiaryProductsList/DiaryProductList';
 import Calendar from 'components/calendar/Calendar';
-import { Header } from 'components/Header/Header';
 
 const DiaryPage = () => {
   const [selectedDate, setSelectedDate] = useState(new Date());
@@ -16,7 +15,6 @@ const DiaryPage = () => {
   return (
     <div className={css.backgroundContainer}>
       <div className={css.headerContainer}>
-        <Header />
       </div>
       <div className={css.leftSideContainer}>
         <Calendar selectedDate={selectedDate} onDateChange={handleDateChange} />

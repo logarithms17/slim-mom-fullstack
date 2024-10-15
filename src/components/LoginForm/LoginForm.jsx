@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import css from './LoginForm.module.css';
 import { useNavigate } from 'react-router-dom';
+
 import axios from 'axios';
 import { toast, ToastContainer } from 'react-toastify';
 import { RotatingLines } from 'react-loader-spinner';
@@ -19,7 +20,7 @@ export const LoginForm = () => {
   const handleSubmit = async e => {
     e.preventDefault();
     setIsLoading(true);
-   
+
     try {
       const response = await axios.post('/api/users/login', {
         email,
@@ -53,7 +54,9 @@ export const LoginForm = () => {
       if (error.response && error.response.data.message) {
         toast.error(error.response.data.message);
       } else {
-        toast.error('Login failed. Please check your credentials and try again.');
+        toast.error(
+          'Login failed. Please check your credentials and try again.'
+        );
       }
     } finally {
       setIsLoading(false);
@@ -103,7 +106,9 @@ export const LoginForm = () => {
                   animationDuration="0.75"
                   ariaLabel="rotating-lines-loading"
                 />
-              ) : 'Log in'}
+              ) : (
+                'Log in'
+              )}
             </button>
 
             <button
@@ -118,6 +123,6 @@ export const LoginForm = () => {
 
         <ToastContainer position="top-right" autoClose={3000} />
       </div>
-    </div> 
+    </div>
   );
 };

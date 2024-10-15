@@ -1,7 +1,7 @@
 .listItem {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   width: 280px;
   margin-bottom: 15px;
   font-style: normal;
@@ -23,13 +23,17 @@
       color: #9b9faa;
     }
   }
-  @media screen and (min-width: 768px) {
+  @media screen and (max-width: 1279px) {
     width: 565px;
     & > button {
       height: 12px;
       width: 12px;
     }
   }
+}
+
+.deleteButton {
+  margin-left: 30px;
 }
 
 .info {
@@ -61,18 +65,59 @@
   }
   .productList {
     text-align: left;
-    width: 320px;
+    width: 240px;
   }
+
   .quantityList {
     margin-left: 50px;
+    width: 107px;
   }
   .calorieList {
     margin-left: 32px;
+    width: 106px;
   }
 
-  @media screen and (min-width: 768px) {
+  @media screen and (max-width: 1279px) {
+    .productList {
+      width: 270px;
+    }
+  }
+
+  @media (max-width: 703px) {
+    .productList {
+      width: 130px;
+    }
+    .quantityList {
+      margin-left: 8px;
+      width: 49px;
+    }
+    .quantityListSpan {
+      color: #212121;
+      font-family: Verdana;
+      font-size: 10px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+      letter-spacing: 0.4px;
+    }
+    .calorieList {
+      margin-left: 8px;
+      width: 58px;
+    }
+    .calorieListSpan {
+      color: #212121;
+      font-family: Verdana;
+      font-size: 10px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+      letter-spacing: 0.4px;
+    }
+  }
+
+  @media screen and (max-width: 1279px) {
     width: 520px;
-    justify-content: space-between;
+    /* justify-content: space-between; */
     > div {
       padding-bottom: 15px;
       margin-right: 0;
@@ -87,5 +132,17 @@
         width: 106px;
       }
     }
+  }
+}
+
+@media (max-width: 703px) {
+  .deleteButton {
+    margin-left: 10px;
+  }
+  .listItem {
+    width: 320px;
+  }
+  .info {
+    width: 270px;
   }
 }

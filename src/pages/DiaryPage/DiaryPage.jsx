@@ -4,6 +4,7 @@ import css from './DiaryPage.module.css';
 import DiaryProductsList from 'components/DiaryProductsList/DiaryProductList';
 import Calendar from 'components/calendar/Calendar';
 import MobileDiaryBtn from '../../components/MobileDiaryBtn/MobileDiaryBtn';
+import { Summary } from 'components/Summary/Summary';
 import { useMediaQuery } from 'react-responsive';
 
 const DiaryPage = () => {
@@ -58,7 +59,9 @@ const DiaryPage = () => {
         className={css.rightSideContainer}
         style={{ display: isMobile && isFormVisible ? 'none' : 'block' }}
       >
-        Summary
+        <div className={css.summarySection}>
+          <Summary selectedDate={selectedDate} />
+        </div>
       </div>
     </div>
   );

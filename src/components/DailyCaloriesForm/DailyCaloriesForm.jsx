@@ -101,7 +101,9 @@ export const DailyCaloriesForm = ({ isLoggedIn }) => {
   return (
     <div className={css.dailyContainer}>
       <div>
-        <h1>Calculate your daily calorie intake right now</h1>
+        <h1 className={css.dailyContainerHeader}>
+          Calculate your daily calorie intake right now
+        </h1>
 
         <form onSubmit={handleSubmit} className={css.dailyForm}>
           <div className={css.dailyDiv}>

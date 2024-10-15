@@ -57,7 +57,8 @@ body {
   font-weight: bold;
   font-size: 0.875rem;
 }
-.button:hover {
+.button:hover,
+.button:active {
   color: #ffffff;
   background-color: #fc842d;
 }

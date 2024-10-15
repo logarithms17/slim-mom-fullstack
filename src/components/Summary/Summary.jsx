@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import style from './Summary.module.css';
+import style from './summary.module.css';
 
 axios.defaults.baseURL = 'https://slim-mom-fullstack.onrender.com';
 
@@ -51,6 +51,10 @@ export const Summary = () => {
     return <div style={{ color: 'red' }}>{error}</div>;
   }
 
+  // Utility function to capitalize the first letter
+  const capitalizeFirstLetter = string =>
+    string ? string.charAt(0).toUpperCase() + string.slice(1) : '';
+
   const totalCalories = consumedProducts.reduce((total, product) => {
     return total + (product.calories || 0);
   }, 0);
@@ -58,9 +62,7 @@ export const Summary = () => {
   return (
     <div className={style.summaryContainer}>
       <div className={style.summarySection}>
-        <h2 classname={style.summaryContainerHeader}>
-          Summary for {date}
-        </h2>
+        <h2 classname={style.summaryContainerHeader}>Summary for {date}</h2>
         <p>
           Left{' '}
           {isNaN(userData?.user?.usersInfo?.recommendedCalories - totalCalories)

@@ -1,4 +1,4 @@
-.appContainer{
+/* .appContainer{
   display: flex;
   align-items: center;
 }
@@ -28,4 +28,23 @@
     background: #f4f4f4;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   
+} */
+
+.dateInputField {
+  width: 300px;
+  height: 38px;
+  flex-shrink: 0;
+  color: #212121;
+  font-family: Verdana;
+  font-size: 34px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  border: none;
+  margin-bottom: 50px;
+}
+
+.dateInputField:focus {
+  border: none; /* Remove border on focus */
+  outline: none; /* Remove the default outline on focus */
 }

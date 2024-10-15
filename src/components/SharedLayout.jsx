@@ -5,7 +5,7 @@ import Navigation from './Navigation/Navigation';
 const SharedLayout = () => {
   return (
     <div>
-      <Navigation/>
+      {/* <Navigation/> */}
       <Outlet />
     </div>
   );

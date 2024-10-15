@@ -1,15 +1,19 @@
 .container {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   padding: 40px;
-  background-color: #f8f9fa;
+  background-color: #ffffff;
+  background-image: url('../../images/diary-leaves.png');
+  background-size: 605px, contain, 350px, contain;
+  background-position: 115% -10%, 80%, 100% 80%, 100% 90%;
+  background-repeat: no-repeat;
 }
 
 /* Calculator Section styling */
 .calculatorSection {
   width: 60%;
   padding: 40px;
-  background-color: #fff;
+  background-color: transparent;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
@@ -23,41 +27,45 @@
 /* Summary Section styling */
 .summarySection {
   width: 35%;
-  background-color: #fff;
+  background-color: transparent;
   padding: 20px;
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 /* Tablet view adjustments */
 @media (max-width: 1297px) {
   .container {
+    display: flex;
     flex-direction: column; /* Stack sections vertically */
-    align-items: center; /* Center align items */
+    align-items: center; /* Center align horizontally */
+    justify-content: center; /* Center align vertically */
+    min-height: 100vh; /* Ensure it takes the full height of the screen */
+    gap: 20px; /* Add space between sections */
+    padding: 20px; /* Add padding for inner spacing */
+    box-sizing: border-box;
+    background-image: url('../../images/tablet-diary-leaves.png');
+    background-size: 675px, contain, 420px, contain;
+    background-position: 100% 80%, 80%, 100% 80%, 100% 90%;
+    background-repeat: no-repeat;
   }
 
-  .calculatorSection {
-    width: 100%; /* Full width for calculator section */
-    padding: 20px; /* Reduced padding */
+  .calculatorSection,
+  .summarySection {
+    width: 90%; /* Restrict width for better readability */
+    max-width: 600px; /* Prevent sections from becoming too wide */
+    padding: 20px; /* Maintain consistent padding */
   }
 
   .summarySection {
-    width: 100%; /* Full width for summary section */
-    margin-top: 20px; /* Margin to separate from calculator */
-  }
-
-  /* Adjust food section positioning */
-  .foodSection {
-    position: absolute; /* Positioning for food section */
-    bottom: 20px; /* Distance from the bottom */
-    right: 20px; /* Distance from the right */
-    width: 40%; /* Width for the food section */
-    max-width: 200px; /* Optional max width */
+    margin-top: 0; /* Remove unnecessary margin */
   }
 }
 
 /* Mobile view adjustments */
 @media (max-width: 703px) {
+  .container {
+    background-image: none;
+  }
   .calculatorSection,
   .summarySection {
     width: 100%; /* Full width on mobile */

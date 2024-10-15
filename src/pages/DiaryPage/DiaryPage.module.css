@@ -45,11 +45,11 @@
     margin-top: 250px; */
     margin-top: 180px;
     margin-left: 32px;
-    max-height: 275px;
+    /* max-height: 674px; */
   }
 
   .rightSideContainer {
-    max-height: 326px;
+    min-height: 300px;
     position: relative;
     bottom: 0;
     width: 100%;

@@ -48,6 +48,7 @@ p {
     align-items: flex-start; /* Align sections at the top */
     width: 100%;
     gap: 50px; /* Space between sections */
+    background-color: transparent;
   }
 
   h2 {
@@ -68,6 +69,7 @@ p {
     align-items: center;
     width: 100%;
     gap: 10px;
+    padding-left: 0;
   }
 
   .summarySection,
@@ -80,8 +82,8 @@ p {
     margin-bottom: 10px;
   }
 
-  li {
-    font-size: 0.85rem;
+  .foodsNotRecommendedSection li {
+    font-size: 0.9rem;
   }
 
   .foodsSectionHeader {

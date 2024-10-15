@@ -1,0 +1,90 @@
+.summaryContainer {
+  font-family: verdana, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+    'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  display: flex;
+  flex-direction: column; /* Default: stack sections vertically */
+  background-color: #fff;
+  padding: 20px;
+}
+
+/* Summary Section styling */
+.summarySection {
+  margin-bottom: 20px; /* Space between sections */
+}
+
+h2 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 20px 0;
+}
+
+ul li {
+  margin-bottom: 8px;
+}
+
+/* Food Not Recommended Section styling */
+.foodSection {
+  border-top: 1px solid #ddd;
+  padding-top: 10px;
+}
+
+/* Tablet view */
+@media (max-width: 1297px) {
+  .summaryContainer {
+    flex-direction: row; /* Align sections horizontally */
+    justify-content: space-between; /* Space between the sections */
+  }
+
+  .summarySection {
+    margin-bottom: 0; /* Remove bottom margin for horizontal alignment */
+    width: 60%; /* Adjust width for summary section */
+  }
+
+  .foodSection {
+    width: 50%; /* Adjust width for food section */
+    position: static; /* Ensure normal flow */
+    margin-top: 0;
+    padding-top: 0;
+  }
+  .foodSection {
+    border-top: none;
+  }
+  h2 {
+    font-size: 0.85rem;
+    margin-bottom: 10px;
+  }
+  li {
+    font-size: 0.85rem;
+  }
+}
+
+/* Mobile view */
+@media (max-width: 703px) {
+  .summaryContainer {
+    flex-direction: column; /* Stack sections vertically */
+    font-size: 0.85rem;
+    width: 100%;
+    padding-left: 0;
+  }
+  .summarySection {
+    margin-top: 10px; /* Reduced margin on mobile */
+    width: 100%; /* Full width on mobile */
+  }
+  .foodSection {
+    margin-top: 10px; /* Reduced margin on mobile */
+    width: 100%; /* Full width on mobile */
+  }
+  h2 {
+    font-size: 0.85rem;
+    margin-bottom: 10px;
+  }
+  li {
+    font-size: 0.85rem;
+  }
+}

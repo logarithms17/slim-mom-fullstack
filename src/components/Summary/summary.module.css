@@ -3,14 +3,16 @@
     'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   display: flex;
-  flex-direction: column; /* Default: stack sections vertically */
-  background-color: #fff;
+  flex-direction: column;
+  /* Default: stack sections vertically */
+  background-color: transparent;
   padding: 20px;
 }
 
 /* Summary Section styling */
 .summarySection {
-  margin-bottom: 20px; /* Space between sections */
+  margin-bottom: 20px;
+  /* Space between sections */
 }
 
 h2 {
@@ -28,38 +30,50 @@ ul li {
   margin-bottom: 8px;
 }
 
+p {
+  color: #9b9faa;
+}
+
 /* Food Not Recommended Section styling */
-.foodSection {
-  border-top: 1px solid #ddd;
-  padding-top: 10px;
+.foodsNotRecommendedSection li {
+  list-style-type: none;
+  margin-bottom: 8px;
+  color: #9b9faa;
 }
 
 /* Tablet view */
 @media (max-width: 1297px) {
   .summaryContainer {
-    flex-direction: row; /* Align sections horizontally */
-    justify-content: space-between; /* Space between the sections */
+    display: flex;
+    flex-direction: row;
+    /* Align sections horizontally */
+    align-items: center;
+    /* Align sections to the top */
+    width: 100%;
+    gap: 55px;
+    /* Add a consistent space between sections */
   }
 
   .summarySection {
-    margin-bottom: 0; /* Remove bottom margin for horizontal alignment */
-    width: 60%; /* Adjust width for summary section */
+    margin-bottom: 0;
+    /* Remove bottom margin for horizontal alignment */
   }
 
-  .foodSection {
-    width: 50%; /* Adjust width for food section */
-    position: static; /* Ensure normal flow */
+  .foodsNotRecommendedSection {
     margin-top: 0;
     padding-top: 0;
-  }
-  .foodSection {
     border-top: none;
   }
-  h2 {
-    font-size: 0.85rem;
-    margin-bottom: 10px;
+
+  h2,
+  h3 {
+    font-size: 0.9rem;
+    /* Slightly larger font for readability */
+    margin-bottom: 20px;
   }
-  li {
+
+  li,
+  p {
     font-size: 0.85rem;
   }
 }
@@ -67,23 +81,34 @@ ul li {
 /* Mobile view */
 @media (max-width: 703px) {
   .summaryContainer {
-    flex-direction: column; /* Stack sections vertically */
+    flex-direction: column;
+    /* Stack sections vertically */
     font-size: 0.85rem;
     width: 100%;
     padding-left: 0;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
   }
+
   .summarySection {
-    margin-top: 10px; /* Reduced margin on mobile */
-    width: 100%; /* Full width on mobile */
+    margin-top: 0;
+    /* Reduced margin on mobile */
+    width: 100%;
+    /* Full width on mobile */
   }
-  .foodSection {
-    margin-top: 10px; /* Reduced margin on mobile */
-    width: 100%; /* Full width on mobile */
+
+  .foodsNotRecommendedSection {
+    width: 100%;
+    /* Full width on mobile */
+    padding-top: 0;
   }
+
   h2 {
     font-size: 0.85rem;
     margin-bottom: 10px;
   }
+
   li {
     font-size: 0.85rem;
   }

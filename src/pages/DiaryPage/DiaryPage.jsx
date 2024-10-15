@@ -3,9 +3,9 @@ import DiaryAddProductForm from '../../components/DiaryAddProductForm/DiaryAddPr
 import css from './DiaryPage.module.css';
 import DiaryProductsList from 'components/DiaryProductsList/DiaryProductList';
 import Calendar from 'components/calendar/Calendar';
-import { Summary } from '../../components/Summary/Summary';
 import MobileDiaryBtn from '../../components/MobileDiaryBtn/MobileDiaryBtn';
 import { useMediaQuery } from 'react-responsive';
+import { Summary } from 'components/Summary/Summary';
 
 const DiaryPage = () => {
   const [selectedDate, setSelectedDate] = useState(new Date());
@@ -23,7 +23,7 @@ const DiaryPage = () => {
   };
 
   return (
-    <div className={css.backgroundContainer}>
+    <div className={css.pageContainer}>
       <div className={css.leftSideContainer}>
         {isMobile &&
           !isFormVisible && ( // Show Calendar and DiaryProductsList only on mobile
@@ -59,10 +59,9 @@ const DiaryPage = () => {
         className={css.rightSideContainer}
         style={{ display: isMobile && isFormVisible ? 'none' : 'block' }}
       >
-        Summary
-      </div>
-      <div className={css.summarySection}>
-        <Summary selectedDate={selectedDate} />
+        <div className={css.summarySection}>
+          <Summary selectedDate={selectedDate} />
+        </div>
       </div>
     </div>
   );

@@ -10,22 +10,26 @@
   line-height: 17px;
   letter-spacing: 0.04em;
   color: var(--main-text-color);
-  > button {
+
+  >button {
     border: none;
     background-color: transparent;
     padding: 0;
     height: 12px;
     width: 12px;
     cursor: pointer;
-    > svg {
+
+    >svg {
       display: block;
       object-fit: contain;
       color: #9b9faa;
     }
   }
+
   @media screen and (max-width: 1279px) {
     width: 565px;
-    & > button {
+
+    &>button {
       height: 12px;
       width: 12px;
     }
@@ -38,7 +42,8 @@
 
 .info {
   display: flex;
-  > div {
+
+  >div {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -51,18 +56,23 @@
     line-height: 17px;
     text-align: end;
     letter-spacing: 0.04em;
+
     :first-child {
       width: 130px;
       text-align: start;
     }
+
     width: 49px;
+
     :last-child {
       width: 59px;
     }
+
     :not(:last-child) {
       margin-right: 8px;
     }
   }
+
   .productList {
     text-align: left;
     width: 240px;
@@ -72,6 +82,7 @@
     margin-left: 50px;
     width: 107px;
   }
+
   .calorieList {
     margin-left: 32px;
     width: 106px;
@@ -87,10 +98,12 @@
     .productList {
       width: 130px;
     }
+
     .quantityList {
       margin-left: 8px;
       width: 49px;
     }
+
     .quantityListSpan {
       color: #212121;
       font-family: Verdana;
@@ -100,10 +113,12 @@
       line-height: normal;
       letter-spacing: 0.4px;
     }
+
     .calorieList {
       margin-left: 8px;
       width: 58px;
     }
+
     .calorieListSpan {
       color: #212121;
       font-family: Verdana;
@@ -117,17 +132,20 @@
 
   @media screen and (max-width: 1279px) {
     width: 520px;
+
     /* justify-content: space-between; */
-    > div {
+    >div {
       padding-bottom: 15px;
       margin-right: 0;
       width: 106px;
       margin: 0;
       text-align: end;
+
       :first-child {
         width: 240px;
         text-align: start;
       }
+
       :last-child {
         width: 106px;
       }
@@ -139,9 +157,11 @@
   .deleteButton {
     margin-left: 10px;
   }
+
   .listItem {
     width: 320px;
   }
+
   .info {
     width: 270px;
   }

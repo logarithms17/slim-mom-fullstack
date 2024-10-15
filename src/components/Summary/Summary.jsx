@@ -9,7 +9,8 @@ export const Summary = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const specificDate = '2024-10-14';
+  //DATE WILL BE CURRENT DATE
+  const date = new Date().toISOString().slice(0, 10);
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -23,7 +24,7 @@ export const Summary = () => {
           const userData = response.data;
           setUserData(userData);
 
-          return axios.get(`/api/products/getConsumedProduct/${specificDate}`);
+          return axios.get(`/api/products/getConsumedProduct/${date}`);
         })
         .then(response => {
           const products = response.data.dailyConsumedProducts;
@@ -39,7 +40,7 @@ export const Summary = () => {
     } else {
       setLoading(false);
     }
-  }, [specificDate]);
+  }, [date]);
 
   if (loading) {
     return <div>Loading...</div>;
@@ -55,7 +56,7 @@ export const Summary = () => {
 
   return (
     <div className="summary">
-      <h2>Summary for {specificDate}</h2>
+      <h2>Summary for {date}</h2>
       <p>
         Left{' '}
         {isNaN(userData?.user?.usersInfo?.recommendedCalories - totalCalories)
@@ -97,19 +98,6 @@ export const Summary = () => {
         {userData?.user?.usersInfo?.foodsNotRecommended.map((food, index) => (
           <li key={index}>{food}</li>
         ))}
-      </ul>
-      <h3>Consumed Products</h3>
-      <ul>
-        {consumedProducts.length > 0 ? (
-          consumedProducts.map((product, index) => (
-            <li key={index}>
-              {product.product} -{' '}
-              {String(Math.round(product.calories)).padStart(3, '0')} kcal
-            </li>
-          ))
-        ) : (
-          <li>No products consumed on this date.</li>
-        )}
       </ul>
     </div>
   );

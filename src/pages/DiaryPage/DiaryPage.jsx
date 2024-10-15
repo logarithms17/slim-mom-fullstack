@@ -3,7 +3,6 @@ import DiaryAddProductForm from '../../components/DiaryAddProductForm/DiaryAddPr
 import css from './DiaryPage.module.css';
 import DiaryProductsList from 'components/DiaryProductsList/DiaryProductList';
 import Calendar from 'components/calendar/Calendar';
-import { Summary } from '../../components/Summary/Summary';
 
 const DiaryPage = () => {
   const [selectedDate, setSelectedDate] = useState(new Date());
@@ -21,9 +20,7 @@ const DiaryPage = () => {
         <DiaryAddProductForm selectedDate={selectedDate} />
         <DiaryProductsList selectedDate={selectedDate} />
       </div>
-      <div className={css.summarySection}>
-        <Summary />
-      </div>
+      <div className={css.rightSideContainer}>Summary</div>
     </div>
   );
 };

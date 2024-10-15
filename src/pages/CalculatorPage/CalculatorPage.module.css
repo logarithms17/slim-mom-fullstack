@@ -13,7 +13,7 @@
 /* Calculator Section styling */
 .dailyCaloriesSection {
   width: 50%;
-  height: 100vh;
+  /* height: 100vh; */
   padding: 40px;
   background-color: #ffff;
 }

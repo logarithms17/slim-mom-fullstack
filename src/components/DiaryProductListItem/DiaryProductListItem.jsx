@@ -19,11 +19,17 @@ export const DiaryProductListItem = ({
       <div className={css.info}>
         <div className={css.productList}>{title}</div>
         {/* Product name is now displayed directly */}
-        <div className={css.quantityList}>{quantity} g</div>
-        <div className={css.calorieList}>{Math.round(calories)} kcal</div>
+        <div className={css.quantityList}>
+          {quantity} <span className={css.quantityListSpan}>g</span>
+        </div>
+        <div className={css.calorieList}>
+          {Math.round(calories)}{' '}
+          <span className={css.calorieListSpan}>kcal</span>
+        </div>
       </div>
 
       <button
+        className={css.deleteButton}
         type="button"
         onClick={handleDelete}
         disabled={isLoadingDeletedProd}

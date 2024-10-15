@@ -45,14 +45,16 @@
     margin-top: 250px; */
     margin-top: 180px;
     margin-left: 32px;
-    max-height: 275px;
+    /* max-height: 674px; */
   }
 
   .rightSideContainer {
-    max-height: 326px;
+    min-height: 300px;
     position: relative;
     bottom: 0;
     width: 100%;
+    background-image: url('../../images/tablet-diary-leaves.png');
+    background-position: 95% 100%;
   }
 }
 
@@ -64,8 +66,14 @@
   }
   .leftSideContainer {
     flex-grow: 1;
+    max-width: 320px;
+    margin-top: 160px;
+    margin-left: 20px;
+    max-height: 580px;
+    margin-bottom: 60px;
   }
   .rightSideContainer {
-    height: 433px;
+    min-height: 433px;
+    background-image: none;
   }
 }

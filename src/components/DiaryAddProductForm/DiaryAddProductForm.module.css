@@ -185,10 +185,11 @@
 
 @media (max-width: 703px) {
   .AddProductFormContainer {
-    width: 290px; /* Mobile width */
-    height: 216px; /* Mobile height */
-    align-items: center;
+    /* width: 290px;
+    height: 216px;
+    align-items: center; */
     margin: auto;
+    /* display: none; */
   }
 
   .inputContainer {

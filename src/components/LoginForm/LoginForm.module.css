@@ -57,8 +57,11 @@ body {
     font-weight: bold;
     font-size: 0.875rem;
 }
-.button:hover,
-.button:active {
+.button:hover {
+    color: #FFFFFF;
+    background-color: #FC842D;
+}
+.active {
     color: #FFFFFF;
     background-color: #FC842D;
 }
@@ -67,8 +70,11 @@ body {
     .buttonContainer {
         display: flex;
         flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-left: 0;
     }
     .formTitle h4 {
         text-align: center;
-      }
+    }
 }

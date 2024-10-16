@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import css from './LoginForm.module.css';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 import axios from 'axios';
 import { toast, ToastContainer } from 'react-toastify';
@@ -15,12 +15,15 @@ export const LoginForm = () => {
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const isLoginPage = location.pathname === '/login';
 
   // Handle form submission
   const handleSubmit = async e => {
     e.preventDefault();
     setIsLoading(true);
-   
+       
     try {
       const response = await axios.post('/api/users/login', {
         email,
@@ -93,7 +96,11 @@ export const LoginForm = () => {
           </div>
 
           <div className={css.buttonContainer}>
-            <button className={css.button} type="submit" disabled={isLoading}>
+            <button 
+              className={`${css.button} ${isLoginPage ? css.active :''}`} 
+              type="submit" 
+              disabled={isLoading}
+            >
               {isLoading ? (
                 <RotatingLines
                   visible={true}

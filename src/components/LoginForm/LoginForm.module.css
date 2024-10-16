@@ -70,7 +70,8 @@ body {
     font-weight: bold;
     font-size: 0.875rem;
 }
-.button:hover {
+.button:hover,
+.button:active {
     color: #FFFFFF;
     background-color: #FC842D;
 }
@@ -93,6 +94,6 @@ body {
         width: 100%;
     } */
     .formTitle {
-        padding-top: 250px;
+        /* padding-top: 250px; */
     }
 }

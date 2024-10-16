@@ -23,7 +23,7 @@ app.use(logger(formatsLogger))
 
 // Define your CORS options
 const corsOptions = {
-  origin: 'http://localhost:3000', // Allow requests from this origin
+  origin: ['http://localhost:3000', 'https://logarithms17.github.io/'], // Allow requests from this origin
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Explicitly allow these methods
   allowedHeaders: ['Content-Type', 'Authorization'], // Allow only specific headers
   credentials: true, // Allow cookies and credentials

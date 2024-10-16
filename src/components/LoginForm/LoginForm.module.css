@@ -67,6 +67,7 @@ body {
     .buttonContainer {
         display: flex;
         flex-direction: column;
+        justify-content: center;
     }
     .formTitle h4 {
         text-align: center;

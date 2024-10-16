@@ -87,6 +87,7 @@ a.active {
   letter-spacing: 0.56px;
   text-transform: uppercase;
   text-decoration: none;
+  padding-right: 20px;
 }
 
 .divider {
@@ -119,7 +120,7 @@ a.active {
     transform: translateY(0%);
     transition: transform 0.5s ease;
     z-index: 1000;
-    margin-right: 120px;
+    margin-right: 100px;
   }
   .container {
     margin-top: 0px;

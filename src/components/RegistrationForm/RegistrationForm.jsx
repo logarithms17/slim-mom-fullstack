@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import css from './RegistrationForm.module.css';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import { RotatingLines } from 'react-loader-spinner';
 import 'react-toastify/dist/ReactToastify.css';
@@ -15,6 +15,9 @@ export const RegistrationForm = () => {
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const isRegistrationPage = location.pathname === '/register';
 
   // Handle form submission
   const handleSubmit = async e => {
@@ -99,7 +102,11 @@ export const RegistrationForm = () => {
           </div>
 
           <div className={css.buttonContainer}>
-            <button className={css.button} type="submit" disabled={isLoading}>
+            <button 
+              className={`${css.button} ${isRegistrationPage ? css.active : ''}`} 
+              type="submit" 
+              disabled={isLoading}
+            >
               {isLoading ? (
                 <RotatingLines
                   visible={true}

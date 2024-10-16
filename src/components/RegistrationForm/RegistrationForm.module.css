@@ -57,10 +57,13 @@ body {
   font-weight: bold;
   font-size: 0.875rem;
 }
-.button:hover,
-.button:active {
+.button:hover {
   color: #ffffff;
   background-color: #fc842d;
+}
+.active {
+  color: #FFFFFF;
+  background-color: #FC842D;
 }
 
 @media (max-width: 703px) {
@@ -68,8 +71,10 @@ body {
       display: flex;
       flex-direction: column;
       justify-content: center;
+      align-items: center;
+      margin-left: 0;
   }
   .formTitle h4 {
-    text-align: center;
+      text-align: center;
   }
 }

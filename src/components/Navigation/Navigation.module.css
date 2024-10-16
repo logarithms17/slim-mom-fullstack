@@ -42,7 +42,10 @@ a.active {
   text-transform: uppercase;
   text-decoration: none;
 }
-
+/* button */
+.backBtn{
+  display: none;
+}
 /* user */
 .userName {
   color: #212121;
@@ -140,6 +143,7 @@ a.active {
     z-index: 2;
   }
   .backBtn{
+    display: flex;
     background: none;
     border: none;
     margin-left: 20px;

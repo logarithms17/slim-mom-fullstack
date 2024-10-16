@@ -8,12 +8,14 @@
   background-position: 115% -10%, 80%, 100% 80%, 100% 90%;
   background-repeat: no-repeat;
   width: 100%;
+  margin: auto;
+  height: 100vh;
 }
 
 /* Calculator Section styling */
 .dailyCaloriesSection {
   width: 50%;
-  height: 100vh;
+  /* height: 100vh; */
   padding: 40px;
   background-color: #ffff;
 }
@@ -38,8 +40,8 @@
     flex-direction: column; /* Stack sections vertically */
     align-items: center; /* Center align horizontally */
     justify-content: flex-start; /* Align content from top */
-    height: 100vh; /* Full viewport height */
-    overflow-y: auto; /* Enable vertical scroll if content exceeds height */
+    /* height: 100vh; Full viewport height */
+    /* overflow-y: auto; Enable vertical scroll if content exceeds height */
     gap: 20px; /* Add space between sections */
     box-sizing: border-box;
     background-image: url('../../images/tablet-diary-leaves.png');
@@ -65,7 +67,8 @@
 @media (max-width: 703px) {
   .container {
     background-image: none; /* Remove background for simplicity */
-    overflow-y: auto; /* Enable scrolling on mobile */
+    /* overflow-y: auto; Enable scrolling on mobile */
+    height: 100%;
   }
 
   .dailyCaloriesSection,

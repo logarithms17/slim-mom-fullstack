@@ -129,8 +129,21 @@ a.active {
     display: flex;
     flex-direction: column;
   }
-
-  .userExit{
+  .exit{
     margin-right: 20px;
   }
+  .userExit{
+    width: 100%;
+    background-color: #EFF1F3;
+    display: flex;
+    justify-content: flex-end;
+    z-index: 2;
+  }
+  .backBtn{
+    background: none;
+    border: none;
+    margin-left: 20px;
+    margin-right: auto;
+  }
+
 }

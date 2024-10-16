@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import css from './Navigation.module.css';
-import { NavLink, useLocation } from 'react-router-dom';
+import { NavLink, useLocation, useNavigate} from 'react-router-dom';
 import logo from '../../images/logo.svg';
 import HamburgerMenu from 'components/hamburger/Hamburger';
 import axios from 'axios';
+import backBtn from '../../assets/images/backBtn.svg'
 
 axios.defaults.baseURL = 'https://slim-mom-fullstack.onrender.com';
 
@@ -15,6 +16,9 @@ export default function Navigation() {
   const location = useLocation();
   const pathname = location.pathname;
 
+  const navigate = useNavigate();
+  const showBackButton = location.pathname === '/diary';
+  
   useEffect(() => {
     setIsLoading(true);
     const fetchUser = async () => {
@@ -50,12 +54,22 @@ export default function Navigation() {
 
   const dynamicNav = () => {
     if (pathname === '/diary' || pathname === '/calculator') {
+     
       return (
         <div className={css.userExit}>
           {isLoading ? (
             <p>Loading...</p>
           ) : (
             <>
+            {showBackButton && (
+          <button onClick={() => navigate(-1)} className={css.backBtn}>
+            <img
+              src={backBtn}
+              alt="Back"
+              style={{ width: '12px', height: '7px' }} 
+            />
+          </button>
+        )}
               <p className={css.userName}>{userData}</p>
               <div className={css.divider}></div>
               <NavLink to="/login" className={css.exit} onClick={handleLogout}>

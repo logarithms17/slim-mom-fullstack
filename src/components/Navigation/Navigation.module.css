@@ -42,7 +42,10 @@ a.active {
   text-transform: uppercase;
   text-decoration: none;
 }
-
+/* button */
+.backBtn{
+  display: none;
+}
 /* user */
 .userName {
   color: #212121;
@@ -85,10 +88,6 @@ a.active {
   background-color: #9b9faa;
   margin: 50px 20px 0px 20px;
 }
-.HamburgerMenu{
-  position: absolute;
-  z-index: 1;
-}
 /* responsive */
 
 @media (max-width: 1289px) {
@@ -112,7 +111,7 @@ a.active {
     transition: transform 0.5s ease;
   }
   .container::after {
-    /* content: ''; */
+    content: '';
     position: absolute;
     left: 0;
     right: 0;
@@ -129,8 +128,25 @@ a.active {
     display: flex;
     flex-direction: column;
   }
-
-  .userExit{
+  .exit{
     margin-right: 20px;
   }
+  .userExit{
+    width: 100%;
+    background-color: #EFF1F3;
+    display: flex;
+    justify-content: flex-end;
+    z-index: 2;
+  }
+  .backBtn{
+    display: flex;
+    background: none;
+    border: none;
+    margin-left: 20px;
+    margin-right: auto;
+  }
+  .container::after {
+   display: none;
+  }
+
 }

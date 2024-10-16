@@ -1,25 +1,89 @@
-.backgroundContainer {
+.container {
+  display: flex;
+  justify-content: space-around;
+  padding: 0;
+  background-color: #f0f1f3;
   background-image: url('../../images/diary-leaves.png');
-  background-size: 450px, contain, 280px, contain;
-  background-position: 110% 40%;
+  background-size: 605px, contain, 350px, contain;
+  background-position: 115% -10%, 80%, 100% 80%, 100% 90%;
   background-repeat: no-repeat;
-  height: 100vh;
   width: 100%;
+  margin: auto;
+  height: 100vh;
 }
 
-@media screen and (max-width: 1279px) {
-  .backgroundContainer {
+/* Calculator Section styling */
+.dailyCaloriesSection {
+  width: 50%;
+  /* height: 100vh; */
+  padding: 40px;
+  background-color: #ffff;
+}
+
+.title {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+/* Summary Section styling */
+.summarySection {
+  width: 50%;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+/* Tablet view adjustments */
+@media (max-width: 1297px) {
+  .container {
+    display: flex;
+    flex-direction: column; /* Stack sections vertically */
+    align-items: center; /* Center align horizontally */
+    justify-content: flex-start; /* Align content from top */
+    /* height: 100vh; Full viewport height */
+    /* overflow-y: auto; Enable vertical scroll if content exceeds height */
+    gap: 20px; /* Add space between sections */
+    box-sizing: border-box;
     background-image: url('../../images/tablet-diary-leaves.png');
-    background-size: 400px;
-    background-position: 90% 85%;
+    background-size: 675px, contain, 420px, contain;
+    background-position: 100% 80%, 80%, 100% 80%, 100% 90%;
     background-repeat: no-repeat;
-    height: 100vh;
-    width: 100%;
+  }
+
+  .dailyCaloriesSection,
+  .summarySection {
+    width: 100%; /* Restrict width for better readability */
+    max-width: 1297px; /* Prevent sections from becoming too wide */
+    padding: 20px; /* Maintain consistent padding */
+    margin-left: 30px;
+  }
+
+  .summarySection {
+    margin-top: 0; /* Remove unnecessary margin */
   }
 }
 
-@media (max-width: 768px) {
-  .backgroundContainer {
-    background-image: none;
+/* Mobile view adjustments */
+@media (max-width: 703px) {
+  .container {
+    background-image: none; /* Remove background for simplicity */
+    /* overflow-y: auto; Enable scrolling on mobile */
+    height: 100%;
+  }
+
+  .dailyCaloriesSection,
+  .summarySection {
+    width: 100%; /* Full width on mobile */
+    margin-left: 50px;
+  }
+
+  .dailyCaloriesSection {
+    height: 100%;
+    padding-bottom: 50px;
+  }
+
+  .summarySection {
+    height: 100%;
+    padding-top: 0;
   }
 }

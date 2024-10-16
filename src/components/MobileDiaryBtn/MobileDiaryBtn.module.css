@@ -1,0 +1,31 @@
+.buttonContainer {
+  display: flex;
+  width: 320px;
+  margin: 0;
+  justify-content: center;
+  align-items: center;
+}
+
+.submitButton {
+  aspect-ratio: 1;
+  object-fit: contain;
+  object-position: center;
+  width: 48px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+  display: none;
+}
+
+.submitButtonImg {
+  height: 48px;
+  width: 48px;
+}
+
+@media (max-width: 703px) {
+  .submitButton {
+    display: flex;
+    align-items: center;
+  }
+}

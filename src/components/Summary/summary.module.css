@@ -70,7 +70,9 @@ p {
     font-size: 0.9rem;
     /* Slightly larger font for readability */
     margin-bottom: 20px;
+    margin-top: 0;
   }
+  
 
   li,
   p {
@@ -85,8 +87,8 @@ p {
     /* Stack sections vertically */
     font-size: 0.85rem;
     width: 100%;
-    padding-left: 0;
-    align-items: center;
+    /* padding-left: 0; */
+    /* align-items: center; */
     justify-content: center;
     gap: 0;
   }

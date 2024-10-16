@@ -10,53 +10,59 @@ import { RestrictedRoute } from 'components/RestrictedRoute/RestrictedRoute';
 
 export const App = () => {
   return (
-    <Routes>
-      <Route path="/" element={<SharedLayout />}>
-      
-      {/* Restricted Routes */}
-        <Route 
-          path="/" 
-          element={
-            <RestrictedRoute redirectTo="/calculator">
-              <HomePage />
-            </RestrictedRoute>             
-          } 
-        /> 
-        <Route 
-          path="/register" 
-          element={
-            <RestrictedRoute redirectTo="/calculator">
-              <RegistrationPage />
-            </RestrictedRoute>
-          }
-        />
-        <Route
-          path="/login"
-          element={
-            <RestrictedRoute redirectTo="/calculator">
-              <LoginPage />
-            </RestrictedRoute>
-          }
-        />
+    <div
+      style={{
+        height: '100vh',
+        overflowY: 'scroll',
+      }}
+    >
+      <Routes>
+        <Route path="/" element={<SharedLayout />}>
+          {/* Restricted Routes */}
+          <Route
+            path="/"
+            element={
+              <RestrictedRoute redirectTo="/calculator">
+                <HomePage />
+              </RestrictedRoute>
+            }
+          />
+          <Route
+            path="/register"
+            element={
+              <RestrictedRoute redirectTo="/calculator">
+                <RegistrationPage />
+              </RestrictedRoute>
+            }
+          />
+          <Route
+            path="/login"
+            element={
+              <RestrictedRoute redirectTo="/calculator">
+                <LoginPage />
+              </RestrictedRoute>
+            }
+          />
 
-        {/* Pivate Routes: Only accessible to logged in users */}
-        <Route
-          path="/diary"
-          element={
-            <PrivateRoute redirectTo="/login">
+          {/* Pivate Routes: Only accessible to logged in users */}
+          <Route
+            path="/diary"
+            element={
+              <PrivateRoute redirectTo="/login">
                 <DiaryPage />
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path="/calculator"
-          element={
-            <PrivateRoute redirectTo="/login">
-              <CalculatorPage />
-            </PrivateRoute>
-          }
-        />
-      </Route>
-    </Routes>
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/calculator"
+            element={
+              <PrivateRoute redirectTo="/login">
+                <CalculatorPage />
+              </PrivateRoute>
+            }
+          />
+        </Route>
+      </Routes>
+    </div>
   );
 };

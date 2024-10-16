@@ -9,7 +9,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 axios.defaults.baseURL = 'https://slim-mom-fullstack.onrender.com';
 
-export const LoginForm = () => {
+export const LoginForm = ({ onLogin }) => {
   // State to manage form inputs
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -23,7 +23,7 @@ export const LoginForm = () => {
   const handleSubmit = async e => {
     e.preventDefault();
     setIsLoading(true);
-       
+
     try {
       const response = await axios.post('/api/users/login', {
         email,
@@ -49,6 +49,7 @@ export const LoginForm = () => {
         axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
         toast.success('Login successful!');
+        onLogin();
         navigate('/calculator'); //Redirect to the calculator page
       } else {
         toast.error('Login failed. Please try again.');
@@ -57,7 +58,9 @@ export const LoginForm = () => {
       if (error.response && error.response.data.message) {
         toast.error(error.response.data.message);
       } else {
-        toast.error('Login failed. Please check your credentials and try again.');
+        toast.error(
+          'Login failed. Please check your credentials and try again.'
+        );
       }
     } finally {
       setIsLoading(false);
@@ -96,9 +99,9 @@ export const LoginForm = () => {
           </div>
 
           <div className={css.buttonContainer}>
-            <button 
-              className={`${css.button} ${isLoginPage ? css.active :''}`} 
-              type="submit" 
+            <button
+              className={`${css.button} ${isLoginPage ? css.active : ''}`}
+              type="submit"
               disabled={isLoading}
             >
               {isLoading ? (
@@ -111,7 +114,9 @@ export const LoginForm = () => {
                   animationDuration="0.75"
                   ariaLabel="rotating-lines-loading"
                 />
-              ) : 'Log in'}
+              ) : (
+                'Log in'
+              )}
             </button>
 
             <button
@@ -126,6 +131,6 @@ export const LoginForm = () => {
 
         <ToastContainer position="top-right" autoClose={3000} />
       </div>
-    </div> 
+    </div>
   );
 };

@@ -7,19 +7,22 @@ import axios from 'axios';
 
 axios.defaults.baseURL = 'https://slim-mom-fullstack.onrender.com';
 
-export default function Navigation() {
-  //fetch user data
+export default function Navigation({ isLoggedIn, onLogout }) {
   const [userData, setUserData] = useState('');
-  const [isLoading, setIsLoading] = useState(true); // New loading state
+  const [isLoading, setIsLoading] = useState(true);
 
   const location = useLocation();
   const pathname = location.pathname;
+  console.log(isLoggedIn);
 
   useEffect(() => {
-    setIsLoading(true);
     const fetchUser = async () => {
+      setIsLoading(true);
       try {
         const token = localStorage.getItem('token');
+
+        if (!token || !isLoggedIn) return; // Prevent fetching if not logged in
+
         if (token) {
           const response = await axios.get('/api/users/getUserData', {
             headers: {
@@ -31,18 +34,19 @@ export default function Navigation() {
       } catch (error) {
         console.error(error);
       } finally {
-        setIsLoading(false); // Set loading to false once data is fetched
+        setIsLoading(false);
       }
     };
 
     fetchUser();
-  }, []);
+  }, [isLoggedIn]); // Rerun effect when login status changes
   console.log(isLoading);
 
   const handleLogout = () => {
     localStorage.removeItem('token');
     try {
       axios.post('/api/users/logout');
+      onLogout();
     } catch (error) {
       console.error(error);
     }

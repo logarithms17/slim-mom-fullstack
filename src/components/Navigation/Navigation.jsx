@@ -40,6 +40,15 @@ export default function Navigation() {
   }, []);
   console.log(isLoading);
 
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    try {
+      axios.post('/api/users/logout');
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   const dynamicNav = () => {
     if (pathname === '/diary' || pathname === '/calculator') {
       return (
@@ -50,7 +59,7 @@ export default function Navigation() {
             <>
               <p className={css.userName}>{userData}</p>
               <div className={css.divider}></div>
-              <NavLink to="/login" className={css.exit}>
+              <NavLink to="/login" className={css.exit} onClick={handleLogout}>
                 Exit
               </NavLink>
             </>

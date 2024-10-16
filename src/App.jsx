@@ -4,6 +4,7 @@ import DiaryPage from 'pages/DiaryPage/DiaryPage';
 import CalculatorPage from 'pages/CalculatorPage/CalculatorPage';
 import RegistrationPage from 'pages/RegistrationPage/RegistrationPage';
 import SharedLayout from 'components/SharedLayout';
+import { PageNotFound } from 'pages/PageNotFound/PageNotFound';
 import { Route, Routes } from 'react-router-dom';
 import { PrivateRoute } from 'components/PrivateRoute/PrivateRoute';
 import { RestrictedRoute } from 'components/RestrictedRoute/RestrictedRoute';
@@ -61,6 +62,7 @@ export const App = () => {
               </PrivateRoute>
             }
           />
+          <Route path="*" element={<PageNotFound />} />
         </Route>
       </Routes>
     </div>

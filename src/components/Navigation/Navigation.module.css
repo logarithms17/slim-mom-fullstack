@@ -51,7 +51,10 @@ a.active {
   text-transform: uppercase;
   text-decoration: none;
 }
-
+/* button */
+.backBtn{
+  display: none;
+}
 /* user */
 .userName {
   color: #212121;
@@ -128,7 +131,7 @@ a.active {
     width: 100%;
   }
   .container::after {
-    /* content: ''; */
+    content: '';
     position: absolute;
     left: 0;
     right: 0;
@@ -157,4 +160,22 @@ a.active {
     background-color: #eeecec;
     margin-bottom: 0px;
   }
+  .userExit{
+    width: 100%;
+    background-color: #EFF1F3;
+    display: flex;
+    justify-content: flex-end;
+    z-index: 2;
+  }
+  .backBtn{
+    display: flex;
+    background: none;
+    border: none;
+    margin-left: 20px;
+    margin-right: auto;
+  }
+  .container::after {
+   display: none;
+  }
+
 }

@@ -86,7 +86,6 @@ a.active {
     align-items: center;
   }
 }
-
 @media (min-width: 1280px) {
   .menu {
     display: none;

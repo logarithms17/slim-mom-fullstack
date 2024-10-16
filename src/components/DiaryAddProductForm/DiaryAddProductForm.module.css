@@ -146,6 +146,10 @@
 .gramsInput {
   -moz-appearance: textfield;
   /* Firefox */
+  -webkit-appearance: textfield;
+  /* Safari and older versions of Chrome */
+  appearance: textfield;
+  /* Standard property */
 }
 
 .gramsInput::-webkit-inner-spin-button,

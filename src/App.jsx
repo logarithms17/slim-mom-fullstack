@@ -8,7 +8,21 @@ import { Route, Routes } from 'react-router-dom';
 import { PrivateRoute } from 'components/PrivateRoute/PrivateRoute';
 import { RestrictedRoute } from 'components/RestrictedRoute/RestrictedRoute';
 
+import { useState } from 'react';
+
 export const App = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // New state to track login status
+
+  const handleLogin = () => {
+    setIsLoggedIn(true);
+  };
+
+  console.log(isLoggedIn);
+
+  const handleLogout = () => {
+    setIsLoggedIn(false);
+  };
+
   return (
     <div
       style={{
@@ -17,7 +31,12 @@ export const App = () => {
       }}
     >
       <Routes>
-        <Route path="/" element={<SharedLayout />}>
+        <Route
+          path="/"
+          element={
+            <SharedLayout isLoggedIn={isLoggedIn} onLogout={handleLogout} />
+          }
+        >
           {/* Restricted Routes */}
           <Route
             path="/"
@@ -39,7 +58,7 @@ export const App = () => {
             path="/login"
             element={
               <RestrictedRoute redirectTo="/calculator">
-                <LoginPage />
+                <LoginPage onLogin={handleLogin} />
               </RestrictedRoute>
             }
           />

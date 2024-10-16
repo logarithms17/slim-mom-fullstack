@@ -12,42 +12,49 @@ export const App = () => {
   return (
     <Routes>
       <Route path="/" element={<SharedLayout />}>
-        <Route index element={<HomePage />} />
-       
-        {/* Restricted Routes */}
+      
+      {/* Restricted Routes */}
+        <Route 
+          path="/" 
+          element={
+            <RestrictedRoute redirectTo="/calculator">
+              <HomePage />
+            </RestrictedRoute>             
+          } 
+        /> 
         <Route 
           path="/register" 
           element={
-            <RestrictedRoute>
+            <RestrictedRoute redirectTo="/calculator">
               <RegistrationPage />
             </RestrictedRoute>
-          } 
+          }
         />
-        <Route 
-          path="/login" 
+        <Route
+          path="/login"
           element={
-            <RestrictedRoute>
+            <RestrictedRoute redirectTo="/calculator">
               <LoginPage />
             </RestrictedRoute>
           }
         />
 
         {/* Pivate Routes: Only accessible to logged in users */}
-        <Route 
-          path="/diary" 
+        <Route
+          path="/diary"
           element={
-            <PrivateRoute>
+            <PrivateRoute redirectTo="/login">
                 <DiaryPage />
             </PrivateRoute>
           }
         />
-        <Route 
-          path="/calculator" 
+        <Route
+          path="/calculator"
           element={
-            <PrivateRoute>
+            <PrivateRoute redirectTo="/login">
               <CalculatorPage />
-            </PrivateRoute>          
-          } 
+            </PrivateRoute>
+          }
         />
       </Route>
     </Routes>

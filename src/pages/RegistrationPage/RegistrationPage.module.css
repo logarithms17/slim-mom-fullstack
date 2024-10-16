@@ -8,6 +8,7 @@
   background-repeat: no-repeat;
   height: 100vh;
   width: 100%;
+  padding-top: 160px;
 }
 
 @media screen and (max-width: 1279px) {
@@ -28,5 +29,6 @@
     background-image: none;
     display: flex;
     justify-content: center;
+    padding-top: 40px;
   }
 }

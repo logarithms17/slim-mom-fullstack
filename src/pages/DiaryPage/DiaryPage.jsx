@@ -4,8 +4,8 @@ import css from './DiaryPage.module.css';
 import DiaryProductsList from 'components/DiaryProductsList/DiaryProductList';
 import Calendar from 'components/calendar/Calendar';
 import MobileDiaryBtn from '../../components/MobileDiaryBtn/MobileDiaryBtn';
-import { Summary } from 'components/Summary/Summary';
 import { useMediaQuery } from 'react-responsive';
+import { Summary } from 'components/Summary/Summary';
 
 const DiaryPage = () => {
   const [selectedDate, setSelectedDate] = useState(new Date());

@@ -28,10 +28,10 @@ export const App = () => {
             <RestrictedRoute redirectTo="/calculator">
               <RegistrationPage />
             </RestrictedRoute>
-          } 
+          }
         />
-        <Route 
-          path="/login" 
+        <Route
+          path="/login"
           element={
             <RestrictedRoute redirectTo="/calculator">
               <LoginPage />
@@ -40,21 +40,21 @@ export const App = () => {
         />
 
         {/* Pivate Routes: Only accessible to logged in users */}
-        <Route 
-          path="/diary" 
+        <Route
+          path="/diary"
           element={
             <PrivateRoute redirectTo="/login">
                 <DiaryPage />
             </PrivateRoute>
           }
         />
-        <Route 
-          path="/calculator" 
+        <Route
+          path="/calculator"
           element={
             <PrivateRoute redirectTo="/login">
               <CalculatorPage />
-            </PrivateRoute>          
-          } 
+            </PrivateRoute>
+          }
         />
       </Route>
     </Routes>

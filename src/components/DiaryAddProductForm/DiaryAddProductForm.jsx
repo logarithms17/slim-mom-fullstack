@@ -5,7 +5,7 @@ import AddButtonIcon from '../images/AddButton.png';
 
 axios.defaults.baseURL = 'https://slim-mom-fullstack.onrender.com';
 
-export const DiaryAddProductForm = () => {
+export const DiaryAddProductForm = ({ selectedDate }) => {
   // State to manage form inputs
   const [consumedProduct, setConsumedProduct] = useState(''); // Changed from productName to consumedProduct
   const [quantity, setQuantity] = useState(''); // Changed from grams to quantity
@@ -43,6 +43,7 @@ export const DiaryAddProductForm = () => {
         {
           consumedProduct, // corresponds to productName
           quantity: Number(quantity), // corresponds to grams, must be a number
+          date: selectedDate.toISOString().substring(0, 10),
         },
         {
           headers: {
@@ -112,14 +113,13 @@ export const DiaryAddProductForm = () => {
             src={AddButtonIcon}
             alt="Submit"
           />
-          {isLoading ? 'Saving...' : 'Add'}
         </button>
         <button
           className={styles.AddMobileButton}
           type="submit"
           disabled={isLoading}
         >
-          {isLoading ? 'Saving...' : 'Add'}
+          Add
         </button>
       </form>
     </main>

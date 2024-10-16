@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import css from './LoginForm.module.css';
 import { useNavigate } from 'react-router-dom';
+
 import axios from 'axios';
 import { toast, ToastContainer } from 'react-toastify';
 import { RotatingLines } from 'react-loader-spinner';
@@ -25,13 +26,22 @@ export const LoginForm = () => {
         email,
         password,
       });
-      console.log(response.data);
 
       // Extract the token from the response
-      const { token } = response.data;
+      console.log(response.data);
+
+      // const { token } = response.data;
+      const { token, name, dailyConsumedProducts } = response.data;
+
       if (token) {
         // console.log('Token received:', token);
         localStorage.setItem('token', token);
+
+        localStorage.setItem('userName', name); // Store user name
+        localStorage.setItem(
+          'dailyConsumedProducts',
+          JSON.stringify(dailyConsumedProducts)
+        ); // Store other user data as needed
 
         axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 

@@ -26,9 +26,8 @@
   }
 }
 
-@media (max-width: 767px) {
+@media (max-width: 703px) {
   .backgroundContainer {
     background-image: none;
-    padding: 80px 50px 50px 50px;
   }
 }

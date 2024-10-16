@@ -6,7 +6,8 @@
   flex-direction: column;
   /* Default: stack sections vertically */
   background-color: transparent;
-  padding: 20px;
+  margin-top: 270px;
+  margin-left: 106px;
 }
 
 /* Summary Section styling */
@@ -17,7 +18,24 @@
 
 h2 {
   font-size: 20px;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
+  color: #212121;
+  font-family: Verdana;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: 0.56px;
+}
+
+h3 {
+  color: #212121;
+  font-family: Verdana;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: 0.56px;
 }
 
 ul {
@@ -32,6 +50,13 @@ ul li {
 
 p {
   color: #9b9faa;
+  color: #9b9faa;
+  font-family: Verdana;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.56px;
 }
 
 /* Food Not Recommended Section styling */
@@ -44,10 +69,12 @@ p {
 /* Tablet view */
 @media (max-width: 1297px) {
   .summaryContainer {
+    margin-top: 80px;
+    margin-left: 32px;
     display: flex;
     flex-direction: row;
     /* Align sections horizontally */
-    align-items: center;
+    /* align-items: center; */
     /* Align sections to the top */
     width: 100%;
     gap: 55px;
@@ -63,6 +90,7 @@ p {
     margin-top: 0;
     padding-top: 0;
     border-top: none;
+    margin-left: 80px;
   }
 
   h2,
@@ -89,6 +117,8 @@ p {
     align-items: center;
     justify-content: center;
     gap: 0;
+    margin-top: 40px;
+    margin-left: 20px;
   }
 
   .summarySection {
@@ -102,6 +132,8 @@ p {
     width: 100%;
     /* Full width on mobile */
     padding-top: 0;
+    margin-left: 0;
+    margin-top: 40px;
   }
 
   h2 {

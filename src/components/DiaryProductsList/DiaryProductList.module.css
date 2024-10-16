@@ -4,8 +4,9 @@
   color: #9b9faa;
 }
 .boxProducts {
+  display: flex;
   position: relative;
-  margin-top: 60px;
+  /* margin-top: 60px; */
   @media (max-width: 1279px) {
     max-height: 270px;
     :before {
@@ -24,7 +25,7 @@
     max-height: 270px;
     :before {
       bottom: 10px;
-      height: 50px;
+      height: 10px;
     }
   }
 }
@@ -32,7 +33,7 @@
   display: flex;
   flex-direction: column;
   /* align-items: center; */
-  margin-top: 32px;
+  /* margin-top: 32px; */
   max-height: 210px;
   width: 610px;
   margin-left: 0;
@@ -64,10 +65,10 @@
   }
   .boxProducts {
     width: 320px;
-    margin-top: 32px;
+    /* margin-top: 32px; */
   }
 }
 
 .boxProducts {
-  height: 271px;
+  max-height: 271px;
 }

@@ -26,5 +26,8 @@
 @media (max-width: 703px) {
   .backgroundContainer {
     background-image: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }

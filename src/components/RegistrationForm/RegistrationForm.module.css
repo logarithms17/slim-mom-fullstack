@@ -62,3 +62,13 @@ body {
   color: #ffffff;
   background-color: #fc842d;
 }
+
+@media (max-width: 703px) {
+  .buttonContainer {
+      display: flex;
+      flex-direction: column;
+  }
+  .formTitle h4 {
+    text-align: center;
+  }
+}

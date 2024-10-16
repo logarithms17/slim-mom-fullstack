@@ -10,55 +10,83 @@ axios.defaults.baseURL = 'https://slim-mom-fullstack.onrender.com';
 export default function Navigation() {
   //fetch user data
   const [userData, setUserData] = useState('');
+  const [isLoading, setIsLoading] = useState(true); // New loading state
 
   const location = useLocation();
   const pathname = location.pathname;
-  console.log(pathname);
-
-  const dynamicNav = () => {
-    // Check specific paths and render accordingly
-    if (pathname === '/diary' || pathname === '/calculator') {
-      return (
-        <div className={css.userExit}>
-          <p className={css.userName}>{userData}</p>
-          <div className={css.divider}></div>
-          <NavLink to="/login" className={css.exit}>
-            Exit
-          </NavLink>
-        </div>
-      );
-    }
-    if (pathname === '/' || pathname === '/login' || pathname === '/register') {
-      return null;
-    }
-  };
 
   useEffect(() => {
+    setIsLoading(true);
+    console.log(isLoading);
     const fetchUser = async () => {
       try {
-        // Assuming the token is stored in localStorage
         const token = localStorage.getItem('token');
-        const response = await axios.get('/api/users/getUserData', {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-        setUserData(response.data.user.name);
+        if (token) {
+          const response = await axios.get('/api/users/getUserData', {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          });
+          setUserData(response.data.user.name);
+        }
       } catch (error) {
         console.error(error);
+      } finally {
+        setIsLoading(false); // Set loading to false once data is fetched
       }
     };
 
     fetchUser();
   }, []);
+  console.log(isLoading);
 
-  return (
-    <header className={css.header}>
-      <div className={css.container}>
-        <HamburgerMenu />
-        <img src={logo} alt="slim mom logo"></img>
+  const dynamicNav = () => {
+    if (pathname === '/diary' || pathname === '/calculator') {
+      return (
+        <div className={css.userExit}>
+          {isLoading ? (
+            <p>Loading...</p>
+          ) : (
+            <>
+              <p className={css.userName}>{userData}</p>
+              <div className={css.divider}></div>
+              <NavLink to="/login" className={css.exit}>
+                Exit
+              </NavLink>
+            </>
+          )}
+        </div>
+      );
+    }
+    return null;
+  };
 
-        <div className={css.dividerOne}></div>
+  const dynamicLink = () => {
+    // Render different links based on the path
+    if (pathname === '/login' || pathname === '/register') {
+      return (
+        <nav className={css.nav}>
+          <NavLink
+            to="/login"
+            className={({ isActive }) =>
+              `${isActive ? css.active : css.inactive}`
+            }
+          >
+            Login
+          </NavLink>
+          <NavLink
+            to="/register"
+            className={({ isActive }) =>
+              `${isActive ? css.active : css.inactive} `
+            }
+          >
+            Register
+          </NavLink>
+        </nav>
+      );
+    }
+    if (pathname === '/diary' || pathname === '/calculator') {
+      return (
         <nav className={css.nav}>
           <NavLink
             to="/diary"
@@ -77,6 +105,20 @@ export default function Navigation() {
             Calculator
           </NavLink>
         </nav>
+      );
+    }
+  };
+
+  console.log(userData);
+
+  return (
+    <header className={css.header}>
+      <div className={css.container}>
+        <HamburgerMenu />
+        <img src={logo} alt="slim mom logo"></img>
+
+        <div className={css.dividerOne}></div>
+        {dynamicLink()}
       </div>
       {dynamicNav()}
     </header>

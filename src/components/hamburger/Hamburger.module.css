@@ -34,7 +34,7 @@ body {
     top: 110px;
     left: 0;
     width: 100%;
-    height: calc(100vh - 60px); 
+    height: 1000px; 
     background-color: #264061; 
     z-index: 1; 
     transform: translateY(-100%);

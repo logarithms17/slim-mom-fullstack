@@ -12,9 +12,10 @@ body {
     cursor: pointer;
     height: 40px;
     position: fixed; 
-    top: 20px; 
+    top: 50px; 
     right: 20px; 
-    z-index: 2; 
+    z-index: 10; 
+
 }
 
 .bar {
@@ -30,10 +31,10 @@ body {
     flex-direction: column;
     align-items: center;
     position: fixed;
-    top: 70px;
+    top: 110px;
     left: 0;
     width: 100%;
-    height: calc(100vh - 60px); 
+    height: 1000px; 
     background-color: #264061; 
     z-index: 1; 
     transform: translateY(-100%);
@@ -41,16 +42,22 @@ body {
     opacity: 0;
     
 }
-
-.menu ul {
-    list-style: none;
+.menuLink{
+    margin: 20px 0;;
 }
-
-.menu ul li {
-    margin: 15px 0;
-}
-
-.menu ul li a {
+a.inactive {
+    color: #9b9faa;
+    text-align: center;
+    font-family: Verdana;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: 0.96px;
+    text-transform: uppercase;
+    text-decoration: none;
+  }
+  a.active {
     color: #fff;
     text-align: center;
     font-family: Verdana;
@@ -61,10 +68,12 @@ body {
     letter-spacing: 0.96px;
     text-transform: uppercase;
     text-decoration: none;
-
+  }
+.hamburgerCtn{
+    position: absolute;
+    z-index: 10;
 }
-
-@media (max-width: 768px) {
+@media (max-width: 1279px) {
 
     .hamburger {
         display: flex; 
@@ -73,6 +82,7 @@ body {
         transform: translateY(0);
         opacity: 1;
         transition: transform 0.5s ease;
+        z-index: 0;
    
     }
     .menu ul {
@@ -83,7 +93,7 @@ body {
 }
 
 
-@media (min-width: 769px) {
+@media (min-width: 1280px) {
   .menu{
     display: none;
   }

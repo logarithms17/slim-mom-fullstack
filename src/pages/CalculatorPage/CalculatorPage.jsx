@@ -1,8 +1,21 @@
 import React from 'react';
-import css from './CalculatorPage.module.css';
+import { DailyCaloriesForm } from '../../components/DailyCaloriesForm/DailyCaloriesForm';
+import { Summary } from '../../components/Summary/Summary';
+import style from './CalculatorPage.module.css';
 
 const CalculatorPage = () => {
-  return <div className={css.backgroundContainer}></div>;
+  //CURRENT DATE
+  const currentDate = new Date();
+  return (
+    <div className={style.container}>
+      <div className={style.dailyCaloriesSection}>
+        <DailyCaloriesForm isLoggedIn={true} />
+      </div>
+      <div className={style.summarySection}>
+        <Summary selectedDate={currentDate} />
+      </div>
+    </div>
+  );
 };
 
 export default CalculatorPage;

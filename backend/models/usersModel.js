@@ -7,7 +7,7 @@ const dailyConsumedProduct = new Schema({
   product: String,
   quantity: Number,
   calories: Number,
-  date: { type: Date, default: Date.now },
+  date: { type: Date },
 })
 
 const calorieIntakeCalculationsSchema = new Schema({

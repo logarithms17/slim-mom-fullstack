@@ -87,8 +87,10 @@
 }
 
 .productNameInput:focus {
-  outline: none; /* Remove default outline */
-  border: 1px solid #e0e0e0; /* Same color as default border */
+  outline: none;
+  /* Remove default outline */
+  border: 1px solid #e0e0e0;
+  /* Same color as default border */
   border-top: none;
   border-left: none;
   border-right: none;
@@ -103,11 +105,12 @@
   height: 48px;
 }
 
-@media (max-width: 991px) {
+@media (max-width: 1279px) {
   .gramsContainer {
     white-space: initial;
   }
 }
+
 .gramsInput {
   width: 107px;
   stroke-width: 1px;
@@ -129,22 +132,28 @@
   line-height: normal;
   letter-spacing: 0.56px;
 }
+
 .gramsInput:focus {
-  outline: none; /* Remove default outline */
-  border: 1px solid #e0e0e0; /* Same color as default border */
+  outline: none;
+  /* Remove default outline */
+  border: 1px solid #e0e0e0;
+  /* Same color as default border */
   border-top: none;
   border-left: none;
   border-right: none;
 }
 
 .gramsInput {
-  -moz-appearance: textfield; /* Firefox */
+  -moz-appearance: textfield;
+  /* Firefox */
 }
 
 .gramsInput::-webkit-inner-spin-button,
 .gramsInput::-webkit-outer-spin-button {
-  -webkit-appearance: none; /* Chrome, Safari, and Opera */
-  margin: 0; /* Remove default margin */
+  -webkit-appearance: none;
+  /* Chrome, Safari, and Opera */
+  margin: 0;
+  /* Remove default margin */
 }
 
 .submitButton {
@@ -179,16 +188,18 @@
   display: none;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 703px) {
   .AddProductFormContainer {
-    width: 290px; /* Mobile width */
-    height: 216px; /* Mobile height */
-    align-items: center;
+    /* width: 290px;
+    height: 216px;
+    align-items: center; */
     margin: auto;
+    /* display: none; */
   }
 
   .inputContainer {
-    flex-direction: column; /* Ensure inputs are stacked */
+    flex-direction: column;
+    /* Ensure inputs are stacked */
     width: 290px;
   }
 
@@ -196,6 +207,7 @@
     width: 290px;
     margin-bottom: 15px;
   }
+
   .gramsInput {
     width: 290px;
     text-align: left;

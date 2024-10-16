@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
 import css from './LoginForm.module.css';
 import { useNavigate } from 'react-router-dom';
+
 import axios from 'axios';
+import { toast, ToastContainer } from 'react-toastify';
+import { RotatingLines } from 'react-loader-spinner';
+import 'react-toastify/dist/ReactToastify.css';
 
 axios.defaults.baseURL = 'https://slim-mom-fullstack.onrender.com';
 
@@ -10,42 +14,47 @@ export const LoginForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
   const navigate = useNavigate();
 
   // Handle form submission
   const handleSubmit = async e => {
     e.preventDefault();
     setIsLoading(true);
-    setError(null);
-
+   
     try {
       const response = await axios.post('/api/users/login', {
         email,
         password,
       });
-      console.log(response.data);
 
       // Extract the token from the response
-      const { token } = response.data;
+      console.log(response.data);
+
+      // const { token } = response.data;
+      const { token, name, dailyConsumedProducts } = response.data;
 
       if (token) {
-        console.log('Token received:', token);
+        // console.log('Token received:', token);
         localStorage.setItem('token', token);
+
+        localStorage.setItem('userName', name); // Store user name
+        localStorage.setItem(
+          'dailyConsumedProducts',
+          JSON.stringify(dailyConsumedProducts)
+        ); // Store other user data as needed
 
         axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
-        alert('Login successful!');
+        toast.success('Login successful!');
         navigate('/calculator'); //Redirect to the calculator page
       } else {
-        setError('Login failed. Please try again.');
+        toast.error('Login failed. Please try again.');
       }
     } catch (error) {
-      console.error('Login error:', error);
       if (error.response && error.response.data.message) {
-        setError(error.response.data.message);
+        toast.error(error.response.data.message);
       } else {
-        setError('Login failed. Please check your credentials and try again.');
+        toast.error('Login failed. Please check your credentials and try again.');
       }
     } finally {
       setIsLoading(false);
@@ -83,11 +92,19 @@ export const LoginForm = () => {
             <label htmlFor="password">Password*</label>
           </div>
 
-          {error && <p style={{ color: 'red' }}>{error}</p>}
-
           <div className={css.buttonContainer}>
             <button className={css.button} type="submit" disabled={isLoading}>
-              {isLoading ? 'Logging in...' : 'Log in'}
+              {isLoading ? (
+                <RotatingLines
+                  visible={true}
+                  height="24"
+                  width="24"
+                  color="white"
+                  strokeWidth="5"
+                  animationDuration="0.75"
+                  ariaLabel="rotating-lines-loading"
+                />
+              ) : 'Log in'}
             </button>
 
             <button
@@ -99,7 +116,9 @@ export const LoginForm = () => {
             </button>
           </div>
         </form>
+
+        <ToastContainer position="top-right" autoClose={3000} />
       </div>
-    </div>
+    </div> 
   );
 };

@@ -1,6 +1,16 @@
-import express from "express"
-import { signupUser, loginUser, logoutUser, addCalorieCalculation, addPublicCalorieCalculation, getUserData } from "../../controllers/usersController.js"
-import { authenticateToken } from "../../middlewares/auth.js"
+import express from 'express';
+import {
+  signupUser,
+  loginUser,
+  logoutUser,
+  addCalorieCalculation,
+  addPublicCalorieCalculation,
+  addConsumedProduct,
+  getConsumedProduct,
+  deleteConsumedProduct,
+  getSummaryData,
+} from '../../controllers/usersController.js';
+import { authenticateToken } from '../../middlewares/auth.js';
 
 const router = express.Router();
 
@@ -349,14 +359,14 @@ router.post('/addCalorieCalculation', authenticateToken, addCalorieCalculation);
 
 router.post('/addPublicCalorieCalculation', addPublicCalorieCalculation);
 
-//GET USER INFO
+//ADD CONSUMED PRODUCT IN A DAY
 
 /**
  * @swagger
- * /api/users/getUserData:
- *   get:
- *     summary: Get users info
- *     description: Allows the user to retrieve their info
+ * /api/users/addConsumedProduct:
+ *   post:
+ *     summary: Adds consumed product in a specific day
+ *     description: Allows a user to add what product they consumed in a specific day.
  *     tags: [Users]
  *     parameters:
  *       - name: Authorization
@@ -366,6 +376,83 @@ router.post('/addPublicCalorieCalculation', addPublicCalorieCalculation);
  *         schema:
  *           type: string
  *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               consumedProduct:
+ *                 type: string
+ *                 description: Consumed product.
+ *                 example: pork-stew
+ *               quantity:
+ *                 type: number
+ *                 description: The quantity of the consumed product
+ *                 example: 200
+ *     responses:
+ *       201:
+ *         description: User created successfully.
+ *         content:
+ *           application/json:
+ *              schema:
+ *                  type: object
+ *                  properties:
+ *                      product:
+ *                          type: string
+ *                          description: Consumed product.
+ *                          example: pork-stew
+ *                      quantity:
+ *                          type: number
+ *                          description: The quantity of the consumed product
+ *                          example: 100
+ *                      calories:
+ *                          type: number
+ *                          description: The calorie content of the product.
+ *                          example: 235
+ *                      date:
+ *                          type: string
+ *                          format: date-time
+ *                          description: The date and time when the product was consumed.
+ *                          example: 2024-10-07T00:31:09.329+00:00
+ *                      _id:
+ *                          type: string
+ *                          description: The ID of the newly created user.
+ *                          example: 67032bcdc4f24df2214c7376
+ *       400:
+ *         description: Bad request - Missing required field, User doesnt exist or invalid password
+ */
+
+router.post('/addConsumedProduct', authenticateToken, addConsumedProduct);
+
+//GET ALL CONSUMED PRODUCT IN A SPECIFIC DATE
+
+/**
+ * @swagger
+ * /api/users/getConsumedProduct/:date:
+ *   get:
+ *     summary: Gets all consumed product in a specific day
+ *     description: Allows a users to get all the consumed product in a specific day.
+ *     tags: [Users]
+ *     parameters:
+ *       - name: Authorization
+ *         in: header
+ *         required: true
+ *         description: Bearer token for authorization.
+ *         schema:
+ *           type: string
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               date:
+ *                  type: string
+ *                  format: date-time
+ *                  description: The date and time when the product was consumed.
+ *                  example: 2024-10-07
  *     responses:
  *       201:
  *         description: User created successfully.
@@ -374,109 +461,97 @@ router.post('/addPublicCalorieCalculation', addPublicCalorieCalculation);
  *             schema:
  *               type: object
  *               properties:
- *                     id:
- *                       type: string
- *                       description: The ID of the newly created user.
- *                       example: "6703254552595532a773ba4a"
- *                     name:
- *                       type: string
- *                       description: The name of the user.
- *                       example: Johndoe
- *                     password:
- *                       type: password
- *                       description: The password of the user.
- *                       example: $2b$10$Rszvlaf3mp5zUS0eF2W1U
- *                     email:
- *                       type: string
- *                       description: The email of the user.
- *                       example: john.doe@example.com
- *                     token:
- *                       type: string
- *                       description: The token of the user.
- *                       example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9"
- *                     usersInfo:
- *                       type: object
- *                       properties: 
- *                         height: 
- *                              type: number
- *                              description: The height of the user.
- *                              example: 5
- *                         desiredWeight: 
- *                              type: number
- *                              description: The desired weight of the user.
- *                              example: 50
- *                         age: 
- *                              type: number
- *                              description: The age of the user.
- *                              example: 31
- *                         bloodType: 
- *                              type: number
- *                              description: The blood type of the user.
- *                              example: 1
- *                         currentWeight: 
- *                              type: number
- *                              description: The current weight of the user.
- *                              example: 76
- *                         recommendedCalories: 
- *                              type: number
- *                              description: The recommended calories of the user.
- *                              example: 231
- *                         foodsNotRecommended: 
- *                              type: array
- *                              items:
- *                                 type: string
- *                              description: The foods not recommended of the user.
- *                              example: 
- *                                    - "flour"
- *                                    - "eggs"
- *                                    - "nuts" 
  *                     dailyConsumedProducts:
-*                           type: array 
-*                           items:
-*                               type: object
-*                               properties:
-*                                   product:
-*                                       type: string 
-*                                       description: The name of the consumed product.
-*                                       example: Pork stew
-*                                   quantity:
-*                                       type: integer
-*                                       format: int32
-*                                       description: The amount consumed.
-*                                       example: 100
-*                                   calories:
-*                                       type: integer
-*                                       format: int32
-*                                       description: The calorie content of the product.
-*                                       example: 235
-*                                   date:
-*                                       type: string
-*                                       format: date-time
-*                                       description: The date and time when the product was consumed.
-*                                       example: 2024-10-07T00:31:09.329+00:00
-*                                   _id:
-*                                       type: string
-*                                       description: The unique ID of the consumed product record.
-*                                       example: 67032bcdc4f24df2214c7376
-*                           description: List of products consumed daily.
-*                           example:
-*                               - product: Pork stew
-*                                 quantity: 100
-*                                 calories: 235
-*                                 date: 2024-10-07T00:31:09.329+00:00
-*                                 _id: 67032bcdc4f24df2214c7376
-*                               - product: Salad
-*                                 quantity: 200
-*                                 calories: 120
-*                                 date: 2024-10-07T12:20:15.123+00:00
-*                                 _id: 67032bdcc4e24df2245d8392    
- *                       
+ *                           type: array
+ *                           items:
+ *                               type: object
+ *                               properties:
+ *                                   product:
+ *                                       type: string
+ *                                       description: The name of the consumed product.
+ *                                       example: Pork stew
+ *                                   quantity:
+ *                                       type: integer
+ *                                       format: int32
+ *                                       description: The amount consumed.
+ *                                       example: 100
+ *                                   calories:
+ *                                       type: integer
+ *                                       format: int32
+ *                                       description: The calorie content of the product.
+ *                                       example: 235
+ *                                   date:
+ *                                       type: string
+ *                                       format: date-time
+ *                                       description: The date and time when the product was consumed.
+ *                                       example: 2024-10-07T00:31:09.329+00:00
+ *                                   _id:
+ *                                       type: string
+ *                                       description: The unique ID of the consumed product record.
+ *                                       example: 67032bcdc4f24df2214c7376
+ *                           description: List of products consumed daily.
+ *                           example:
+ *                               - product: Pork stew
+ *                                 quantity: 100
+ *                                 calories: 235
+ *                                 date: 2024-10-07T00:31:09.329+00:00
+ *                                 _id: 67032bcdc4f24df2214c7376
+ *                               - product: Salad
+ *                                 quantity: 200
+ *                                 calories: 120
+ *                                 date: 2024-10-07T12:20:15.123+00:00
+ *                                 _id: 67032bdcc4e24df2245d8392
+ *
+ *
+ *
  *       400:
- *         description: Bad request - Missing required field
+ *         description: Bad request - Missing required field, User doesnt exist or invalid password
  */
 
-router.get('/getUserData', authenticateToken, getUserData)
+router.get('/getConsumedProduct/:date', authenticateToken, getConsumedProduct);
 
-router.get('/getUserData', authenticateToken, getUserData);
+//DELETE A CONSUMED PRODUCT
+
+/**
+ * @swagger
+ * /api/users/deleteConsumedProduct/:id:
+ *   delete:
+ *     summary: Delete a consumed product
+ *     description: Allows a user to remove a consumed product.
+ *     tags: [Users]
+ *     parameters:
+ *       - name: Authorization
+ *         in: header
+ *         required: true
+ *         description: Bearer token for authorization.
+ *         schema:
+ *           type: string
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               _id:
+ *                 type: string
+ *                 description: Consumed product id.
+ *                 example: 67032bcdc4f24df2214c7376
+ *     responses:
+ *       204:
+ *         description: Deleted consumed prodcut successfully.
+      
+ *       400:
+ *         description: Bad request - Missing required field, User doesnt exist or invalid password
+ */
+
+router.delete(
+  '/deleteConsumedProduct/:id',
+  authenticateToken,
+  deleteConsumedProduct
+);
+
+// GET: // http://localhost:3000/api/users/summary/:date
+router.get('/summary/:date', authenticateToken, getSummaryData);
 
 export { router };

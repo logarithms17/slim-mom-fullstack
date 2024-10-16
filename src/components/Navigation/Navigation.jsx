@@ -17,7 +17,6 @@ export default function Navigation() {
 
   useEffect(() => {
     setIsLoading(true);
-    console.log(isLoading);
     const fetchUser = async () => {
       try {
         const token = localStorage.getItem('token');
@@ -96,34 +95,34 @@ export default function Navigation() {
     }
     if (pathname === '/diary' || pathname === '/calculator') {
       return (
-        <nav className={css.nav}>
-          <NavLink
-            to="/diary"
-            className={({ isActive }) =>
-              `${isActive ? css.active : css.inactive}`
-            }
-          >
-            Diary
-          </NavLink>
-          <NavLink
-            to="/calculator"
-            className={({ isActive }) =>
-              `${isActive ? css.active : css.inactive} `
-            }
-          >
-            Calculator
-          </NavLink>
-        </nav>
+        <>
+          <HamburgerMenu />
+          <nav className={css.nav}>
+            <NavLink
+              to="/diary"
+              className={({ isActive }) =>
+                `${isActive ? css.active : css.inactive}`
+              }
+            >
+              Diary
+            </NavLink>
+            <NavLink
+              to="/calculator"
+              className={({ isActive }) =>
+                `${isActive ? css.active : css.inactive} `
+              }
+            >
+              Calculator
+            </NavLink>
+          </nav>
+        </>
       );
     }
   };
 
-  console.log(userData);
-
   return (
     <header className={css.header}>
       <div className={css.container}>
-        <HamburgerMenu />
         <img src={logo} alt="slim mom logo"></img>
 
         <div className={css.dividerOne}></div>

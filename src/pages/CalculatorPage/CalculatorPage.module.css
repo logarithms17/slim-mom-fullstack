@@ -9,6 +9,7 @@
   background-repeat: no-repeat;
   width: 100%;
   margin: auto;
+  height: 100vh;
 }
 
 /* Calculator Section styling */
@@ -39,7 +40,7 @@
     flex-direction: column; /* Stack sections vertically */
     align-items: center; /* Center align horizontally */
     justify-content: flex-start; /* Align content from top */
-    height: 100vh; /* Full viewport height */
+    /* height: 100vh; Full viewport height */
     /* overflow-y: auto; Enable vertical scroll if content exceeds height */
     gap: 20px; /* Add space between sections */
     box-sizing: border-box;
@@ -67,6 +68,7 @@
   .container {
     background-image: none; /* Remove background for simplicity */
     /* overflow-y: auto; Enable scrolling on mobile */
+    height: 100%;
   }
 
   .dailyCaloriesSection,

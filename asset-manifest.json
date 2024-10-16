@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/slim-mom-fullstack/static/css/main.96f30be7.css",
-    "main.js": "/slim-mom-fullstack/static/js/main.3e7e93c7.js",
+    "main.css": "/slim-mom-fullstack/static/css/main.52fdc640.css",
+    "main.js": "/slim-mom-fullstack/static/js/main.ec9b05e8.js",
     "static/media/Strawberry-Big-PNG.png": "/slim-mom-fullstack/static/media/Strawberry-Big-PNG.1f455bee886bdfcc1580.png",
     "static/media/Layer-9.png": "/slim-mom-fullstack/static/media/Layer-9.6ecc29ed702aa64a9861.png",
     "static/media/tablet-banana.png": "/slim-mom-fullstack/static/media/tablet-banana.938c4f16826fd4c82840.png",
@@ -13,11 +13,11 @@
     "static/media/tablet-leaves.png": "/slim-mom-fullstack/static/media/tablet-leaves.3fca79abdb58bbb85379.png",
     "static/media/tablet-diary-leaves.png": "/slim-mom-fullstack/static/media/tablet-diary-leaves.2a9083b6eaed67c251a7.png",
     "index.html": "/slim-mom-fullstack/index.html",
-    "main.96f30be7.css.map": "/slim-mom-fullstack/static/css/main.96f30be7.css.map",
-    "main.3e7e93c7.js.map": "/slim-mom-fullstack/static/js/main.3e7e93c7.js.map"
+    "main.52fdc640.css.map": "/slim-mom-fullstack/static/css/main.52fdc640.css.map",
+    "main.ec9b05e8.js.map": "/slim-mom-fullstack/static/js/main.ec9b05e8.js.map"
   },
   "entrypoints": [
-    "static/css/main.96f30be7.css",
-    "static/js/main.3e7e93c7.js"
+    "static/css/main.52fdc640.css",
+    "static/js/main.ec9b05e8.js"
   ]
 }

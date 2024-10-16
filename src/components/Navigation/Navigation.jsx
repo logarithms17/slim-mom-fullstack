@@ -71,9 +71,9 @@ export default function Navigation() {
 
   const dynamicLink = () => {
     // Render different links based on the path
-    if (pathname === '/login' || pathname === '/register') {
+    if (pathname === '/login' || pathname === '/register' || pathname === '/') {
       return (
-        <nav className={css.nav}>
+        <nav className={css.navAuth}>
           <NavLink
             to="/login"
             className={({ isActive }) =>

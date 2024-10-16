@@ -4,6 +4,7 @@ import { NavLink, useLocation } from 'react-router-dom';
 import logo from '../../images/logo.svg';
 import HamburgerMenu from 'components/hamburger/Hamburger';
 import axios from 'axios';
+import { RotatingLines } from 'react-loader-spinner';
 
 axios.defaults.baseURL = 'https://slim-mom-fullstack.onrender.com';
 
@@ -21,7 +22,7 @@ export default function Navigation({ isLoggedIn, onLogout }) {
       try {
         const token = localStorage.getItem('token');
 
-        if (!token || !isLoggedIn) return; // Prevent fetching if not logged in
+        if (!token) return; // Prevent fetching if not logged in
 
         if (token) {
           const response = await axios.get('/api/users/getUserData', {
@@ -57,7 +58,15 @@ export default function Navigation({ isLoggedIn, onLogout }) {
       return (
         <div className={css.userExit}>
           {isLoading ? (
-            <p>Loading...</p>
+            <RotatingLines
+              visible={true}
+              height="24"
+              width="24"
+              color="white"
+              strokeWidth="5"
+              animationDuration="0.75"
+              ariaLabel="rotating-lines-loading"
+            />
           ) : (
             <>
               <p className={css.userName}>{userData}</p>

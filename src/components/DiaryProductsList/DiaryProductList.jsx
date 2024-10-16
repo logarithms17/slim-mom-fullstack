@@ -15,8 +15,6 @@ const DiaryProductsList = ({ selectedDate }) => {
     const formattedDate = formatDateForAPI(date);
     const token = localStorage.getItem('token');
 
-    console.log('Authorization token being sent:', token);
-
     if (!token) {
       console.error('No auth token found');
       return;

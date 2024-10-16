@@ -3,6 +3,7 @@ import { Route, Routes } from 'react-router-dom';
 import SharedLayout from 'components/SharedLayout';
 import { PrivateRoute } from 'components/PrivateRoute/PrivateRoute';
 import { RestrictedRoute } from 'components/RestrictedRoute/RestrictedRoute';
+import { RotatingLines } from 'react-loader-spinner';
 
 // Lazy loading components
 const HomePage = lazy(() => import('pages/HomePage/HomePage'));
@@ -33,9 +34,22 @@ export const App = () => {
       style={{
         height: '100vh',
         overflowY: 'scroll',
+        overflowX: 'hidden',
       }}
     >
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense
+        fallback={
+          <RotatingLines
+            visible={true}
+            height="24"
+            width="24"
+            color="white"
+            strokeWidth="5"
+            animationDuration="0.75"
+            ariaLabel="rotating-lines-loading"
+          />
+        }
+      >
         <Routes>
           <Route
             path="/"

@@ -1,13 +1,23 @@
 {
   "files": {
-    "main.css": "/react-homework-template/static/css/main.7acaea2f.css",
-    "main.js": "/react-homework-template/static/js/main.07d3183d.js",
-    "index.html": "/react-homework-template/index.html",
-    "main.7acaea2f.css.map": "/react-homework-template/static/css/main.7acaea2f.css.map",
-    "main.07d3183d.js.map": "/react-homework-template/static/js/main.07d3183d.js.map"
+    "main.css": "/slim-mom-fullstack/static/css/main.96f30be7.css",
+    "main.js": "/slim-mom-fullstack/static/js/main.3e7e93c7.js",
+    "static/media/Strawberry-Big-PNG.png": "/slim-mom-fullstack/static/media/Strawberry-Big-PNG.1f455bee886bdfcc1580.png",
+    "static/media/Layer-9.png": "/slim-mom-fullstack/static/media/Layer-9.6ecc29ed702aa64a9861.png",
+    "static/media/tablet-banana.png": "/slim-mom-fullstack/static/media/tablet-banana.938c4f16826fd4c82840.png",
+    "static/media/tablet-strawberry.png": "/slim-mom-fullstack/static/media/tablet-strawberry.24d57ef20c753947905b.png",
+    "static/media/Layer-4 1.png": "/slim-mom-fullstack/static/media/Layer-4 1.1d0977f6a1a80da94e8f.png",
+    "static/media/diary-leaves.png": "/slim-mom-fullstack/static/media/diary-leaves.c2066edf280143ea2dbb.png",
+    "static/media/tablet-login-leaves.png": "/slim-mom-fullstack/static/media/tablet-login-leaves.a37a57e58da05e4d1aca.png",
+    "static/media/logo.svg": "/slim-mom-fullstack/static/media/logo.be4ddc7887159f4712acf8e7fabd6664.svg",
+    "static/media/tablet-leaves.png": "/slim-mom-fullstack/static/media/tablet-leaves.3fca79abdb58bbb85379.png",
+    "static/media/tablet-diary-leaves.png": "/slim-mom-fullstack/static/media/tablet-diary-leaves.2a9083b6eaed67c251a7.png",
+    "index.html": "/slim-mom-fullstack/index.html",
+    "main.96f30be7.css.map": "/slim-mom-fullstack/static/css/main.96f30be7.css.map",
+    "main.3e7e93c7.js.map": "/slim-mom-fullstack/static/js/main.3e7e93c7.js.map"
   },
   "entrypoints": [
-    "static/css/main.7acaea2f.css",
-    "static/js/main.07d3183d.js"
+    "static/css/main.96f30be7.css",
+    "static/js/main.3e7e93c7.js"
   ]
 }

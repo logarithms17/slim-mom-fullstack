@@ -88,10 +88,6 @@ a.active {
   background-color: #9b9faa;
   margin: 50px 20px 0px 20px;
 }
-.HamburgerMenu{
-  position: absolute;
-  z-index: 1;
-}
 /* responsive */
 
 @media (max-width: 1289px) {
@@ -115,7 +111,7 @@ a.active {
     transition: transform 0.5s ease;
   }
   .container::after {
-    /* content: ''; */
+    content: '';
     position: absolute;
     left: 0;
     right: 0;
@@ -148,6 +144,9 @@ a.active {
     border: none;
     margin-left: 20px;
     margin-right: auto;
+  }
+  .container::after {
+   display: none;
   }
 
 }

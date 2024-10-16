@@ -47,7 +47,7 @@ p {
     display: flex;
     flex-direction: row;
     /* Align sections horizontally */
-    align-items: center;
+    /* align-items: center; */
     /* Align sections to the top */
     width: 100%;
     gap: 55px;

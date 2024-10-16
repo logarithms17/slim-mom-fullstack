@@ -68,4 +68,7 @@ body {
         display: flex;
         flex-direction: column;
     }
+    .formTitle h4 {
+        text-align: center;
+      }
 }

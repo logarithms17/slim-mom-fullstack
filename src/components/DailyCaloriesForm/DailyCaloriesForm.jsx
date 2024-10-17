@@ -3,6 +3,9 @@ import axios from 'axios';
 import css from './Daily.module.css';
 import { Modal } from '../Modal/Modal';
 
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 axios.defaults.baseURL = 'https://slim-mom-fullstack.onrender.com';
 
 export const DailyCaloriesForm = ({ isLoggedIn }) => {
@@ -19,27 +22,27 @@ export const DailyCaloriesForm = ({ isLoggedIn }) => {
 
   const validateInputs = () => {
     if (!height || isNaN(height) || height <= 0) {
-      alert('Please enter a valid positive number for height.');
+      toast.error('Please enter a valid positive number for height..');
       return false;
     }
 
     if (!age || isNaN(age) || age <= 0 || age > 120) {
-      alert('Please enter a valid age (1-120).');
+      toast.error('Please enter a valid age (1-120).');
       return false;
     }
 
     if (!currentWeight || isNaN(currentWeight) || currentWeight <= 0) {
-      alert('Please enter a valid positive number for current weight.');
+      toast.error('Please enter a valid positive number for current weight.');
       return false;
     }
 
     if (!desiredWeight || isNaN(desiredWeight) || desiredWeight <= 0) {
-      alert('Please enter a valid positive number for desired weight.');
+      toast.error('Please enter a valid positive number for desired weight..');
       return false;
     }
 
     if (Number(desiredWeight) >= Number(currentWeight)) {
-      alert('Desired weight should be less than current weight.');
+      toast.error('Desired weight should be less than current weight.');
       return false;
     }
 
@@ -214,6 +217,8 @@ export const DailyCaloriesForm = ({ isLoggedIn }) => {
           </div>
         </form>
       </div>
+
+      <ToastContainer position="top-right" autoClose={3000} />
 
       <Modal
         isOpen={isModalOpen}

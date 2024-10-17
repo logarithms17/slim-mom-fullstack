@@ -2,10 +2,10 @@ import React from 'react';
 import { Outlet } from 'react-router-dom';
 import Navigation from './Navigation/Navigation';
 
-const SharedLayout = () => {
+const SharedLayout = ({ isLoggedIn, onLogout }) => {
   return (
     <div>
-      <Navigation />
+      <Navigation isLoggedIn={isLoggedIn} onLogout={onLogout} />
       <Outlet />
     </div>
   );

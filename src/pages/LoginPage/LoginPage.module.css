@@ -8,6 +8,7 @@
   background-repeat: no-repeat;
   height: 100vh;
   width: 100%;
+  padding-top: 160px;
 }
 
 @media screen and (max-width: 1279px) {
@@ -26,5 +27,9 @@
 @media (max-width: 703px) {
   .backgroundContainer {
     background-image: none;
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */
+    padding-top: 40px;
   }
 }

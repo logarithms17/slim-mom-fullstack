@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import style from './summary.module.css';
+import { RotatingLines } from 'react-loader-spinner';
 
 axios.defaults.baseURL = 'https://slim-mom-fullstack.onrender.com';
 
@@ -44,7 +45,17 @@ export const Summary = ({ selectedDate }) => {
   }, [date]);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return (
+      <RotatingLines
+        visible={true}
+        height="24"
+        width="24"
+        color="white"
+        strokeWidth="5"
+        animationDuration="0.75"
+        ariaLabel="rotating-lines-loading"
+      />
+    );
   }
 
   if (error) {

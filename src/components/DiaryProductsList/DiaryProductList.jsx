@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { DiaryProductListItem } from '../DiaryProductListItem/DiaryProductListItem';
 import css from './DiaryProductList.module.css';
 
@@ -11,11 +11,9 @@ const DiaryProductsList = ({ selectedDate }) => {
     return date.toISOString().split('T')[0];
   };
 
-  const fetchProducts = async date => {
+  const fetchProducts = useCallback(async date => {
     const formattedDate = formatDateForAPI(date);
     const token = localStorage.getItem('token');
-
-    console.log('Authorization token being sent:', token);
 
     if (!token) {
       console.error('No auth token found');
@@ -49,13 +47,13 @@ const DiaryProductsList = ({ selectedDate }) => {
     } finally {
       setIsLoading(false);
     }
-  };
+  }, []); // No dependencies because nothing inside fetchProducts changes
 
   useEffect(() => {
     if (selectedDate) {
       fetchProducts(selectedDate);
     }
-  }, [selectedDate]);
+  }, [selectedDate, fetchProducts]);
 
   // Function to handle delete request
   const handleDelete = async productId => {

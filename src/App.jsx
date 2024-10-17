@@ -23,8 +23,6 @@ export const App = () => {
     setIsLoggedIn(true);
   };
 
-  console.log(isLoggedIn);
-
   const handleLogout = () => {
     setIsLoggedIn(false);
   };

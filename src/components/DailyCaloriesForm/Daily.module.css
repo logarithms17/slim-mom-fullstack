@@ -141,6 +141,8 @@
     width: 100%;
     margin-right: auto;
     margin-left: auto;
+    padding-left: 10px;
+    padding-right: 20px;
 
     .dailyForm {
       display: block;
@@ -162,6 +164,14 @@
       width: 50%;
       height: 55px;
     }
+  }
+  .dailyContainer h1 {
+    font-size: 1.125rem;
+    line-height: 25.6px;
+    text-align: justify;
+  }
+  .dailyContainer label {
+    font-size: 0.875rem;
   }
 }
 
